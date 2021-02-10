@@ -1,8 +1,12 @@
 import * as React from 'react';
+import NavBar from '../components/NavBar';
 
 const ListenPage = () => {
     return (
-        <div> Listen Page </div>
+        <div>
+            <NavBar />
+            <div> Listen Page </div>
+        </div>
     );
 };
 
