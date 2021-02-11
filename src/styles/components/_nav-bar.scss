@@ -1,0 +1,10 @@
+.nav-bar {
+    display: flex;
+    flex-direction: row;
+    font-size: $l-size;
+    justify-content: space-around;
+
+    a {
+        text-decoration: none;
+    }
+}

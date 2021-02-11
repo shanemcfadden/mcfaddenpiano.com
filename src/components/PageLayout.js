@@ -7,6 +7,8 @@ import '../styles/styles.scss';
 const PageLayout = ({children}) => {
     return (
         <div className="content-container">
+            <h1>Shane McFadden</h1>
+            <h2>Collaborative Pianist</h2>
             <NavBar /> 
             {children}
         </div>
