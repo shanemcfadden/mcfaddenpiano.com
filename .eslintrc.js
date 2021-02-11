@@ -6,12 +6,14 @@ module.exports = {
     },
     'extends': [
         'eslint:recommended',
-        'plugin:react/recommended'
+        'plugin:react/recommended',
+        'plugin:prettier/recommended'
     ],
     'globals': {
         'Atomics': 'readonly',
         'SharedArrayBuffer': 'readonly'
     },
+    'ignorePatterns': ['node_modules/**', 'public/**', 'cache/**'],
     'parserOptions': {
         'ecmaFeatures': {
             'jsx': true
@@ -20,24 +22,10 @@ module.exports = {
         'sourceType': 'module'
     },
     'plugins': [
-        'react'
+        'react',
+        'prettier'
     ],
-    'rules': {
-        'indent': [
-            'error',
-            4
-        ],
-        'linebreak-style': [
-            'error',
-            'unix'
-        ],
-        'quotes': [
-            'error',
-            'single'
-        ],
-        'semi': [
-            'error',
-            'always'
-        ]
+    rules: {
+        'prettier/prettier': 'error'
     }
 };
