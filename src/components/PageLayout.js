@@ -10,7 +10,7 @@ const PageLayout = ({ children }) => {
       <h1>Shane McFadden</h1>
       <h2>Collaborative Pianist</h2>
       <NavBar />
-      {children}
+      <div>{children}</div>
     </div>
   );
 };
