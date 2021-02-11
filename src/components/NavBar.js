@@ -4,9 +4,9 @@ import * as React from 'react';
 const NavBar = () => {
     return (
         <div className="nav-bar">
-            <Link to="/">Bio</Link>
-            <Link to="/listen">Listen</Link>
-            <Link to="/contact">Contact</Link>
+            <Link activeClassName="active" to="/">Bio</Link>
+            <Link activeClassName="active" to="/listen">Listen</Link>
+            <Link activeClassName="active" to="/contact">Contact</Link>
         </div>
     );
 };
