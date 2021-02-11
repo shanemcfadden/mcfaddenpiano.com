@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes, { arrayOf } from 'prop-types';
 import NavBar from './NavBar';
 import 'normalize.css';
+import '../styles/styles.scss';
 
 const PageLayout = ({children}) => {
     return (
