@@ -7,13 +7,10 @@ import PageLayout from '../components/PageLayout';
 const IndexPage = ({ data }) => {
   return (
     <PageLayout>
-      <div> Home Page </div>
-      <div className="float--right-half">
+      <div className="float--right-half float--no-margin-top">
         <Img fluid={data.file.childImageSharp.fluid} />
       </div>
-      {/* 
       <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}></div>
-*/}
     </PageLayout>
   );
 };
@@ -44,34 +41,8 @@ export const query = graphql`
         }
       }
     }
+    markdownRemark(frontmatter: { slug: { eq: "/bio" } }) {
+      html
+    }
   }
 `;
-//     # query {
-//     allMarkdownRemark(frontmatter: { path: { eq: $path } }) {
-//       html
-//       frontmatter {
-//         path
-//       }
-//     }
-//     # file(relativePath: { eq: "HSPTL.png" }) {
-//     #  childImageSharp {
-//     # Specify the image processing specifications right in the query.
-//     # Makes it trivial to update as your page's design changes.
-//     #   fluid(maxWidth: 600) {
-//     # ...GatsbyImageSharpFluid
-//     #  }
-//     # }
-//     # }
-//   }
-// `;
-//   query {
-//     file(relativePath: { eq: "HSPTL.png" }) {
-//       childImageSharp {
-//         # Specify the image processing specifications right in the query.
-//         # Makes it trivial to update as your page's design changes.
-//         fluid(maxWidth: 600) {
-//           ...GatsbyImageSharpFluid
-//         }
-//       }
-//     }
-//   }

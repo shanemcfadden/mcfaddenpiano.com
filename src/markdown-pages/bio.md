@@ -1,5 +1,5 @@
 ---
-slug: '/'
+slug: '/bio'
 ---
 
 As a musician equally at home in vocal and chamber music, collaborative pianist Shane McFadden is an active performer in Chicago and throughout the United States.
