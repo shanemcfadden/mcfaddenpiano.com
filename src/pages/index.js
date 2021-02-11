@@ -1,13 +1,12 @@
 import * as React from 'react';
-import NavBar from '../components/NavBar';
+import PageLayout from '../components/PageLayout';
 import '../styles/styles.scss';
 
 const IndexPage = () => {
     return (
-        <div>
-            <NavBar />
+        <PageLayout>
             <div> Home Page </div>
-        </div>
+        </PageLayout>
     );
 };
 
