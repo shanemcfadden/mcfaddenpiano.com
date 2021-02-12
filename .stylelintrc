@@ -1,0 +1,12 @@
+{
+  "extends": "stylelint-config-sass-guidelines",
+  "rules": {
+    "selector-class-pattern": [
+          "^(([A-Za-z0-9])+)(-([A-Za-z0-9])+)*((__[A-Za-z0-9]+)(-([A-Za-z0-9])+)*)?((--[A-Za-z0-9]+)(-([A-Za-z0-9])+)*)?$",
+          {
+            "message": "Class names should match the BEM CSS naming convention"
+          }
+        ]
+      },
+  "ignoreFiles": ["**/*.js", "**/*.jsx", "node_modules/**", "**/*.html"]
+}
