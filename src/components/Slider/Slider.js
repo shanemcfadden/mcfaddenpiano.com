@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import SliderContent from './SliderContent';
 import Slide from './Slide';
 import Arrow from './Arrow';
+import Dots from './Dots';
 
 const Slider = ({ slides }) => {
   const [browserWidth, setBrowserWidth] = useState(0);
@@ -61,6 +62,7 @@ const Slider = ({ slides }) => {
       </SliderContent>
       <Arrow direction="left" handleClick={prevSlide} />
       <Arrow direction="right" handleClick={nextSlide} />
+      <Dots slides={slides} activeIndex={activeIndex} />
     </div>
   );
 };
