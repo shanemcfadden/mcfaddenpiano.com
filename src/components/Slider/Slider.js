@@ -68,10 +68,7 @@ const Slider = ({ slides, autoPlay }) => {
     setState({
       ...currentState,
       translate: currentState.translate + browserWidth,
-      activeSlideIndex:
-        currentState.activeSlideIndex === slides.length - 1
-          ? 0
-          : currentState.activeSlideIndex + 1,
+      activeSlideIndex: (currentState.activeSlideIndex + 1) % slides.length,
     });
   };
 
@@ -87,21 +84,18 @@ const Slider = ({ slides, autoPlay }) => {
   };
 
   const smoothTransition = () => {
-    let _slides = [];
     const { activeSlideIndex } = currentState;
-
-    // TODO: REFACTOR WITH MODULO?
-    if (activeSlideIndex === slides.length - 1)
-      _slides = [slides[slides.length - 2], lastSlide, firstSlide];
-    else if (activeSlideIndex === 0)
-      _slides = [lastSlide, firstSlide, secondSlide];
-    else _slides = slides.slice(activeSlideIndex - 1, activeSlideIndex + 2);
+    const slidesLength = slides.length;
 
     setState({
       ...currentState,
       transition: 0,
       translate: browserWidth,
-      loadedSlides: _slides,
+      loadedSlides: [
+        slides[activeSlideIndex > 0 ? activeSlideIndex - 1 : slidesLength - 1],
+        slides[activeSlideIndex],
+        slides[(activeSlideIndex + 1) % slidesLength],
+      ],
     });
   };
 
