@@ -1,7 +1,4 @@
 # Todo
 
-- Import image assets
-- VideoCard
-- Refactor using GraphQL
 - Standardize styles
-- ContactForm
+- Image slider (hero header)
