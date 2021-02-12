@@ -1,0 +1,16 @@
+.collapsing-columns {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (min-width: 35rem) {
+    flex-direction: row;
+  }
+
+  > * {
+    @media (min-width: 35rem) {
+      width: 48%;
+    }
+    width: 100%;
+  }
+}
