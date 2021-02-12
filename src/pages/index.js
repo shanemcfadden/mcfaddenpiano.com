@@ -23,7 +23,7 @@ IndexPage.propTypes = {
       }),
     }),
     markdownRemark: PropTypes.shape({
-      html: PropTypes.shape({}),
+      html: PropTypes.string,
     }),
   }),
 };
