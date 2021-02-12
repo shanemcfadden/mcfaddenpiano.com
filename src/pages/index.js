@@ -10,7 +10,10 @@ const IndexPage = ({ data }) => {
       <div className="float--right-half float--no-margin-top">
         <Img fluid={data.file.childImageSharp.fluid} />
       </div>
-      <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}></div>
+      <div
+        id="bio"
+        dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}
+      ></div>
     </PageLayout>
   );
 };
