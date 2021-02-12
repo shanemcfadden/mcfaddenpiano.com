@@ -1,22 +1,50 @@
+import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
-import PropTypes, { arrayOf } from 'prop-types';
+import PropTypes from 'prop-types';
 import NavBar from './NavBar';
 import 'normalize.css';
 import '../styles/styles.scss';
+import Slider from './Slider/Slider';
 
 const PageLayout = ({ children }) => {
+  const data = useStaticQuery(
+    graphql`
+      query {
+        allFile(
+          filter: {
+            sourceInstanceName: { eq: "images" }
+            relativePath: { glob: "slider/*" }
+          }
+        ) {
+          edges {
+            node {
+              publicURL
+            }
+          }
+        }
+      }
+    `
+  );
+  const imageUrls = data.allFile.edges.map(({ node }) => node.publicURL);
+
   return (
-    <div className="content-container">
-      <h1>Shane McFadden</h1>
-      <h2>Collaborative Pianist</h2>
-      <NavBar />
-      <div>{children}</div>
-    </div>
+    <>
+      <Slider slides={imageUrls} />
+      <div className="content-container">
+        <h1>Shane McFadden</h1>
+        <h2>Collaborative Pianist</h2>
+        <NavBar />
+        <div>{children}</div>
+      </div>
+    </>
   );
 };
 
 PageLayout.propTypes = {
-  children: PropTypes.oneOfType([arrayOf(PropTypes.node), PropTypes.node])
-    .isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
 };
+
 export default PageLayout;
