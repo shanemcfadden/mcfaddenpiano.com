@@ -11,6 +11,7 @@ const VideoCard = ({ title, watchLink, performers, venue }) => {
           className="youtube-video"
           src={`https://www.youtube.com/embed/${videoId}`}
           frameBorder="0"
+          allowFullScreen
         ></iframe>
       </div>
       <p>
