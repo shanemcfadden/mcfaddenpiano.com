@@ -4,7 +4,7 @@ import PageLayout from '../components/PageLayout';
 const ListenPage = () => {
   return (
     <PageLayout>
-      <div> Listen Page </div>
+      <h2>Khachaturian Trio for Violin, Clarinet, and Piano</h2>
       <div className="youtube-video__container">
         <iframe
           className="youtube-video"
@@ -12,6 +12,13 @@ const ListenPage = () => {
           frameBorder="0"
         ></iframe>
       </div>
+      <p>
+        Mickayla Chapman, clarinet
+        <br />
+        Chase Ward, violin
+        <br />
+        Curtiss Hall, Chicago, IL
+      </p>
     </PageLayout>
   );
 };
