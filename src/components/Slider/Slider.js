@@ -10,7 +10,7 @@ const Slider = ({ slides, autoPlay }) => {
   const [browserWidth, setBrowserWidth] = useState(0);
   const [translate, setTranslate] = useState(0);
   const [transition, setTransition] = useState(0.45);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
     autoPlayRef.current = nextSlide;
@@ -33,30 +33,30 @@ const Slider = ({ slides, autoPlay }) => {
   }, []);
 
   useEffect(() => {
-    setTranslate(activeIndex * browserWidth);
+    setTranslate(activeSlide * browserWidth);
   }, [browserWidth]);
 
   const nextSlide = () => {
-    if (activeIndex === slides.length - 1) {
+    if (activeSlide === slides.length - 1) {
       setTranslate(0);
-      setActiveIndex(0);
+      setActiveSlide(0);
 
       return;
     }
 
-    setTranslate((activeIndex + 1) * browserWidth);
-    setActiveIndex(activeIndex + 1);
+    setTranslate((activeSlide + 1) * browserWidth);
+    setActiveSlide(activeSlide + 1);
   };
 
   const prevSlide = () => {
-    if (activeIndex === 0) {
+    if (activeSlide === 0) {
       setTranslate((slides.length - 1) * browserWidth);
-      setActiveIndex(slides.length - 1);
+      setActiveSlide(slides.length - 1);
       return;
     }
 
-    setTranslate((activeIndex - 1) * browserWidth);
-    setActiveIndex(activeIndex - 1);
+    setTranslate((activeSlide - 1) * browserWidth);
+    setActiveSlide(activeSlide - 1);
   };
 
   return (
@@ -72,7 +72,7 @@ const Slider = ({ slides, autoPlay }) => {
       </SliderContent>
       <Arrow direction="left" handleClick={prevSlide} />
       <Arrow direction="right" handleClick={nextSlide} />
-      <Dots slides={slides} activeIndex={activeIndex} />
+      <Dots slides={slides} activeSlide={activeSlide} />
     </div>
   );
 };

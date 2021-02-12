@@ -17,7 +17,7 @@ Dot.propTypes = {
   active: PropTypes.bool,
 };
 
-const Dots = ({ slides, activeIndex }) => (
+const Dots = ({ slides, activeSlide }) => (
   <div
     style={{
       position: 'absolute',
@@ -29,13 +29,13 @@ const Dots = ({ slides, activeIndex }) => (
     }}
   >
     {slides.map((slide, i) => (
-      <Dot key={slide} active={activeIndex === i} />
+      <Dot key={slide} active={activeSlide === i} />
     ))}
   </div>
 );
 
 Dots.propTypes = {
-  activeIndex: PropTypes.number.isRequired,
+  activeSlide: PropTypes.number.isRequired,
   slides: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
