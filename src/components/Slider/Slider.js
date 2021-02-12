@@ -20,15 +20,6 @@ const Slider = ({ slides, autoPlay }) => {
     activeSlideIndex: 0,
     loadedSlides: [lastSlide, firstSlide, secondSlide],
   });
-  //   const [translate, setTranslate] = useState(browserWidth);
-  //   const [transition, setTransition] = useState(0.45);
-  //   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
-  //   const [loadedSlides, setLoadedSlides] = useState([
-  //     lastSlide,
-  //     firstSlide,
-  //     secondSlide,
-  //   ]);
-
   useEffect(() => {
     autoPlayRef.current = nextSlide;
     transitionRef.current = smoothTransition;
@@ -49,7 +40,7 @@ const Slider = ({ slides, autoPlay }) => {
     };
 
     const interval = setInterval(play, autoPlay * 1000);
-    const transitionEnd = window.addEventListener('transitionend', smooth);
+    window.addEventListener('transitionend', smooth);
     return () => {
       clearInterval(interval);
       window.onresize = null;
@@ -58,7 +49,6 @@ const Slider = ({ slides, autoPlay }) => {
   }, []);
 
   useEffect(() => {
-    // setTranslate(activeSlideIndex * browserWidth);
     setState({
       ...currentState,
       translate: currentState.activeSlideIndex * browserWidth,
@@ -66,25 +56,15 @@ const Slider = ({ slides, autoPlay }) => {
   }, [browserWidth]);
 
   useEffect(() => {
-    // setTransition(0.45);
-    setState({
-      ...currentState,
-      transition: 0.45,
-    });
+    if (currentState.transition === 0) {
+      setState({
+        ...currentState,
+        transition: 0.45,
+      });
+    }
   }, [currentState.transition]);
 
   const nextSlide = () => {
-    // if (activeSlideIndex === slides.length - 1) {
-    //     setState({
-    //         ...currentState,
-    //         translate: currentState.translate + browserWidth,
-    //         activeSlideIndex: 0
-    //     })
-    // //   setTranslate(0);
-    // //   setActiveSlideIndex(0);
-
-    //   return;
-    // }
     setState({
       ...currentState,
       translate: currentState.translate + browserWidth,
@@ -93,33 +73,17 @@ const Slider = ({ slides, autoPlay }) => {
           ? 0
           : currentState.activeSlideIndex + 1,
     });
-
-    // setTranslate((activeSlideIndex + 1) * browserWidth);
-    // setActiveSlideIndex(activeSlideIndex + 1);
   };
 
   const prevSlide = () => {
-    // if (activeSlideIndex === 0) {
-    // //   setTranslate((slides.length - 1) * browserWidth);
-    // //   setActiveSlideIndex(slides.length - 1);
-    // setState({
-    //     ...currentState,
-    //     translate: (slides.length - 1) * browserWidth,
-    //     activeSlideIndex: slides.length - 1
-    // })
-    //   return;
-    // }
-
     setState({
       ...currentState,
       translate: 0,
       activeSlideIndex:
-        currentState.activeSlide === 0
+        currentState.activeSlideIndex === 0
           ? slides.length - 1
           : currentState.activeSlideIndex - 1,
     });
-    // setTranslate((activeSlideIndex - 1) * browserWidth);
-    // setActiveSlideIndex(activeSlideIndex - 1);
   };
 
   const smoothTransition = () => {
@@ -139,9 +103,6 @@ const Slider = ({ slides, autoPlay }) => {
       translate: browserWidth,
       loadedSlides: _slides,
     });
-    // setTransition(0);
-    // setTranslate(browserWidth);
-    // setLoadedSlides(_slides);
   };
 
   const {
