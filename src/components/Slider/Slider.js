@@ -1,24 +1,34 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import SliderContent from './SliderContent';
 import Slide from './Slide';
 import Arrow from './Arrow';
 import Dots from './Dots';
 
-const Slider = ({ slides }) => {
+const Slider = ({ slides, autoPlay }) => {
+  const autoPlayRef = useRef();
   const [browserWidth, setBrowserWidth] = useState(0);
   const [translate, setTranslate] = useState(0);
   const [transition, setTransition] = useState(0.45);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
+    autoPlayRef.current = nextSlide;
+  });
+
+  useEffect(() => {
     setBrowserWidth(window.innerWidth);
     window.onresize = () => {
       setBrowserWidth(window.innerWidth);
     };
+    const play = () => {
+      autoPlayRef.current();
+    };
 
+    const interval = setInterval(play, autoPlay * 1000);
     return () => {
       window.onresize = null;
+      return () => clearInterval(interval);
     };
   }, []);
 
@@ -68,7 +78,8 @@ const Slider = ({ slides }) => {
 };
 
 Slider.propTypes = {
-  slides: PropTypes.arrayOf(PropTypes.string),
+  slides: PropTypes.arrayOf(PropTypes.string).isRequired,
+  autoPlay: PropTypes.number.isRequired,
 };
 
 export default Slider;

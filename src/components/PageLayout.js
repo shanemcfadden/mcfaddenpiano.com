@@ -29,7 +29,7 @@ const PageLayout = ({ children }) => {
 
   return (
     <>
-      <Slider slides={imageUrls} />
+      <Slider slides={imageUrls} autoPlay={4} />
       <div className="content-container">
         <h1>Shane McFadden</h1>
         <h2>Collaborative Pianist</h2>

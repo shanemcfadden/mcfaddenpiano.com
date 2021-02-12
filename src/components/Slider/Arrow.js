@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import leftArrow from '../../images/icons/keyboard_arrow_left-24px.svg';
 import rightArrow from '../../images/icons/keyboard_arrow_right-24px.svg';
@@ -52,5 +53,10 @@ const Arrow = ({ direction, handleClick }) => (
     )}
   </div>
 );
+
+Arrow.propTypes = {
+  direction: PropTypes.oneOf(['left', 'right']),
+  handleClick: PropTypes.func,
+};
 
 export default Arrow;
