@@ -3,11 +3,8 @@ import React from 'react';
 
 const Dot = ({ active }) => (
   <span
+    className="slider__dot"
     style={{
-      padding: '10px',
-      marginRight: '5px',
-      cursor: 'pointer',
-      borderRadius: '50%',
       background: `${active ? 'black' : 'white'}`,
     }}
   />
@@ -18,16 +15,7 @@ Dot.propTypes = {
 };
 
 const Dots = ({ slides, activeSlideIndex }) => (
-  <div
-    style={{
-      position: 'absolute',
-      bottom: '25px',
-      width: '100%',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}
-  >
+  <div className="slider__dot-row">
     {slides.map((slide, i) => (
       <Dot key={slide} active={activeSlideIndex === i} />
     ))}

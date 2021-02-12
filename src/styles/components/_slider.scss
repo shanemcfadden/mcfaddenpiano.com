@@ -37,3 +37,19 @@
   height: 100%;
   width: 100%;
 }
+
+.slider__dot-row {
+  align-items: center;
+  bottom: 25px;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+}
+
+.slider__dot {
+  border-radius: 50%;
+  cursor: pointer;
+  margin-right: 5px;
+  padding: 10px;
+}
