@@ -1,0 +1,15 @@
+label,
+input,
+textarea {
+  width: 100%;
+}
+
+textarea {
+  height: 20rem;
+}
+
+form {
+  p:first-child {
+    margin-top: 0;
+  }
+}

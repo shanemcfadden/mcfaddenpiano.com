@@ -18,31 +18,35 @@ const ContactPage = ({ data }) => {
           netlify-honeypot="false-field"
           data-netlify="true"
         >
+          <p>
+            <label htmlFor="name">
+              Name:
+              <input type="text" name="name" id="name" required />
+            </label>
+          </p>
+          <p>
+            <label htmlFor="email">
+              Email:
+              <input type="email" name="email" id="email" required />
+            </label>
+          </p>
+          <p>
+            <label htmlFor="subject">
+              Subject:
+              <input type="text" name="subject" id="subject" required />
+            </label>
+          </p>
+          <p>
+            <label htmlFor="message">Message:</label>
+            <textarea name="message" id="message" maxLength="500"></textarea>
+          </p>
           <p className="hidden">
-            <input name="false-field" />
+            <input name="false-field" id="false-field" />
           </p>
           <p>
-            <label>
-              Name: <input type="text" name="name" />
-            </label>
-          </p>
-          <p>
-            <label>
-              Email: <input type="email" name="email" />
-            </label>
-          </p>
-          <p>
-            <label>
-              Subject: <input type="text" name="subject" />
-            </label>
-          </p>
-          <p>
-            <label>
-              Message: <textarea name="message"></textarea>
-            </label>
-          </p>
-          <p>
-            <button type="submit">Send</button>
+            <button className="float-right" type="submit">
+              Send
+            </button>
           </p>
         </form>
       </div>
