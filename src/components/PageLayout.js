@@ -6,7 +6,7 @@ import 'normalize.css';
 import '../styles/styles.scss';
 import Slider from './Slider/Slider';
 
-const PageLayout = ({ children }) => {
+const PageLayout = ({ slider, children }) => {
   const data = useStaticQuery(
     graphql`
       query {
@@ -29,7 +29,7 @@ const PageLayout = ({ children }) => {
 
   return (
     <>
-      <Slider slides={imageUrls} autoPlay={4} />
+      {slider && <Slider slides={imageUrls} autoPlay={4} />}
       <div className="content-container">
         <h1>Shane McFadden</h1>
         <h2>Collaborative Pianist</h2>
@@ -45,6 +45,11 @@ PageLayout.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
+  slider: PropTypes.bool,
+};
+
+PageLayout.defaultProps = {
+  slider: false,
 };
 
 export default PageLayout;
