@@ -14,7 +14,7 @@ const VideoCard = ({ title, watchLink, performers, venue }) => {
         ></iframe>
       </div>
       <p>
-        {performers.map((p, i) => {
+        {performers.map((p) => {
           return <div key={p}>{p}</div>;
         })}
         {venue && <div>{venue}</div>}
