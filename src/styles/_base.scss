@@ -1,16 +1,15 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html {
-    background-color: cyan;
-    font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 body {
-    font-size: $m-size;
+  font-size: $m-size;
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
