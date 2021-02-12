@@ -1,26 +1,58 @@
+import { graphql } from 'gatsby';
+import PropTypes from 'prop-types';
 import * as React from 'react';
 import PageLayout from '../components/PageLayout';
 import VideoCard from '../components/VideoCard';
 
-const sampleData = {
-  title: 'Khachaturian Trio for Violin, Clarinet, and Piano',
-  watchLink: 'https://www.youtube.com/watch?v=8jr2z99YjmI',
-  performers: ['Mickayla Chapman, clarinet', 'Chase Ward, violin'],
-  venue: 'Curtiss Hall, Chicago, IL',
-};
-
-const ListenPage = () => {
-  const { title, watchLink, performers, venue } = sampleData;
+const ListenPage = ({ data }) => {
   return (
     <PageLayout>
-      <VideoCard
-        title={title}
-        watchLink={watchLink}
-        performers={performers}
-        venue={venue}
-      />
+      {data.allVideoCardJson.edges.map(({ node }) => {
+        const { title, watchLink, performers, venue } = node;
+        return (
+          <VideoCard
+            title={title}
+            watchLink={watchLink}
+            performers={performers}
+            venue={venue}
+            key={watchLink}
+          />
+        );
+      })}
     </PageLayout>
   );
 };
 
+ListenPage.propTypes = {
+  data: PropTypes.shape({
+    allVideoCardJson: PropTypes.shape({
+      edges: PropTypes.arrayOf(
+        PropTypes.shape({
+          node: PropTypes.shape({
+            title: PropTypes.string.isRequired,
+            watchLink: PropTypes.string.isRequired,
+            performers: PropTypes.arrayOf(PropTypes.string).isRequired,
+            venue: PropTypes.string,
+          }),
+        })
+      ),
+    }),
+  }),
+};
+
 export default ListenPage;
+
+export const query = graphql`
+  query MyQuery {
+    allVideoCardJson {
+      edges {
+        node {
+          performers
+          title
+          venue
+          watchLink
+        }
+      }
+    }
+  }
+`;
