@@ -15,7 +15,7 @@
   height: 50px;
   justify-content: center;
   position: absolute;
-  top: 50%;
+  top: calc(50% - 25px);
   transition: transform ease-in 0.1s;
   width: 50px;
 
@@ -27,6 +27,26 @@
 .slider__arrow > img {
   &:focus {
     outline: 0;
+  }
+}
+
+.slider__overlay {
+  color: #fff;
+  position: absolute;
+  text-align: center;
+  text-shadow: 1rem 1rem 4.5rem #000;
+  top: calc(50vh - 6rem);
+  width: 100%;
+  z-index: 100;
+
+  h1 {
+    font-size: 6rem;
+    margin: 0;
+  }
+
+  h2 {
+    font-size: 3rem;
+    margin: 0;
   }
 }
 

@@ -108,6 +108,10 @@ const Slider = ({ slides, autoPlay }) => {
 
   return (
     <div className="slider">
+      <div className="slider__overlay">
+        <h1>Shane McFadden</h1>
+        <h2>Collaborative Pianist</h2>
+      </div>
       <SliderContent
         translate={translate}
         transition={transition}
