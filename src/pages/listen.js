@@ -1,24 +1,24 @@
 import * as React from 'react';
 import PageLayout from '../components/PageLayout';
+import VideoCard from '../components/VideoCard';
+
+const sampleData = {
+  title: 'Khachaturian Trio for Violin, Clarinet, and Piano',
+  watchLink: 'https://www.youtube.com/watch?v=8jr2z99YjmI',
+  performers: ['Mickayla Chapman, clarinet', 'Chase Ward, violin'],
+  venue: 'Curtiss Hall, Chicago, IL',
+};
 
 const ListenPage = () => {
+  const { title, watchLink, performers, venue } = sampleData;
   return (
     <PageLayout>
-      <h2>Khachaturian Trio for Violin, Clarinet, and Piano</h2>
-      <div className="youtube-video__container">
-        <iframe
-          className="youtube-video"
-          src="https://www.youtube.com/embed/8jr2z99YjmI"
-          frameBorder="0"
-        ></iframe>
-      </div>
-      <p>
-        Mickayla Chapman, clarinet
-        <br />
-        Chase Ward, violin
-        <br />
-        Curtiss Hall, Chicago, IL
-      </p>
+      <VideoCard
+        title={title}
+        watchLink={watchLink}
+        performers={performers}
+        venue={venue}
+      />
     </PageLayout>
   );
 };
