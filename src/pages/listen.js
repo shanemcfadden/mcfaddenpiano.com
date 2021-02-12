@@ -5,7 +5,13 @@ const ListenPage = () => {
   return (
     <PageLayout>
       <div> Listen Page </div>
-      <iframe src="https://www.youtube.com/embed/8jr2z99YjmI"></iframe>
+      <div className="youtube-video__container">
+        <iframe
+          className="youtube-video"
+          src="https://www.youtube.com/embed/8jr2z99YjmI"
+          frameBorder="0"
+        ></iframe>
+      </div>
     </PageLayout>
   );
 };
