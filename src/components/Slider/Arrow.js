@@ -6,51 +6,17 @@ import rightArrow from '../../images/icons/keyboard_arrow_right-24px.svg';
 const Arrow = ({ direction, handleClick }) => (
   <div
     onClick={handleClick}
+    className="slider__arrow"
     style={{
-      display: 'flex',
-      position: 'absolute',
-      top: '50%',
       [direction]: '25px',
-      //   ${direction === 'right' ? `right: 25px` : `left: 25px`},
-      height: '50px',
-      width: '50px',
-      justifyContent: 'center',
-      background: 'white',
-      borderRadius: '50%',
-      cursor: 'pointer',
-      alignItems: 'center',
-      transition: 'transform ease-in 0.1s',
-      //   &:hover {
-      //     transform: scale(1.1),
-      //   }
-      //   img {
-      //     transform: translateX(${direction === 'left' ? '-2' : '2'}px),
-      //     &:focus {
-      //       outline: 0,
-      //     }
     }}
   >
-    {direction === 'left' ? (
-      <img
-        style={{
-          transform: `translateX(-2px)`,
-          // &:focus {
-          //   outline: 0,
-          // }
-        }}
-        src={leftArrow}
-      />
-    ) : (
-      <img
-        style={{
-          transform: `translateX(2px)`,
-          // &:focus {
-          //   outline: 0,
-          // }
-        }}
-        src={rightArrow}
-      />
-    )}
+    <img
+      style={{
+        transform: `translateX(${direction === 'left' ? '-' : ''}2px)`,
+      }}
+      src={direction === 'left' ? leftArrow : rightArrow}
+    />
   </div>
 );
 
