@@ -3,7 +3,8 @@ import React, { useEffect, useRef, useReducer } from 'react';
 import SliderContent from './SliderContent';
 import Slide from './Slide';
 import Arrow from './Arrow';
-import Dots from './Dots';
+// import Dots from './Dots';
+import SliderNav from './SliderNav';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -166,7 +167,7 @@ const Slider = ({ slides, autoPlay }) => {
       </SliderContent>
       <Arrow direction="left" handleClick={prevSlide} />
       <Arrow direction="right" handleClick={nextSlide} />
-      <Dots slides={slides} activeSlideIndex={activeSlideIndex} />
+      <SliderNav slides={slides} activeSlideIndex={activeSlideIndex} />
     </div>
   );
 };
