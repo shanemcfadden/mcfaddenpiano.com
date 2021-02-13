@@ -165,9 +165,12 @@ const Slider = ({ slides, autoPlay }) => {
           <Slide key={slide + i} content={slide} />
         ))}
       </SliderContent>
-      <Arrow direction="left" handleClick={prevSlide} />
-      <Arrow direction="right" handleClick={nextSlide} />
-      <SliderNav slides={slides} activeSlideIndex={activeSlideIndex} />
+      <SliderNav
+        nextSlide={nextSlide}
+        prevSlide={prevSlide}
+        slides={slides}
+        activeSlideIndex={activeSlideIndex}
+      />
     </div>
   );
 };
