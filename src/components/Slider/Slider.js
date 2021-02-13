@@ -22,7 +22,7 @@ function reducer(state, action) {
       console.log('action: prevSlide');
       return {
         ...state,
-        translate: 0,
+        translate: state.translate - state.browserWidth,
         activeSlideIndex:
           state.activeSlideIndex === 0
             ? action.numberOfSlides - 1
@@ -34,7 +34,8 @@ function reducer(state, action) {
       return {
         ...state,
         transition: 0,
-        translate: state.browserWidth,
+        translate:
+          Math.floor((action.slides.length - 1) / 2) * state.browserWidth,
         loadedSlides: loadedSlides(action.slides, state.activeSlideIndex),
       };
     case 'transition':
@@ -127,7 +128,7 @@ const Slider = ({ slides, autoPlay }) => {
       // Adjust translation as browser width changes
       dispatch({
         type: 'translate',
-        value: browserWidth,
+        value: Math.floor((slides.length - 1) / 2) * browserWidth,
       });
     }
   }, [browserWidth]);
