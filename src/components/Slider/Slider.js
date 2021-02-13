@@ -71,6 +71,14 @@ const Slider = ({ slides, autoPlay }) => {
     loadedSlides: [firstSlide],
   });
 
+  const {
+    translate,
+    transition,
+    loadedSlides,
+    activeSlideIndex,
+    browserWidth,
+  } = state;
+
   useEffect(() => {
     autoPlayRef.current = nextSlide;
     transitionRef.current = smoothTransition;
@@ -112,27 +120,27 @@ const Slider = ({ slides, autoPlay }) => {
 
   useEffect(() => {
     // Initial load, browser width set for the first time
-    if (state.loadedSlides.length === 1) {
+    if (loadedSlides.length === 1) {
       // load 3 photos and arrange them accordingly
       dispatch({ type: 'smoothTransition', slides: slides });
     } else {
       // Adjust translation as browser width changes
       dispatch({
         type: 'translate',
-        value: state.browserWidth,
+        value: browserWidth,
         // value: state.activeSlideIndex * state.browserWidth,
       });
     }
-  }, [state.browserWidth]);
+  }, [browserWidth]);
 
   useEffect(() => {
-    if (state.transition === 0) {
+    if (transition === 0) {
       dispatch({
         type: 'transition',
         value: 0.45,
       });
     }
-  }, [state.transition]);
+  }, [transition]);
 
   const nextSlide = () => {
     dispatch({ type: 'nextSlide', numberOfSlides: slides.length });
@@ -145,14 +153,6 @@ const Slider = ({ slides, autoPlay }) => {
   const smoothTransition = () => {
     dispatch({ type: 'smoothTransition', slides: slides });
   };
-
-  const {
-    translate,
-    transition,
-    loadedSlides,
-    activeSlideIndex,
-    browserWidth,
-  } = state;
 
   return (
     <div className="slider">
