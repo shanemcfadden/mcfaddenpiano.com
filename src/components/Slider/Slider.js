@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState, useRef, useReducer } from 'react';
+import React, { useEffect, useRef, useReducer } from 'react';
 import SliderContent from './SliderContent';
 import Slide from './Slide';
 import Arrow from './Arrow';
@@ -56,10 +56,6 @@ function reducer(state, action) {
 }
 
 const Slider = ({ slides, autoPlay }) => {
-  const lastSlide = slides[slides.length - 1];
-  const firstSlide = slides[0];
-  const secondSlide = slides[1];
-
   const autoPlayRef = useRef();
   const transitionRef = useRef();
 
@@ -68,7 +64,7 @@ const Slider = ({ slides, autoPlay }) => {
     translate: 0,
     transition: 0.45,
     activeSlideIndex: 0,
-    loadedSlides: [firstSlide],
+    loadedSlides: [slides[0]],
   });
 
   const {
