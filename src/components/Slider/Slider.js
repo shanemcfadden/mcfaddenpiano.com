@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useReducer } from 'react';
 import SliderContent from './SliderContent';
 import Slide from './Slide';
-import Arrow from './Arrow';
+// import Arrow from './Arrow';
 // import Dots from './Dots';
 import SliderNav from './SliderNav';
 
@@ -35,15 +35,7 @@ function reducer(state, action) {
         ...state,
         transition: 0,
         translate: state.browserWidth,
-        loadedSlides: [
-          action.slides[
-            state.activeSlideIndex > 0
-              ? state.activeSlideIndex - 1
-              : action.slides.length - 1
-          ],
-          action.slides[state.activeSlideIndex],
-          action.slides[(state.activeSlideIndex + 1) % action.slides.length],
-        ],
+        loadedSlides: loadedSlides(action.slides, state.activeSlideIndex),
       };
     case 'transition':
       console.log('action: transition');
@@ -54,6 +46,17 @@ function reducer(state, action) {
     default:
       throw new Error('Invalid action type');
   }
+}
+
+function loadedSlides(slidesArr, activeIndex) {
+  const loaded = [];
+  const numberOfSlides = slidesArr.length;
+  let i = (activeIndex + Math.floor(numberOfSlides / 2) + 1) % numberOfSlides;
+  while (loaded.length < numberOfSlides) {
+    if (i === numberOfSlides) i = 0;
+    loaded.push(slidesArr[i++]);
+  }
+  return loaded;
 }
 
 const Slider = ({ slides, autoPlay }) => {
