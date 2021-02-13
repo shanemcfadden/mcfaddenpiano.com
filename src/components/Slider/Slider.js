@@ -29,6 +29,7 @@ function reducer(state, action) {
       };
     case 'smoothTransition':
       console.log('action: smoothTransition');
+      console.log(state);
       return {
         ...state,
         transition: 0,
@@ -67,7 +68,7 @@ const Slider = ({ slides, autoPlay }) => {
     translate: 0,
     transition: 0.45,
     activeSlideIndex: 0,
-    loadedSlides: [firstSlide, secondSlide],
+    loadedSlides: [firstSlide],
   });
 
   useEffect(() => {
@@ -81,6 +82,7 @@ const Slider = ({ slides, autoPlay }) => {
       value: window.innerWidth,
     });
     window.onresize = () => {
+      console.log('onresize', window.innerWidth);
       dispatch({
         type: 'browserWidth',
         value: window.innerWidth,
@@ -109,10 +111,18 @@ const Slider = ({ slides, autoPlay }) => {
   }, []);
 
   useEffect(() => {
-    dispatch({
-      type: 'translate',
-      value: state.activeSlideIndex * state.browserWidth,
-    });
+    // Initial load, browser width set for the first time
+    if (state.loadedSlides.length === 1) {
+      // load 3 photos and arrange them accordingly
+      dispatch({ type: 'smoothTransition', slides: slides });
+    } else {
+      // Adjust translation as browser width changes
+      dispatch({
+        type: 'translate',
+        value: state.browserWidth,
+        // value: state.activeSlideIndex * state.browserWidth,
+      });
+    }
   }, [state.browserWidth]);
 
   useEffect(() => {
