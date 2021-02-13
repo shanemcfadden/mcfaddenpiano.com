@@ -124,7 +124,6 @@ const Slider = ({ slides, autoPlay }) => {
       dispatch({
         type: 'translate',
         value: browserWidth,
-        // value: state.activeSlideIndex * state.browserWidth,
       });
     }
   }, [browserWidth]);
