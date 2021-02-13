@@ -29,4 +29,4 @@ SliderContent.propTypes = {
   ]).isRequired,
 };
 
-export default SliderContent;
+export default React.memo(SliderContent);
