@@ -6,7 +6,7 @@ import Arrow from './Arrow';
 import Dots from './Dots';
 
 const Slider = ({ slides, autoPlay }) => {
-  const lastSlide = slides[slides.length - 1];
+  // const lastSlide = slides[slides.length - 1];
   const firstSlide = slides[0];
   const secondSlide = slides[1];
 
@@ -15,10 +15,10 @@ const Slider = ({ slides, autoPlay }) => {
 
   const [browserWidth, setBrowserWidth] = useState(0);
   const [currentState, setState] = useState({
-    translate: browserWidth,
+    translate: 0,
     transition: 0.45,
     activeSlideIndex: 0,
-    loadedSlides: [lastSlide, firstSlide, secondSlide],
+    loadedSlides: [firstSlide, secondSlide],
   });
   useEffect(() => {
     autoPlayRef.current = nextSlide;
@@ -40,13 +40,17 @@ const Slider = ({ slides, autoPlay }) => {
     };
 
     const interval = setInterval(play, autoPlay * 1000);
-    window.addEventListener('transitionend', smooth);
+    document
+      .querySelector('.slider__content')
+      .addEventListener('transitionend', smooth);
     return () => {
       clearInterval(interval);
       window.onresize = null;
-      window.removeEventListener('transitionend', smooth);
+      document
+        .querySelector('.slider__content')
+        .removeEventListener('transitionend', smooth);
     };
-  }, []);
+  }, [setBrowserWidth]);
 
   useEffect(() => {
     setState({
@@ -87,8 +91,8 @@ const Slider = ({ slides, autoPlay }) => {
     const { activeSlideIndex } = currentState;
     const slidesLength = slides.length;
 
-    setState({
-      ...currentState,
+    setState((prevState) => ({
+      ...prevState,
       transition: 0,
       translate: browserWidth,
       loadedSlides: [
@@ -96,7 +100,7 @@ const Slider = ({ slides, autoPlay }) => {
         slides[activeSlideIndex],
         slides[(activeSlideIndex + 1) % slidesLength],
       ],
-    });
+    }));
   };
 
   const {
