@@ -8,14 +8,17 @@ import Dots from './Dots';
 function reducer(state, action) {
   switch (action.type) {
     case 'browserWidth':
+      console.log('action: browserWidth');
       return { ...state, browserWidth: action.value };
     case 'nextSlide':
+      console.log('action: nextSlide');
       return {
         ...state,
         translate: state.translate + state.browserWidth,
         activeSlideIndex: (state.activeSlideIndex + 1) % action.numberOfSlides,
       };
     case 'prevSlide':
+      console.log('action: prevSlide');
       return {
         ...state,
         translate: 0,
@@ -25,6 +28,7 @@ function reducer(state, action) {
             : state.activeSlideIndex - 1,
       };
     case 'smoothTransition':
+      console.log('action: smoothTransition');
       return {
         ...state,
         transition: 0,
@@ -40,8 +44,10 @@ function reducer(state, action) {
         ],
       };
     case 'transition':
+      console.log('action: transition');
       return { ...state, transition: action.value };
     case 'translate':
+      console.log('action: translate');
       return { ...state, translate: action.value };
     default:
       throw new Error('Invalid action type');
@@ -49,7 +55,7 @@ function reducer(state, action) {
 }
 
 const Slider = ({ slides, autoPlay }) => {
-  // const lastSlide = slides[slides.length - 1];
+  const lastSlide = slides[slides.length - 1];
   const firstSlide = slides[0];
   const secondSlide = slides[1];
 
@@ -64,13 +70,6 @@ const Slider = ({ slides, autoPlay }) => {
     loadedSlides: [firstSlide, secondSlide],
   });
 
-  // const [browserWidth, setBrowserWidth] = useState(0);
-  // const [currentState, setState] = useState({
-  //   translate: 0,
-  //   transition: 0.45,
-  //   activeSlideIndex: 0,
-  //   loadedSlides: [firstSlide, secondSlide],
-  // });
   useEffect(() => {
     autoPlayRef.current = nextSlide;
     transitionRef.current = smoothTransition;
@@ -81,9 +80,7 @@ const Slider = ({ slides, autoPlay }) => {
       type: 'browserWidth',
       value: window.innerWidth,
     });
-    // setBrowserWidth(window.innerWidth);
     window.onresize = () => {
-      // setBrowserWidth(window.innerWidth);
       dispatch({
         type: 'browserWidth',
         value: window.innerWidth,
@@ -116,10 +113,6 @@ const Slider = ({ slides, autoPlay }) => {
       type: 'translate',
       value: state.activeSlideIndex * state.browserWidth,
     });
-    // setState({
-    //   ...currentState,
-    //   translate: currentState.activeSlideIndex * browserWidth,
-    // });
   }, [state.browserWidth]);
 
   useEffect(() => {
@@ -128,50 +121,19 @@ const Slider = ({ slides, autoPlay }) => {
         type: 'transition',
         value: 0.45,
       });
-      // setState({
-      //   ...currentState,
-      //   transition: 0.45,
-      // });
     }
   }, [state.transition]);
 
   const nextSlide = () => {
     dispatch({ type: 'nextSlide', numberOfSlides: slides.length });
-    // setState({
-    //   ...currentState,
-    //   translate: currentState.translate + browserWidth,
-    //   activeSlideIndex: (currentState.activeSlideIndex + 1) % slides.length,
-    // });
   };
 
   const prevSlide = () => {
     dispatch({ type: 'prevSlide', numberOfSlides: slides.length });
-    // setState({
-    //   ...currentState,
-    //   translate: 0,
-    //   activeSlideIndex:
-    //     currentState.activeSlideIndex === 0
-    //       ? slides.length - 1
-    //       : currentState.activeSlideIndex - 1,
-    // });
   };
 
   const smoothTransition = () => {
-    // const { activeSlideIndex } = currentState;
-    // const slidesLength = slides.length;
-
     dispatch({ type: 'smoothTransition', slides: slides });
-    console.log(state.loadedSlides);
-    // setState((prevState) => ({
-    //   ...prevState,
-    //   transition: 0,
-    //   translate: browserWidth,
-    //   loadedSlides: [
-    //     slides[activeSlideIndex > 0 ? activeSlideIndex - 1 : slidesLength - 1],
-    //     slides[activeSlideIndex],
-    //     slides[(activeSlideIndex + 1) % slidesLength],
-    //   ],
-    // }));
   };
 
   const {
