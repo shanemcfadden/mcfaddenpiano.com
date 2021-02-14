@@ -15,7 +15,7 @@ const SliderNav = ({
       <Arrow direction={'left'} handleClick={prevSlide} />
       {slides.map((slide, i) => (
         <Dot
-          key={slide}
+          key={slide.src}
           onClick={() => goToSlide(i)}
           active={activeSlideIndex === i}
         />

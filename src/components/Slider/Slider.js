@@ -126,7 +126,7 @@ const Slider = ({ slides, autoPlay }) => {
         width={browserWidth * loadedSlides.length}
       >
         {loadedSlides.map((slide, i) => (
-          <Slide key={slide + i} content={slide} />
+          <Slide key={slide.src + i} imageData={slide} />
         ))}
       </SliderContent>
       <SliderNav

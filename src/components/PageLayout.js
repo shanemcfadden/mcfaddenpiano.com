@@ -6,6 +6,10 @@ import 'normalize.css';
 import '../styles/styles.scss';
 import Slider from './Slider/Slider';
 
+// TODO: CHANGE IMG to fluid instead of flexible
+// TODO: Make a margin that covers the left and right edges (51vw)
+// TODO: Make a height of 100vw * 9/16 for mobile devices
+
 const PageLayout = ({ slider, children }) => {
   const data = useStaticQuery(
     graphql`
@@ -18,18 +22,25 @@ const PageLayout = ({ slider, children }) => {
         ) {
           edges {
             node {
-              publicURL
+              childrenImageSharp {
+                fluid(maxWidth: 1920) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
             }
           }
         }
       }
     `
   );
-  const imageUrls = data.allFile.edges.map(({ node }) => node.publicURL);
+  const fluidImages = data.allFile.edges.map(
+    ({ node }) => node.childrenImageSharp[0].fluid
+  );
+  console.log(data);
 
   return (
     <>
-      {slider && <Slider slides={imageUrls} autoPlay={4} />}
+      {slider && <Slider slides={fluidImages} autoPlay={4} />}
       <div className="content-container">
         <h1>Shane McFadden</h1>
         <h2>Collaborative Pianist</h2>
