@@ -9,6 +9,7 @@ import Img from 'gatsby-image';
 const Slider = ({ slides, autoPlay, startingImgData }) => {
   const autoPlayRef = useRef();
   const transitionRef = useRef();
+  const sliderRef = useRef();
 
   const [state, dispatch] = useReducer(reducer, {
     browserWidth: 0,
@@ -16,6 +17,7 @@ const Slider = ({ slides, autoPlay, startingImgData }) => {
     transition: 0.45,
     activeSlideIndex: 0,
     loadedSlides: [slides[0]],
+    sliderWidth: 0,
   });
 
   const {
@@ -24,6 +26,7 @@ const Slider = ({ slides, autoPlay, startingImgData }) => {
     loadedSlides,
     activeSlideIndex,
     browserWidth,
+    sliderWidth,
   } = state;
 
   useEffect(() => {
@@ -32,15 +35,18 @@ const Slider = ({ slides, autoPlay, startingImgData }) => {
   });
 
   useEffect(() => {
+    console.log('Slider ref', sliderRef.current.clientWidth);
     dispatch({
-      type: 'browserWidth',
-      value: window.innerWidth,
+      type: 'browserWidthChange',
+      browserWidth: window.innerWidth,
+      sliderWidth: sliderRef.current.clientWidth,
     });
     window.onresize = () => {
       console.log('onresize', window.innerWidth);
       dispatch({
-        type: 'browserWidth',
-        value: window.innerWidth,
+        type: 'browserWidthChange',
+        browserWidth: window.innerWidth,
+        sliderWidth: sliderRef.current.clientWidth,
       });
     };
 
@@ -116,11 +122,26 @@ const Slider = ({ slides, autoPlay, startingImgData }) => {
   };
 
   return (
-    <div className="slider">
+    <div
+      className="slider"
+      style={{
+        height:
+          browserWidth !== sliderWidth ? `${0.56 * sliderWidth}px` : 'null',
+      }}
+      ref={sliderRef}
+    >
       {loadedSlides.length === 1 && (
         <Img className="slider__starting-img" fluid={startingImgData} />
       )}
-      <div className="slider__overlay">
+      <div
+        style={{
+          top:
+            browserWidth !== sliderWidth
+              ? ` calc(${0.56 * sliderWidth * 0.5}px - 6rem)`
+              : 'null',
+        }}
+        className="slider__overlay"
+      >
         <h1>Shane McFadden</h1>
         <h2>Collaborative Pianist</h2>
       </div>
