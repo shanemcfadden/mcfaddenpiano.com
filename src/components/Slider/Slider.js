@@ -124,7 +124,7 @@ const Slider = ({ slides, startingImgData, autoPlay = 0 }) => {
     dispatch({ type: 'smoothTransition', slides: slides });
   };
 
-  const stopAutoplay = () => {
+  const stopAutoPlay = () => {
     clearInterval(autoPlayInterval.current);
   };
 
@@ -166,7 +166,7 @@ const Slider = ({ slides, startingImgData, autoPlay = 0 }) => {
       <SliderNav
         nextSlide={nextSlide}
         prevSlide={prevSlide}
-        stopAutoplay={stopAutoplay}
+        stopAutoPlay={stopAutoPlay}
         slides={slides}
         activeSlideIndex={activeSlideIndex}
         goToSlide={goToSlide}

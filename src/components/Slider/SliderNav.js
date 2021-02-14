@@ -9,12 +9,12 @@ const SliderNav = ({
   nextSlide,
   prevSlide,
   goToSlide,
-  stopAutoplay,
+  stopAutoPlay,
 }) => {
   return (
     <div
       onClick={() => {
-        stopAutoplay();
+        stopAutoPlay();
       }}
       className="slider__dot-row"
     >
@@ -41,6 +41,7 @@ SliderNav.propTypes = {
   slides: PropTypes.arrayOf(PropTypes.string).isRequired,
   nextSlide: PropTypes.func.isRequired,
   prevSlide: PropTypes.func.isRequired,
+  stopAutoPlay: PropTypes.func.isRequired,
   goToSlide: PropTypes.func.isRequired,
 };
 
