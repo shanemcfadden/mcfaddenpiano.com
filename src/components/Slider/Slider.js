@@ -11,6 +11,7 @@ const Slider = ({ slides, autoPlay, startingImgData }) => {
   const autoPlayRef = useRef();
   const transitionRef = useRef();
   const sliderRef = useRef();
+  const autoPlayInterval = useRef();
 
   const [state, dispatch] = useReducer(reducer, {
     browserWidth: 0,
@@ -59,12 +60,12 @@ const Slider = ({ slides, autoPlay, startingImgData }) => {
       transitionRef.current();
     };
 
-    const interval = setInterval(play, autoPlay * 1000);
+    autoPlayInterval.current = setInterval(play, autoPlay * 1000);
     document
       .querySelector('.slider__content')
       .addEventListener('transitionend', smooth);
     return () => {
-      clearInterval(interval);
+      clearInterval(autoPlayInterval.current);
       window.onresize = null;
       document
         .querySelector('.slider__content')
@@ -122,6 +123,10 @@ const Slider = ({ slides, autoPlay, startingImgData }) => {
     dispatch({ type: 'smoothTransition', slides: slides });
   };
 
+  const stopAutoplay = () => {
+    clearInterval(autoPlayInterval.current);
+  };
+
   return (
     <div
       className="slider"
@@ -160,6 +165,7 @@ const Slider = ({ slides, autoPlay, startingImgData }) => {
       <SliderNav
         nextSlide={nextSlide}
         prevSlide={prevSlide}
+        stopAutoplay={stopAutoplay}
         slides={slides}
         activeSlideIndex={activeSlideIndex}
         goToSlide={goToSlide}
