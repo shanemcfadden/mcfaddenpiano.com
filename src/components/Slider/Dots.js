@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-export const Dot = ({ active }) => (
+export const Dot = ({ active, onClick }) => (
   <span
     className="slider__dot"
+    onClick={onClick}
     style={{
       background: `${active ? 'black' : 'white'}`,
     }}
@@ -12,6 +13,7 @@ export const Dot = ({ active }) => (
 
 Dot.propTypes = {
   active: PropTypes.bool,
+  onClick: PropTypes.func,
 };
 
 // const Dots = ({ slides, activeSlideIndex }) => (

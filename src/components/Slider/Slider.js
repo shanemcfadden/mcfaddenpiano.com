@@ -172,6 +172,10 @@ const Slider = ({ slides, autoPlay }) => {
     dispatch({ type: 'prevSlide', numberOfSlides: slides.length });
   };
 
+  const goToSlide = (i) => {
+    dispatch({ type: 'goToSlide', newSlideIndex: i, slides: slides });
+  };
+
   const smoothTransition = () => {
     dispatch({ type: 'smoothTransition', slides: slides });
   };
@@ -196,6 +200,7 @@ const Slider = ({ slides, autoPlay }) => {
         prevSlide={prevSlide}
         slides={slides}
         activeSlideIndex={activeSlideIndex}
+        goToSlide={goToSlide}
       />
     </div>
   );
