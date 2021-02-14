@@ -5,6 +5,7 @@ import Slide from './Slide';
 import SliderNav from './SliderNav';
 import reducer from './sliderReducer';
 import Img from 'gatsby-image';
+import cssVariables from '../../styles/_settings.scss';
 
 const Slider = ({ slides, autoPlay, startingImgData }) => {
   const autoPlayRef = useRef();
@@ -137,7 +138,9 @@ const Slider = ({ slides, autoPlay, startingImgData }) => {
         style={{
           top:
             browserWidth !== sliderWidth
-              ? ` calc(${0.56 * sliderWidth * 0.5}px - 6rem)`
+              ? ` calc(${0.56 * sliderWidth * 0.5}px - ${
+                  cssVariables.sliderH1Size
+                })`
               : 'null',
         }}
         className="slider__overlay"

@@ -15,17 +15,21 @@
   position: absolute;
   text-align: center;
   text-shadow: 1rem 1rem 4.5rem #000;
-  top: calc(50vh - 6rem);
+  top: calc(28vw - #{$slider-h1-size});
   width: 100%;
   z-index: 10;
 
+  @media (min-width: $desktop-breakpoint) {
+    top: calc(50vh - #{$slider-h1-size});
+  }
+
   h1 {
-    font-size: 6rem;
+    font-size: $slider-h1-size;
     margin: 0;
   }
 
   h2 {
-    font-size: 3rem;
+    font-size: $slider-h2-size;
     margin: 0;
   }
 }
