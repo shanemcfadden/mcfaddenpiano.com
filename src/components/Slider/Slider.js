@@ -3,84 +3,7 @@ import React, { useEffect, useRef, useReducer } from 'react';
 import SliderContent from './SliderContent';
 import Slide from './Slide';
 import SliderNav from './SliderNav';
-
-function reducer(state, action) {
-  switch (action.type) {
-    case 'browserWidth':
-      console.log('action: browserWidth');
-      return { ...state, browserWidth: action.value };
-    case 'goToSlide':
-      console.log('action: goToSlide', action.newSlideIndex);
-      return {
-        ...state,
-        translate:
-          state.translate +
-          getTranslateFactor(
-            state.activeSlideIndex,
-            action.newSlideIndex,
-            action.slides.length
-          ) *
-            state.browserWidth,
-        activeSlideIndex: action.newSlideIndex,
-      };
-    case 'nextSlide':
-      console.log('action: nextSlide');
-      return {
-        ...state,
-        translate: state.translate + state.browserWidth,
-        activeSlideIndex: (state.activeSlideIndex + 1) % action.numberOfSlides,
-      };
-    case 'prevSlide':
-      console.log('action: prevSlide');
-      return {
-        ...state,
-        translate: state.translate - state.browserWidth,
-        activeSlideIndex:
-          state.activeSlideIndex === 0
-            ? action.numberOfSlides - 1
-            : state.activeSlideIndex - 1,
-      };
-    case 'smoothTransition':
-      console.log('action: smoothTransition');
-      console.log(state);
-      return {
-        ...state,
-        transition: 0,
-        translate:
-          Math.floor((action.slides.length - 1) / 2) * state.browserWidth,
-        loadedSlides: loadedSlides(action.slides, state.activeSlideIndex),
-      };
-    case 'transition':
-      console.log('action: transition');
-      return { ...state, transition: action.value };
-    case 'translate':
-      console.log('action: translate');
-      return { ...state, translate: action.value };
-    default:
-      throw new Error('Invalid action type');
-  }
-}
-
-function loadedSlides(slidesArr, activeIndex) {
-  const loaded = [];
-  const numberOfSlides = slidesArr.length;
-  let i = (activeIndex + Math.floor(numberOfSlides / 2) + 1) % numberOfSlides;
-  while (loaded.length < numberOfSlides) {
-    if (i === numberOfSlides) i = 0;
-    loaded.push(slidesArr[i++]);
-  }
-  return loaded;
-}
-
-function getTranslateFactor(activeSlide, newSlide, loadedSlidesLength) {
-  const activeRealIndex = Math.floor((loadedSlidesLength - 1) / 2);
-  const modProofNewSlideIndex =
-    newSlide < activeSlide ? newSlide + loadedSlidesLength : newSlide;
-  const newRealIndex =
-    (modProofNewSlideIndex - activeSlide + activeRealIndex) %
-    loadedSlidesLength;
-  return newRealIndex - activeRealIndex;
-}
+import reducer from './sliderReducer';
 
 const Slider = ({ slides, autoPlay }) => {
   const autoPlayRef = useRef();
@@ -165,11 +88,22 @@ const Slider = ({ slides, autoPlay }) => {
   }, [transition]);
 
   const nextSlide = () => {
-    dispatch({ type: 'nextSlide', numberOfSlides: slides.length });
+    const nextSlideIndex = (activeSlideIndex + 1) % slides.length;
+    dispatch({
+      type: 'goToSlide',
+      newSlideIndex: nextSlideIndex,
+      slides: slides,
+    });
   };
 
   const prevSlide = () => {
-    dispatch({ type: 'prevSlide', numberOfSlides: slides.length });
+    const prevSlideIndex =
+      activeSlideIndex > 0 ? activeSlideIndex - 1 : slides.length - 1;
+    dispatch({
+      type: 'goToSlide',
+      newSlideIndex: prevSlideIndex,
+      slides: slides,
+    });
   };
 
   const goToSlide = (i) => {
