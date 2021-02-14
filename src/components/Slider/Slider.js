@@ -2,8 +2,6 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useReducer } from 'react';
 import SliderContent from './SliderContent';
 import Slide from './Slide';
-// import Arrow from './Arrow';
-// import Dots from './Dots';
 import SliderNav from './SliderNav';
 
 function reducer(state, action) {
@@ -11,6 +9,20 @@ function reducer(state, action) {
     case 'browserWidth':
       console.log('action: browserWidth');
       return { ...state, browserWidth: action.value };
+    case 'goToSlide':
+      console.log('action: goToSlide', action.newSlideIndex);
+      return {
+        ...state,
+        translate:
+          state.translate +
+          getTranslateFactor(
+            state.activeSlideIndex,
+            action.newSlideIndex,
+            action.slides.length
+          ) *
+            state.browserWidth,
+        activeSlideIndex: action.newSlideIndex,
+      };
     case 'nextSlide':
       console.log('action: nextSlide');
       return {
@@ -58,6 +70,16 @@ function loadedSlides(slidesArr, activeIndex) {
     loaded.push(slidesArr[i++]);
   }
   return loaded;
+}
+
+function getTranslateFactor(activeSlide, newSlide, loadedSlidesLength) {
+  const activeRealIndex = Math.floor((loadedSlidesLength - 1) / 2);
+  const modProofNewSlideIndex =
+    newSlide < activeSlide ? newSlide + loadedSlidesLength : newSlide;
+  const newRealIndex =
+    (modProofNewSlideIndex - activeSlide + activeRealIndex) %
+    loadedSlidesLength;
+  return newRealIndex - activeRealIndex;
 }
 
 const Slider = ({ slides, autoPlay }) => {
