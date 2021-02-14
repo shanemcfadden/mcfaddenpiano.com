@@ -7,7 +7,7 @@ import reducer from './sliderReducer';
 import Img from 'gatsby-image';
 import cssVariables from '../../styles/_settings.scss';
 
-const Slider = ({ slides, autoPlay, startingImgData }) => {
+const Slider = ({ slides, startingImgData, autoPlay = 0 }) => {
   const autoPlayRef = useRef();
   const transitionRef = useRef();
   const sliderRef = useRef();
@@ -60,7 +60,8 @@ const Slider = ({ slides, autoPlay, startingImgData }) => {
       transitionRef.current();
     };
 
-    autoPlayInterval.current = setInterval(play, autoPlay * 1000);
+    autoPlayInterval.current =
+      autoPlay === 0 ? null : setInterval(play, autoPlay * 1000);
     document
       .querySelector('.slider__content')
       .addEventListener('transitionend', smooth);
