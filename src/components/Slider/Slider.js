@@ -59,12 +59,12 @@ const Slider = ({ slides, autoPlay, startingImgData }) => {
       transitionRef.current();
     };
 
-    // const interval = setInterval(play, autoPlay * 1000);
+    const interval = setInterval(play, autoPlay * 1000);
     document
       .querySelector('.slider__content')
       .addEventListener('transitionend', smooth);
     return () => {
-      // clearInterval(interval);
+      clearInterval(interval);
       window.onresize = null;
       document
         .querySelector('.slider__content')
