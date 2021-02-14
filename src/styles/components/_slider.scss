@@ -1,9 +1,13 @@
 .slider {
-  height: 100vh;
+  height: 56vw;
+
   margin: 0 auto;
   overflow: hidden;
   position: relative;
   width: 100vw;
+  @media (min-width: $desktop-breakpoint) {
+    height: 100vh;
+  }
 }
 
 .slider__overlay {

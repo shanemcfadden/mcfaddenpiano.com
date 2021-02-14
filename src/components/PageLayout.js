@@ -7,7 +7,6 @@ import '../styles/styles.scss';
 import Slider from './Slider/Slider';
 
 // TODO: Make a margin that covers the left and right edges (51vw)
-// TODO: Make a height of 100vw * 9/16 for mobile devices
 
 const PageLayout = ({ slider, children }) => {
   const data = useStaticQuery(
