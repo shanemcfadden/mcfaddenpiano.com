@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useReducer } from 'react';
 import SliderContent from './SliderContent';
-import Slide from './Slide';
 import SliderNav from './SliderNav';
 import reducer from './sliderReducer';
 import Img from 'gatsby-image';
@@ -37,14 +36,12 @@ const Slider = ({ slides, startingImgData, autoPlay = 0 }) => {
   });
 
   useEffect(() => {
-    console.log('Slider ref', sliderRef.current.clientWidth);
     dispatch({
       type: 'browserWidthChange',
       browserWidth: window.innerWidth,
       sliderWidth: sliderRef.current.clientWidth,
     });
     window.onresize = () => {
-      console.log('onresize', window.innerWidth);
       dispatch({
         type: 'browserWidthChange',
         browserWidth: window.innerWidth,
@@ -55,7 +52,6 @@ const Slider = ({ slides, startingImgData, autoPlay = 0 }) => {
     const play = () => {
       autoPlayRef.current();
     };
-
     const smooth = () => {
       transitionRef.current();
     };
@@ -144,9 +140,7 @@ const Slider = ({ slides, startingImgData, autoPlay = 0 }) => {
         style={{
           top:
             browserWidth !== sliderWidth
-              ? ` calc(${0.56 * sliderWidth * 0.5}px - ${
-                  cssVariables.sliderH1Size
-                })`
+              ? ` calc(${0.28 * sliderWidth}px - ${cssVariables.sliderH1Size})`
               : 'null',
         }}
         className="slider__overlay"
@@ -158,11 +152,8 @@ const Slider = ({ slides, startingImgData, autoPlay = 0 }) => {
         translate={translate}
         transition={transition}
         width={browserWidth * loadedSlides.length}
-      >
-        {loadedSlides.map((slide, i) => (
-          <Slide key={'image-' + i} imageUrl={slide} />
-        ))}
-      </SliderContent>
+        slides={loadedSlides}
+      />
       <SliderNav
         nextSlide={nextSlide}
         prevSlide={prevSlide}

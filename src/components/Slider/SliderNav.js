@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Dot } from './Dots';
+import Dot from './Dot';
 import Arrow from './Arrow';
 
 const SliderNav = ({

@@ -1,14 +1,12 @@
 export default function reducer(state, action) {
   switch (action.type) {
     case 'browserWidthChange':
-      console.log('action: browserWidthChange');
       return {
         ...state,
         browserWidth: action.browserWidth,
         sliderWidth: action.sliderWidth,
       };
     case 'goToSlide':
-      console.log('action: goToSlide', action.newSlideIndex);
       return {
         ...state,
         translate:
@@ -22,8 +20,6 @@ export default function reducer(state, action) {
         activeSlideIndex: action.newSlideIndex,
       };
     case 'smoothTransition':
-      console.log('action: smoothTransition');
-      console.log(state);
       return {
         ...state,
         transition: 0,
@@ -32,10 +28,8 @@ export default function reducer(state, action) {
         loadedSlides: loadedSlides(action.slides, state.activeSlideIndex),
       };
     case 'transition':
-      console.log('action: transition');
       return { ...state, transition: action.value };
     case 'translate':
-      console.log('action: translate');
       return { ...state, translate: action.value };
     default:
       throw new Error('Invalid action type');

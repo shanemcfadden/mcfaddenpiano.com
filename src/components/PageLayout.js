@@ -6,8 +6,6 @@ import 'normalize.css';
 import '../styles/styles.scss';
 import Slider from './Slider/Slider';
 
-// TODO: Make a margin that covers the left and right edges (51vw)
-
 const PageLayout = ({ slider, children }) => {
   const data = useStaticQuery(
     graphql`
@@ -32,14 +30,18 @@ const PageLayout = ({ slider, children }) => {
       }
     `
   );
-  const startingImg = data.allFile.edges[0].node.childrenImageSharp[0].fluid;
+  const startingImgData =
+    data.allFile.edges[0].node.childrenImageSharp[0].fluid;
   const allImages = data.allFile.edges.map(({ node }) => node.publicURL);
-  console.log(startingImg);
 
   return (
     <>
       {slider && (
-        <Slider slides={allImages} startingImg={startingImg} autoPlay={4} />
+        <Slider
+          slides={allImages}
+          startingImgData={startingImgData}
+          autoPlay={4}
+        />
       )}
       <div className="content-container">
         <h1>Shane McFadden</h1>
