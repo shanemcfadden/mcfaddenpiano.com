@@ -6,7 +6,7 @@ import SliderNav from './SliderNav';
 import reducer from './sliderReducer';
 import Img from 'gatsby-image';
 
-const Slider = ({ slides, autoPlay, startingImg }) => {
+const Slider = ({ slides, autoPlay, startingImgData }) => {
   const autoPlayRef = useRef();
   const transitionRef = useRef();
 
@@ -118,32 +118,19 @@ const Slider = ({ slides, autoPlay, startingImg }) => {
   return (
     <div className="slider">
       {loadedSlides.length === 1 && (
-        <Img
-          style={{
-            position: 'relative',
-            top: 0,
-            left: 0,
-            height: '100%',
-            width: '100%',
-            zIndex: 0,
-          }}
-          fluid={startingImg}
-        />
+        <Img className="slider__starting-img" fluid={startingImgData} />
       )}
       <div className="slider__overlay">
         <h1>Shane McFadden</h1>
         <h2>Collaborative Pianist</h2>
       </div>
       <SliderContent
-        style={{
-          zIndex: 1,
-        }}
         translate={translate}
         transition={transition}
         width={browserWidth * loadedSlides.length}
       >
         {loadedSlides.map((slide, i) => (
-          <Slide key={'image-' + i} imageData={slide} />
+          <Slide key={'image-' + i} imageUrl={slide} />
         ))}
       </SliderContent>
       <SliderNav
@@ -160,6 +147,7 @@ const Slider = ({ slides, autoPlay, startingImg }) => {
 Slider.propTypes = {
   slides: PropTypes.arrayOf(PropTypes.string).isRequired,
   autoPlay: PropTypes.number.isRequired,
+  startingImgData: PropTypes.object.isRequired,
 };
 
 export default Slider;

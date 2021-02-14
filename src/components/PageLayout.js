@@ -6,7 +6,6 @@ import 'normalize.css';
 import '../styles/styles.scss';
 import Slider from './Slider/Slider';
 
-// TODO: CHANGE IMG to fluid instead of flexible
 // TODO: Make a margin that covers the left and right edges (51vw)
 // TODO: Make a height of 100vw * 9/16 for mobile devices
 

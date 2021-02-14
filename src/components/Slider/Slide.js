@@ -1,25 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Img from 'gatsby-image';
 
-const Slide = ({ imageData }) => {
-  console.log(imageData, typeof imageData === 'string');
+const Slide = ({ imageUrl }) => {
   return (
     <div
       className="slider__slide"
       style={{
-        backgroundImage: `${
-          typeof imageData === 'string' ? `url('${imageData}')` : 'none'
-        }`,
+        backgroundImage: `url('${imageUrl}')`,
       }}
-    >
-      {typeof imageData !== 'string' && <Img fluid={imageData} />}
-    </div>
+    />
   );
 };
 
 Slide.propTypes = {
-  imageData: PropTypes.string,
+  imageUrl: PropTypes.string,
 };
 
 export default React.memo(Slide);
