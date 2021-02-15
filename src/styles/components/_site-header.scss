@@ -1,0 +1,8 @@
+.site-header {
+  padding-top: $margin-m-size; // Allows any hash redirect to include whitespace above h1
+
+  h1,
+  h2 {
+    margin: 0;
+  }
+}

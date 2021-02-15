@@ -22,12 +22,17 @@ h6 {
   font-family: 'Josefin sans';
 }
 
+h2 {
+  margin: $margin-m-size 0;
+}
+
 button {
   cursor: pointer;
 }
 
 p {
   line-height: 1.6;
+  margin: $margin-m-size 0;
 }
 
 hr {
