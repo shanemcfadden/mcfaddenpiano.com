@@ -19,17 +19,31 @@ const PageLayout = ({ slider, children }) => {
           edges {
             node {
               publicURL
+              childrenImageSharp {
+                fluid(maxWidth: 1920) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
             }
           }
         }
       }
     `
   );
-  const imageUrls = data.allFile.edges.map(({ node }) => node.publicURL);
+  const startingImgData =
+    data.allFile.edges[0].node.childrenImageSharp[0].fluid;
+  const allImages = data.allFile.edges.map(({ node }) => node.publicURL);
 
   return (
     <>
-      {slider && <Slider slides={imageUrls} autoPlay={4} />}
+      {slider && (
+        <Slider
+          slides={allImages}
+          startingImgData={startingImgData}
+          autoPlay={4}
+          isFullScreen={true}
+        />
+      )}
       <div className="content-container">
         <h1>Shane McFadden</h1>
         <h2>Collaborative Pianist</h2>

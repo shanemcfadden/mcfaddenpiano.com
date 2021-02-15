@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Slide from './Slide';
 
 const SliderContent = (props) => {
-  const { translate, transition, width } = props;
+  const { translate, transition, width, slides } = props;
   return (
     <div
       className="slider__content"
@@ -14,7 +15,9 @@ const SliderContent = (props) => {
         display: 'flex',
       }}
     >
-      {props.children}
+      {slides.map((slide, i) => (
+        <Slide key={'image-' + i} imageUrl={slide} />
+      ))}
     </div>
   );
 };
@@ -23,9 +26,9 @@ SliderContent.propTypes = {
   translate: PropTypes.number,
   transition: PropTypes.number,
   width: PropTypes.number,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
+  slides: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.string,
   ]).isRequired,
 };
 

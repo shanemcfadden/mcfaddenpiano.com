@@ -1,64 +1,20 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useReducer } from 'react';
 import SliderContent from './SliderContent';
-import Slide from './Slide';
-import Arrow from './Arrow';
-// import Dots from './Dots';
 import SliderNav from './SliderNav';
+import reducer from './sliderReducer';
+import Img from 'gatsby-image';
 
-function reducer(state, action) {
-  switch (action.type) {
-    case 'browserWidth':
-      console.log('action: browserWidth');
-      return { ...state, browserWidth: action.value };
-    case 'nextSlide':
-      console.log('action: nextSlide');
-      return {
-        ...state,
-        translate: state.translate + state.browserWidth,
-        activeSlideIndex: (state.activeSlideIndex + 1) % action.numberOfSlides,
-      };
-    case 'prevSlide':
-      console.log('action: prevSlide');
-      return {
-        ...state,
-        translate: 0,
-        activeSlideIndex:
-          state.activeSlideIndex === 0
-            ? action.numberOfSlides - 1
-            : state.activeSlideIndex - 1,
-      };
-    case 'smoothTransition':
-      console.log('action: smoothTransition');
-      console.log(state);
-      return {
-        ...state,
-        transition: 0,
-        translate: state.browserWidth,
-        loadedSlides: [
-          action.slides[
-            state.activeSlideIndex > 0
-              ? state.activeSlideIndex - 1
-              : action.slides.length - 1
-          ],
-          action.slides[state.activeSlideIndex],
-          action.slides[(state.activeSlideIndex + 1) % action.slides.length],
-        ],
-      };
-    case 'transition':
-      console.log('action: transition');
-      return { ...state, transition: action.value };
-    case 'translate':
-      console.log('action: translate');
-      return { ...state, translate: action.value };
-    default:
-      throw new Error('Invalid action type');
-  }
-}
-
-const Slider = ({ slides, autoPlay }) => {
+const Slider = ({
+  slides,
+  startingImgData,
+  autoPlay = 0,
+  isFullScreen = false,
+}) => {
   const autoPlayRef = useRef();
   const transitionRef = useRef();
+  const sliderRef = useRef();
+  const autoPlayInterval = useRef();
 
   const [state, dispatch] = useReducer(reducer, {
     browserWidth: 0,
@@ -84,30 +40,29 @@ const Slider = ({ slides, autoPlay }) => {
   useEffect(() => {
     dispatch({
       type: 'browserWidth',
-      value: window.innerWidth,
+      browserWidth: window.innerWidth,
     });
     window.onresize = () => {
-      console.log('onresize', window.innerWidth);
       dispatch({
         type: 'browserWidth',
-        value: window.innerWidth,
+        browserWidth: window.innerWidth,
       });
     };
 
     const play = () => {
       autoPlayRef.current();
     };
-
     const smooth = () => {
       transitionRef.current();
     };
 
-    // const interval = setInterval(play, autoPlay * 1000);
+    autoPlayInterval.current =
+      autoPlay === 0 ? null : setInterval(play, autoPlay * 1000);
     document
       .querySelector('.slider__content')
       .addEventListener('transitionend', smooth);
     return () => {
-      // clearInterval(interval);
+      clearInterval(autoPlayInterval.current);
       window.onresize = null;
       document
         .querySelector('.slider__content')
@@ -116,15 +71,15 @@ const Slider = ({ slides, autoPlay }) => {
   }, []);
 
   useEffect(() => {
-    // Initial load, browser width set for the first time
     if (loadedSlides.length === 1) {
-      // load 3 photos and arrange them accordingly
+      // Initial load, browser width set for the first time
+      // load photos for SliderContent and translate them without a visible transition
       dispatch({ type: 'smoothTransition', slides: slides });
     } else {
       // Adjust translation as browser width changes
       dispatch({
         type: 'translate',
-        value: browserWidth,
+        value: Math.floor((slides.length - 1) / 2) * browserWidth,
       });
     }
   }, [browserWidth]);
@@ -139,37 +94,68 @@ const Slider = ({ slides, autoPlay }) => {
   }, [transition]);
 
   const nextSlide = () => {
-    dispatch({ type: 'nextSlide', numberOfSlides: slides.length });
+    const nextSlideIndex = (activeSlideIndex + 1) % slides.length;
+    dispatch({
+      type: 'goToSlide',
+      newSlideIndex: nextSlideIndex,
+      slides: slides,
+    });
   };
 
   const prevSlide = () => {
-    dispatch({ type: 'prevSlide', numberOfSlides: slides.length });
+    const prevSlideIndex =
+      activeSlideIndex > 0 ? activeSlideIndex - 1 : slides.length - 1;
+    dispatch({
+      type: 'goToSlide',
+      newSlideIndex: prevSlideIndex,
+      slides: slides,
+    });
+  };
+
+  const goToSlide = (i) => {
+    dispatch({ type: 'goToSlide', newSlideIndex: i, slides: slides });
   };
 
   const smoothTransition = () => {
     dispatch({ type: 'smoothTransition', slides: slides });
   };
 
+  const stopAutoPlay = () => {
+    clearInterval(autoPlayInterval.current);
+  };
+
   return (
-    <div className="slider">
-      <div className="slider__overlay">
-        <h1>Shane McFadden</h1>
-        <h2>Collaborative Pianist</h2>
+    <div
+      className={`slider ${isFullScreen ? 'slider--fullscreen' : ''}`}
+      ref={sliderRef}
+    >
+      {loadedSlides.length === 1 && (
+        // Shows blurred image before inital image loads
+        <Img className="slider__starting-img" fluid={startingImgData} />
+      )}
+      <div className="slider__overlay-container">
+        <div
+          className={`slider__overlay ${
+            isFullScreen ? 'slider__overlay--fullscreen' : ''
+          }`}
+        >
+          <h1>Shane McFadden</h1>
+          <h2>Collaborative Pianist</h2>
+        </div>
       </div>
       <SliderContent
         translate={translate}
         transition={transition}
         width={browserWidth * loadedSlides.length}
-      >
-        {loadedSlides.map((slide, i) => (
-          <Slide key={slide + i} content={slide} />
-        ))}
-      </SliderContent>
+        slides={loadedSlides}
+      />
       <SliderNav
         nextSlide={nextSlide}
         prevSlide={prevSlide}
+        stopAutoPlay={stopAutoPlay}
         slides={slides}
         activeSlideIndex={activeSlideIndex}
+        goToSlide={goToSlide}
       />
     </div>
   );
@@ -178,6 +164,8 @@ const Slider = ({ slides, autoPlay }) => {
 Slider.propTypes = {
   slides: PropTypes.arrayOf(PropTypes.string).isRequired,
   autoPlay: PropTypes.number.isRequired,
+  startingImgData: PropTypes.object.isRequired,
+  isFullScreen: PropTypes.bool,
 };
 
 export default Slider;
