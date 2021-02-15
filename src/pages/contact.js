@@ -20,34 +20,34 @@ const ContactPage = ({ data }) => {
         >
           <p>
             <label htmlFor="name">
-              Name:
+              <h4>Name:</h4>
               <input type="text" name="name" id="name" required />
             </label>
           </p>
           <p>
             <label htmlFor="email">
-              Email:
+              <h4>Email:</h4>
               <input type="email" name="email" id="email" required />
             </label>
           </p>
           <p>
             <label htmlFor="subject">
-              Subject:
+              <h4>Subject:</h4>
               <input type="text" name="subject" id="subject" required />
             </label>
           </p>
           <p>
-            <label htmlFor="message">Message:</label>
+            <label htmlFor="message">
+              <h4>Message:</h4>
+            </label>
             <textarea name="message" id="message" maxLength="500"></textarea>
           </p>
           <p className="hidden">
             <input name="false-field" id="false-field" />
           </p>
-          <p>
-            <button className="float-right" type="submit">
-              Send
-            </button>
-          </p>
+          <button className="float-right" type="submit">
+            Send
+          </button>
         </form>
       </div>
     </PageLayout>
