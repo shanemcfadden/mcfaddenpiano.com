@@ -1,10 +1,9 @@
 export default function reducer(state, action) {
   switch (action.type) {
-    case 'browserWidthChange':
+    case 'browserWidth':
       return {
         ...state,
         browserWidth: action.browserWidth,
-        sliderWidth: action.sliderWidth,
       };
     case 'goToSlide':
       return {

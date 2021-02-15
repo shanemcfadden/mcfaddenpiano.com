@@ -4,9 +4,6 @@ import SliderContent from './SliderContent';
 import SliderNav from './SliderNav';
 import reducer from './sliderReducer';
 import Img from 'gatsby-image';
-import cssVariables from '../../styles/_settings.scss';
-
-// TODO: Make overlay font size responsive
 
 const Slider = ({
   slides,
@@ -18,7 +15,6 @@ const Slider = ({
   const transitionRef = useRef();
   const sliderRef = useRef();
   const autoPlayInterval = useRef();
-  // const sliderHeight = useRef();
 
   const [state, dispatch] = useReducer(reducer, {
     browserWidth: 0,
@@ -26,7 +22,6 @@ const Slider = ({
     transition: 0.45,
     activeSlideIndex: 0,
     loadedSlides: [slides[0]],
-    sliderWidth: 0,
   });
 
   const {
@@ -35,7 +30,6 @@ const Slider = ({
     loadedSlides,
     activeSlideIndex,
     browserWidth,
-    sliderWidth,
   } = state;
 
   useEffect(() => {
@@ -45,33 +39,13 @@ const Slider = ({
 
   useEffect(() => {
     dispatch({
-      type: 'browserWidthChange',
+      type: 'browserWidth',
       browserWidth: window.innerWidth,
-      sliderWidth: sliderRef.current.clientWidth,
     });
-    // if (!isFullScreen) {
-    //   const sliderWidth = document.getElementsByClassName('slider').style.width;
-
-    //   console.log('Slider:', document.getElementsByClassName('slider'));
-    //   document.getElementsByClassName('slider').style.height = 100;
-    // }
-    // sliderHeight.current =
-    //   browserWidth !== sliderWidth ? `${0.56 * sliderWidth}px` : '100vh';
-    // const desktopBreakpointInRem = cssVariables.desktopBreakpoint.split(
-    //   'rem'
-    // )[0];
-    // const desktopBreakpointInPx =
-    //   desktopBreakpointInRem *
-    //   parseFloat(getComputedStyle(document.documentElement).fontSize);
-    // sliderHeight.current =
-    //   browserWidth !== sliderWidth || browserWidth < desktopBreakpointInPx
-    //     ? `${0.56 * sliderWidth}px`
-    //     : '100vh';
     window.onresize = () => {
       dispatch({
-        type: 'browserWidthChange',
+        type: 'browserWidth',
         browserWidth: window.innerWidth,
-        sliderWidth: sliderRef.current.clientWidth,
       });
     };
 
@@ -97,9 +71,9 @@ const Slider = ({
   }, []);
 
   useEffect(() => {
-    // Initial load, browser width set for the first time
     if (loadedSlides.length === 1) {
-      // load 3 photos and arrange them accordingly
+      // Initial load, browser width set for the first time
+      // load photos for SliderContent and translate them without a visible transition
       dispatch({ type: 'smoothTransition', slides: slides });
     } else {
       // Adjust translation as browser width changes
@@ -108,16 +82,6 @@ const Slider = ({
         value: Math.floor((slides.length - 1) / 2) * browserWidth,
       });
     }
-    // const desktopBreakpointInRem = cssVariables.desktopBreakpoint.split(
-    //   'rem'
-    // )[0];
-    // const desktopBreakpointInPx =
-    //   desktopBreakpointInRem *
-    //   parseFloat(getComputedStyle(document.documentElement).fontSize);
-    // sliderHeight.current =
-    //   browserWidth !== sliderWidth || browserWidth < desktopBreakpointInPx
-    //     ? `${0.56 * sliderWidth}px`
-    //     : '100vh';
   }, [browserWidth]);
 
   useEffect(() => {
@@ -166,6 +130,7 @@ const Slider = ({
       ref={sliderRef}
     >
       {loadedSlides.length === 1 && (
+        // Shows blurred image before inital image loads
         <Img className="slider__starting-img" fluid={startingImgData} />
       )}
       <div className="slider__overlay-container">
@@ -173,7 +138,6 @@ const Slider = ({
           className={`slider__overlay ${
             isFullScreen ? 'slider__overlay--fullscreen' : ''
           }`}
-          // className="slider__overlay slider__overlay--fullscreen"
         >
           <h1>Shane McFadden</h1>
           <h2>Collaborative Pianist</h2>
@@ -201,6 +165,7 @@ Slider.propTypes = {
   slides: PropTypes.arrayOf(PropTypes.string).isRequired,
   autoPlay: PropTypes.number.isRequired,
   startingImgData: PropTypes.object.isRequired,
+  isFullScreen: PropTypes.bool,
 };
 
 export default Slider;
