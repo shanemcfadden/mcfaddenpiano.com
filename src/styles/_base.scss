@@ -3,6 +3,8 @@
 }
 
 html {
+  background-color: #111;
+  color: white;
   font-size: 62.5%;
 }
 
@@ -22,4 +24,8 @@ h6 {
 
 button {
   cursor: pointer;
+}
+
+p {
+  line-height: 1.6;
 }
