@@ -3,6 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import NavBar from './NavBar';
 import 'normalize.css';
+import '@fontsource/josefin-sans';
+import '@fontsource/mukta';
 import '../styles/styles.scss';
 import Slider from './Slider/Slider';
 
