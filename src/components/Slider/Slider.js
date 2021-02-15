@@ -49,6 +49,12 @@ const Slider = ({
       browserWidth: window.innerWidth,
       sliderWidth: sliderRef.current.clientWidth,
     });
+    // if (!isFullScreen) {
+    //   const sliderWidth = document.getElementsByClassName('slider').style.width;
+
+    //   console.log('Slider:', document.getElementsByClassName('slider'));
+    //   document.getElementsByClassName('slider').style.height = 100;
+    // }
     // sliderHeight.current =
     //   browserWidth !== sliderWidth ? `${0.56 * sliderWidth}px` : '100vh';
     // const desktopBreakpointInRem = cssVariables.desktopBreakpoint.split(
