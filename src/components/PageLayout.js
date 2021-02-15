@@ -47,7 +47,7 @@ const PageLayout = ({ slider, children }) => {
         />
       )}
       <div className="content-container">
-        <h1>Shane McFadden</h1>
+        <h1 id="content">Shane McFadden</h1>
         <h2>Collaborative Pianist</h2>
         <NavBar />
         <div>{children}</div>
