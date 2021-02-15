@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Slide = ({ content }) => {
+const Slide = ({ imageUrl }) => {
   return (
     <div
       className="slider__slide"
       style={{
-        backgroundImage: `url('${content}')`,
+        backgroundImage: `url('${imageUrl}')`,
       }}
-    ></div>
+    />
   );
 };
 
 Slide.propTypes = {
-  content: PropTypes.string,
+  imageUrl: PropTypes.string,
 };
 
 export default React.memo(Slide);
