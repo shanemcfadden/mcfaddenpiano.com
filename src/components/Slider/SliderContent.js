@@ -5,6 +5,7 @@ const SliderContent = (props) => {
   const { translate, transition, width } = props;
   return (
     <div
+      className="slider__content"
       style={{
         transform: `translateX(-${translate}px)`,
         transition: `transform ease-out ${transition}s`,
@@ -28,4 +29,4 @@ SliderContent.propTypes = {
   ]).isRequired,
 };
 
-export default SliderContent;
+export default React.memo(SliderContent);

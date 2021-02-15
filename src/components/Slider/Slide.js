@@ -16,4 +16,4 @@ Slide.propTypes = {
   content: PropTypes.string,
 };
 
-export default Slide;
+export default React.memo(Slide);

@@ -1,34 +1,96 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useRef, useReducer } from 'react';
 import SliderContent from './SliderContent';
 import Slide from './Slide';
 import Arrow from './Arrow';
 import Dots from './Dots';
 
-const Slider = ({ slides, autoPlay }) => {
-  const lastSlide = slides[slides.length - 1];
-  const firstSlide = slides[0];
-  const secondSlide = slides[1];
+function reducer(state, action) {
+  switch (action.type) {
+    case 'browserWidth':
+      console.log('action: browserWidth');
+      return { ...state, browserWidth: action.value };
+    case 'nextSlide':
+      console.log('action: nextSlide');
+      return {
+        ...state,
+        translate: state.translate + state.browserWidth,
+        activeSlideIndex: (state.activeSlideIndex + 1) % action.numberOfSlides,
+      };
+    case 'prevSlide':
+      console.log('action: prevSlide');
+      return {
+        ...state,
+        translate: 0,
+        activeSlideIndex:
+          state.activeSlideIndex === 0
+            ? action.numberOfSlides - 1
+            : state.activeSlideIndex - 1,
+      };
+    case 'smoothTransition':
+      console.log('action: smoothTransition');
+      console.log(state);
+      return {
+        ...state,
+        transition: 0,
+        translate: state.browserWidth,
+        loadedSlides: [
+          action.slides[
+            state.activeSlideIndex > 0
+              ? state.activeSlideIndex - 1
+              : action.slides.length - 1
+          ],
+          action.slides[state.activeSlideIndex],
+          action.slides[(state.activeSlideIndex + 1) % action.slides.length],
+        ],
+      };
+    case 'transition':
+      console.log('action: transition');
+      return { ...state, transition: action.value };
+    case 'translate':
+      console.log('action: translate');
+      return { ...state, translate: action.value };
+    default:
+      throw new Error('Invalid action type');
+  }
+}
 
+const Slider = ({ slides, autoPlay }) => {
   const autoPlayRef = useRef();
   const transitionRef = useRef();
 
-  const [browserWidth, setBrowserWidth] = useState(0);
-  const [currentState, setState] = useState({
-    translate: browserWidth,
+  const [state, dispatch] = useReducer(reducer, {
+    browserWidth: 0,
+    translate: 0,
     transition: 0.45,
     activeSlideIndex: 0,
-    loadedSlides: [lastSlide, firstSlide, secondSlide],
+    loadedSlides: [slides[0]],
   });
+
+  const {
+    translate,
+    transition,
+    loadedSlides,
+    activeSlideIndex,
+    browserWidth,
+  } = state;
+
   useEffect(() => {
     autoPlayRef.current = nextSlide;
     transitionRef.current = smoothTransition;
   });
 
   useEffect(() => {
-    setBrowserWidth(window.innerWidth);
+    dispatch({
+      type: 'browserWidth',
+      value: window.innerWidth,
+    });
     window.onresize = () => {
-      setBrowserWidth(window.innerWidth);
+      console.log('onresize', window.innerWidth);
+      dispatch({
+        type: 'browserWidth',
+        value: window.innerWidth,
+      });
     };
 
     const play = () => {
@@ -39,72 +101,53 @@ const Slider = ({ slides, autoPlay }) => {
       transitionRef.current();
     };
 
-    const interval = setInterval(play, autoPlay * 1000);
-    window.addEventListener('transitionend', smooth);
+    // const interval = setInterval(play, autoPlay * 1000);
+    document
+      .querySelector('.slider__content')
+      .addEventListener('transitionend', smooth);
     return () => {
-      clearInterval(interval);
+      // clearInterval(interval);
       window.onresize = null;
-      window.removeEventListener('transitionend', smooth);
+      document
+        .querySelector('.slider__content')
+        .removeEventListener('transitionend', smooth);
     };
   }, []);
 
   useEffect(() => {
-    setState({
-      ...currentState,
-      translate: currentState.activeSlideIndex * browserWidth,
-    });
+    // Initial load, browser width set for the first time
+    if (loadedSlides.length === 1) {
+      // load 3 photos and arrange them accordingly
+      dispatch({ type: 'smoothTransition', slides: slides });
+    } else {
+      // Adjust translation as browser width changes
+      dispatch({
+        type: 'translate',
+        value: browserWidth,
+      });
+    }
   }, [browserWidth]);
 
   useEffect(() => {
-    if (currentState.transition === 0) {
-      setState({
-        ...currentState,
-        transition: 0.45,
+    if (transition === 0) {
+      dispatch({
+        type: 'transition',
+        value: 0.45,
       });
     }
-  }, [currentState.transition]);
+  }, [transition]);
 
   const nextSlide = () => {
-    setState({
-      ...currentState,
-      translate: currentState.translate + browserWidth,
-      activeSlideIndex: (currentState.activeSlideIndex + 1) % slides.length,
-    });
+    dispatch({ type: 'nextSlide', numberOfSlides: slides.length });
   };
 
   const prevSlide = () => {
-    setState({
-      ...currentState,
-      translate: 0,
-      activeSlideIndex:
-        currentState.activeSlideIndex === 0
-          ? slides.length - 1
-          : currentState.activeSlideIndex - 1,
-    });
+    dispatch({ type: 'prevSlide', numberOfSlides: slides.length });
   };
 
   const smoothTransition = () => {
-    const { activeSlideIndex } = currentState;
-    const slidesLength = slides.length;
-
-    setState({
-      ...currentState,
-      transition: 0,
-      translate: browserWidth,
-      loadedSlides: [
-        slides[activeSlideIndex > 0 ? activeSlideIndex - 1 : slidesLength - 1],
-        slides[activeSlideIndex],
-        slides[(activeSlideIndex + 1) % slidesLength],
-      ],
-    });
+    dispatch({ type: 'smoothTransition', slides: slides });
   };
-
-  const {
-    translate,
-    transition,
-    loadedSlides,
-    activeSlideIndex,
-  } = currentState;
 
   return (
     <div className="slider">
