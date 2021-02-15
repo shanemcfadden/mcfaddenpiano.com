@@ -3,12 +3,12 @@ $s-size: 1.2rem;
 $m-size: 1.6rem;
 $l-size: 2.4rem;
 
-$desktop-breakpoint: 30rem;
+$desktop-breakpoint: 50rem;
 
 $slider-h1-size: 6rem;
 $slider-h2-size: 3rem;
 
 /* stylelint-disable property-no-unknown*/
 :export {
-  sliderH1Size: $slider-h1-size;
+  desktopBreakpoint: $desktop-breakpoint;
 }

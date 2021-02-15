@@ -6,11 +6,19 @@ import reducer from './sliderReducer';
 import Img from 'gatsby-image';
 import cssVariables from '../../styles/_settings.scss';
 
-const Slider = ({ slides, startingImgData, autoPlay = 0 }) => {
+// TODO: Make overlay font size responsive
+
+const Slider = ({
+  slides,
+  startingImgData,
+  autoPlay = 0,
+  isFullScreen = false,
+}) => {
   const autoPlayRef = useRef();
   const transitionRef = useRef();
   const sliderRef = useRef();
   const autoPlayInterval = useRef();
+  // const sliderHeight = useRef();
 
   const [state, dispatch] = useReducer(reducer, {
     browserWidth: 0,
@@ -41,6 +49,18 @@ const Slider = ({ slides, startingImgData, autoPlay = 0 }) => {
       browserWidth: window.innerWidth,
       sliderWidth: sliderRef.current.clientWidth,
     });
+    // sliderHeight.current =
+    //   browserWidth !== sliderWidth ? `${0.56 * sliderWidth}px` : '100vh';
+    // const desktopBreakpointInRem = cssVariables.desktopBreakpoint.split(
+    //   'rem'
+    // )[0];
+    // const desktopBreakpointInPx =
+    //   desktopBreakpointInRem *
+    //   parseFloat(getComputedStyle(document.documentElement).fontSize);
+    // sliderHeight.current =
+    //   browserWidth !== sliderWidth || browserWidth < desktopBreakpointInPx
+    //     ? `${0.56 * sliderWidth}px`
+    //     : '100vh';
     window.onresize = () => {
       dispatch({
         type: 'browserWidthChange',
@@ -82,6 +102,16 @@ const Slider = ({ slides, startingImgData, autoPlay = 0 }) => {
         value: Math.floor((slides.length - 1) / 2) * browserWidth,
       });
     }
+    // const desktopBreakpointInRem = cssVariables.desktopBreakpoint.split(
+    //   'rem'
+    // )[0];
+    // const desktopBreakpointInPx =
+    //   desktopBreakpointInRem *
+    //   parseFloat(getComputedStyle(document.documentElement).fontSize);
+    // sliderHeight.current =
+    //   browserWidth !== sliderWidth || browserWidth < desktopBreakpointInPx
+    //     ? `${0.56 * sliderWidth}px`
+    //     : '100vh';
   }, [browserWidth]);
 
   useEffect(() => {
@@ -126,27 +156,22 @@ const Slider = ({ slides, startingImgData, autoPlay = 0 }) => {
 
   return (
     <div
-      className="slider"
-      style={{
-        height:
-          browserWidth !== sliderWidth ? `${0.56 * sliderWidth}px` : 'null',
-      }}
+      className={`slider ${isFullScreen ? 'slider--fullscreen' : ''}`}
       ref={sliderRef}
     >
       {loadedSlides.length === 1 && (
         <Img className="slider__starting-img" fluid={startingImgData} />
       )}
-      <div
-        style={{
-          top:
-            browserWidth !== sliderWidth
-              ? ` calc(${0.28 * sliderWidth}px - ${cssVariables.sliderH1Size})`
-              : 'null',
-        }}
-        className="slider__overlay"
-      >
-        <h1>Shane McFadden</h1>
-        <h2>Collaborative Pianist</h2>
+      <div className="slider__overlay-container">
+        <div
+          className={`slider__overlay ${
+            isFullScreen ? 'slider__overlay--fullscreen' : ''
+          }`}
+          // className="slider__overlay slider__overlay--fullscreen"
+        >
+          <h1>Shane McFadden</h1>
+          <h2>Collaborative Pianist</h2>
+        </div>
       </div>
       <SliderContent
         translate={translate}

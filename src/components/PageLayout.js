@@ -41,6 +41,7 @@ const PageLayout = ({ slider, children }) => {
           slides={allImages}
           startingImgData={startingImgData}
           autoPlay={4}
+          isFullScreen={true}
         />
       )}
       <div className="content-container">
