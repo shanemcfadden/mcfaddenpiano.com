@@ -8,7 +8,7 @@ const ContactPage = ({ data }) => {
   return (
     <PageLayout>
       <div className="collapsing-columns">
-        <div className="">
+        <div>
           <Img fluid={data.file.childImageSharp.fluid} />
         </div>
         <form
