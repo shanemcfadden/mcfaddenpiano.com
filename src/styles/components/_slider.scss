@@ -93,18 +93,21 @@
 
 .slider__dot-row {
   align-items: center;
-  bottom: 25px;
+  bottom: 5px;
   display: flex;
   justify-content: center;
   position: absolute;
   width: 100%;
+  @media (min-width: $desktop-breakpoint) {
+    bottom: 25px;
+  }
 }
 
 .slider__dot {
   border-radius: 50%;
   cursor: pointer;
-  margin-right: 5px;
-  padding: 10px;
+  margin-right: 7px;
+  padding: 5px;
 }
 
 .slider__arrow {
