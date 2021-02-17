@@ -1,4 +1,4 @@
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import React from 'react';
 import PropTypes from 'prop-types';
 import NavBar from './NavBar';
@@ -48,8 +48,10 @@ const PageLayout = ({ slider, children }) => {
       )}
       <div className="content-container">
         <div id="content" className="site-header">
-          <h1 id="content">Shane McFadden</h1>
-          <h2>Collaborative Pianist</h2>
+          <Link to="/">
+            <h1 id="content">Shane McFadden</h1>
+            <h2>Collaborative Pianist</h2>
+          </Link>
         </div>
         <NavBar />
         <div>{children}</div>
