@@ -19,6 +19,7 @@
 
 .slider__overlay-container {
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
   color: #fff;
   display: flex;
   height: 100%;
@@ -32,7 +33,6 @@
 
 .slider__overlay {
   text-align: center;
-  text-shadow: 1rem 1rem 4.5rem #000;
 
   h1 {
     font-size: 3.6rem; // Set according to specific use case
