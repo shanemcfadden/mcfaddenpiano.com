@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const VideoCard = ({ title, watchLink, performers, venue }) => {
   const videoId = watchLink.split('?v=')[1];
   return (
-    <div>
+    <div className="content-card">
       <h2>{title}</h2>
       <div className="youtube-video__container">
         <iframe
