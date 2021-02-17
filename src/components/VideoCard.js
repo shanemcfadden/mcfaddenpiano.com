@@ -16,9 +16,13 @@ const VideoCard = ({ title, watchLink, performers, venue }) => {
       </div>
       <p>
         {performers.map((p) => {
-          return <div key={p}>{p}</div>;
+          return (
+            <div key={p}>
+              <strong>{p}</strong>
+            </div>
+          );
         })}
-        {venue && <div>{venue}</div>}
+        {venue && <div className="font-weight--light">{venue}</div>}
       </p>
     </div>
   );
