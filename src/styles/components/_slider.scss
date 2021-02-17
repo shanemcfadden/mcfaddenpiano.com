@@ -17,9 +17,10 @@
   }
 }
 
+//TODO: GRADIENT???
 .slider__overlay-container {
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.3);
+  background: radial-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
   color: #fff;
   display: flex;
   height: 100%;
