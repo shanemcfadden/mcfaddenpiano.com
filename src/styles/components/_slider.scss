@@ -91,16 +91,22 @@
   width: 100%;
 }
 
-.slider__dot-row {
+.slider-nav {
   align-items: center;
   bottom: 5px;
   display: flex;
   justify-content: center;
   position: absolute;
   width: 100%;
+  z-index: 11;
   @media (min-width: $desktop-breakpoint) {
     bottom: 25px;
   }
+}
+
+.slider__dot-row {
+  display: flex;
+  margin: 0 5px;
 }
 
 .slider__dot {
@@ -108,6 +114,15 @@
   cursor: pointer;
   margin-right: 7px;
   padding: 5px;
+  transition: transform ease-in 0.1s;
+
+  &:last-child {
+    margin-right: 4px;
+  }
+
+  &:hover {
+    transform: scale(1.5);
+  }
 }
 
 .slider__arrow {

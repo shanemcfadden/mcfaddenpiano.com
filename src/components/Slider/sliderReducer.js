@@ -6,6 +6,7 @@ export default function reducer(state, action) {
         browserWidth: action.browserWidth,
       };
     case 'goToSlide':
+      console.log('goToSlide()', action.newSlideIndex);
       return {
         ...state,
         translate:

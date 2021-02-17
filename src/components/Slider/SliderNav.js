@@ -16,7 +16,7 @@ const SliderNav = ({
       onClick={() => {
         stopAutoPlay();
       }}
-      className="slider__dot-row"
+      className="slider-nav"
     >
       <Arrow
         direction={'left'}
@@ -24,13 +24,15 @@ const SliderNav = ({
           prevSlide();
         }}
       />
-      {slides.map((slide, i) => (
-        <Dot
-          key={'nav-dot' + i}
-          onClick={() => goToSlide(i)}
-          active={activeSlideIndex === i}
-        />
-      ))}
+      <div className="slider__dot-row">
+        {slides.map((slide, i) => (
+          <Dot
+            key={'nav-dot' + i}
+            onClick={() => goToSlide(i)}
+            active={activeSlideIndex === i}
+          />
+        ))}
+      </div>
       <Arrow direction={'right'} handleClick={nextSlide} />
     </div>
   );

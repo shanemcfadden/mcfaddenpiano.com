@@ -6,7 +6,7 @@ const Dot = ({ active, onClick }) => (
     className="slider__dot"
     onClick={onClick}
     style={{
-      background: `${active ? 'black' : 'white'}`,
+      background: `${active ? '#333' : 'white'}`,
     }}
   />
 );
