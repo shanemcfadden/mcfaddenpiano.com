@@ -17,8 +17,10 @@
   }
 }
 
+//TODO: GRADIENT???
 .slider__overlay-container {
   align-items: center;
+  background: radial-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
   color: #fff;
   display: flex;
   height: 100%;
@@ -32,7 +34,6 @@
 
 .slider__overlay {
   text-align: center;
-  text-shadow: 1rem 1rem 4.5rem #000;
 
   h1 {
     font-size: 3.6rem; // Set according to specific use case
@@ -78,7 +79,7 @@
 .slider__starting-img {
   height: 100%;
   left: 0;
-  position: relative;
+  position: absolute;
   top: 0;
   width: 100%;
 }
@@ -91,20 +92,38 @@
   width: 100%;
 }
 
-.slider__dot-row {
+.slider-nav {
   align-items: center;
-  bottom: 25px;
+  bottom: 5px;
   display: flex;
   justify-content: center;
   position: absolute;
   width: 100%;
+  z-index: 11;
+  @media (min-width: $desktop-breakpoint) {
+    bottom: 25px;
+  }
+}
+
+.slider__dot-row {
+  display: flex;
+  margin: 0 5px;
 }
 
 .slider__dot {
   border-radius: 50%;
   cursor: pointer;
-  margin-right: 5px;
-  padding: 10px;
+  margin-right: 7px;
+  padding: 5px;
+  transition: transform ease-in 0.1s;
+
+  &:last-child {
+    margin-right: 4px;
+  }
+
+  &:hover {
+    transform: scale(1.5);
+  }
 }
 
 .slider__arrow {

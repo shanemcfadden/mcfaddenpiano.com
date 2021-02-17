@@ -7,16 +7,18 @@ import VideoCard from '../components/VideoCard';
 const ListenPage = ({ data }) => {
   return (
     <PageLayout>
-      {data.allVideoCardJson.edges.map(({ node }) => {
+      {data.allVideoCardJson.edges.map(({ node }, i) => {
         const { title, watchLink, performers, venue } = node;
         return (
-          <VideoCard
-            title={title}
-            watchLink={watchLink}
-            performers={performers}
-            venue={venue}
-            key={watchLink}
-          />
+          <div key={watchLink}>
+            <VideoCard
+              title={title}
+              watchLink={watchLink}
+              performers={performers}
+              venue={venue}
+            />
+            {i !== data.allVideoCardJson.edges.length - 1 && <hr />}
+          </div>
         );
       })}
     </PageLayout>

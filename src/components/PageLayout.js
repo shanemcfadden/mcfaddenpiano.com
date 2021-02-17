@@ -1,8 +1,12 @@
-import { graphql, useStaticQuery } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import React from 'react';
 import PropTypes from 'prop-types';
 import NavBar from './NavBar';
 import 'normalize.css';
+import '@fontsource/josefin-sans';
+import '@fontsource/mukta';
+import '@fontsource/mukta/200.css';
+import '@fontsource/mukta/800.css';
 import '../styles/styles.scss';
 import Slider from './Slider/Slider';
 
@@ -14,6 +18,10 @@ const PageLayout = ({ slider, children }) => {
           filter: {
             sourceInstanceName: { eq: "images" }
             relativePath: { glob: "slider/*" }
+          }
+          sort: {
+            order: ASC
+            fields: childrenImageSharp___fixed___originalName
           }
         ) {
           edges {
@@ -45,8 +53,12 @@ const PageLayout = ({ slider, children }) => {
         />
       )}
       <div className="content-container">
-        <h1>Shane McFadden</h1>
-        <h2>Collaborative Pianist</h2>
+        <div id="content" className="site-header">
+          <Link to="/">
+            <h1 id="content">Shane McFadden</h1>
+            <h2>Collaborative Pianist</h2>
+          </Link>
+        </div>
         <NavBar />
         <div>{children}</div>
       </div>

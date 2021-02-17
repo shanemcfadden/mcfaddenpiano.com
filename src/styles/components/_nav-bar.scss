@@ -1,14 +1,43 @@
 .nav-bar {
-    display: flex;
-    flex-direction: row;
-    font-size: $l-size;
-    justify-content: space-around;
+  align-items: stretch;
+  background-color: #222;
+  display: flex;
+  flex-direction: row;
+  font-size: $l-size;
+  justify-content: stretch;
+  //   justify-content: space-around;
+  margin: $margin-m-size 0;
 
-    a {
-        text-decoration: none;
+  a {
+    background: linear-gradient(0deg, #111 0%, #222 70%);
+    border-left: 2px solid #111;
+    color: #fff;
+    height: 100%;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
+
+    &:first-child {
+      border: none;
     }
 
-    .active {
-        font-weight: 700;
+    &:hover {
+      background: #222;
+      text-decoration: underline;
     }
+  }
+
+  h3 {
+    margin: 0;
+    padding: $margin-s-size $margin-s-size;
+    @media (min-width: $desktop-breakpoint) {
+      padding: $margin-l-size $margin-s-size;
+    }
+  }
+
+  .active,
+  .active:hover {
+    background: linear-gradient(0deg, #111 0%, #666 100%);
+    text-decoration: underline;
+  }
 }

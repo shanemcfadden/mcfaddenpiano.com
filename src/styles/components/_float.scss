@@ -1,9 +1,10 @@
 .float--right-half {
-    float: right;
-    width: 50%;
-    margin: $s-size 0 $s-size $s-size;
+  float: right;
+  margin: $margin-m-size;
+  margin-right: 0;
+  width: 50%;
 }
 
 .float--no-margin-top {
-    margin-top: 0;
+  margin-top: 0;
 }

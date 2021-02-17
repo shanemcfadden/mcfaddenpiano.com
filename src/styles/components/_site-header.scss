@@ -1,0 +1,22 @@
+.site-header {
+  // FIX SO LINK DOESN'T TAKE UP WHOLE HEADER
+  display: flex;
+  justify-content: center;
+  padding-top: $margin-m-size; // Allows any hash redirect to include whitespace above h1
+  text-align: center;
+
+  > a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  h1,
+  h2 {
+    margin: 0;
+  }
+  @media (min-width: $desktop-breakpoint) {
+    display: inline-block;
+    justify-content: left;
+    text-align: left;
+  }
+}

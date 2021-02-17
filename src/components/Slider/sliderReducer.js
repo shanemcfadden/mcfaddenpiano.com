@@ -6,6 +6,7 @@ export default function reducer(state, action) {
         browserWidth: action.browserWidth,
       };
     case 'goToSlide':
+      console.log('goToSlide()', action.newSlideIndex);
       return {
         ...state,
         translate:
@@ -51,13 +52,10 @@ function getTranslateFactor(
   newSlideIndex,
   loadedSlidesLength
 ) {
-  const activeRealIndex = Math.floor((loadedSlidesLength - 1) / 2);
-  const modProofNewSlideIndex =
-    newSlideIndex < activeSlideIndex
-      ? newSlideIndex + loadedSlidesLength
-      : newSlideIndex;
-  const newRealIndex =
-    (modProofNewSlideIndex - activeSlideIndex + activeRealIndex) %
-    loadedSlidesLength;
-  return newRealIndex - activeRealIndex;
+  const lowestPossibleTranslateFactor =
+    -1 * Math.floor((loadedSlidesLength - 1) / 2);
+  const possibleTranslate = newSlideIndex - activeSlideIndex;
+  return possibleTranslate >= lowestPossibleTranslateFactor
+    ? possibleTranslate
+    : possibleTranslate + loadedSlidesLength;
 }

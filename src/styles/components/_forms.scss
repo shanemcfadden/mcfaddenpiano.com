@@ -4,12 +4,45 @@ textarea {
   width: 100%;
 }
 
+label {
+  margin: $margin-m-size 0;
+}
+
 textarea {
   height: 20rem;
 }
 
+input,
+textarea {
+  border-radius: 0.6rem;
+  font-size: $m-size;
+  padding: 0.8rem;
+}
+
 form {
-  p:first-child {
-    margin-top: 0;
+  div {
+    margin: $margin-m-size 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  h4 {
+    margin: 0;
+  }
+}
+
+button {
+  background-color: #853318;
+  border: 0;
+  border-radius: 1.6rem;
+  color: #fff;
+  font-family: 'Josefin sans';
+  font-size: $l-size;
+  padding: 1.2rem $margin-m-size 0.8rem;
+
+  &:hover {
+    box-shadow: 0 0 17px -8px #fff;
   }
 }

@@ -8,7 +8,7 @@ const ContactPage = ({ data }) => {
   return (
     <PageLayout>
       <div className="collapsing-columns">
-        <div className="">
+        <div>
           <Img fluid={data.file.childImageSharp.fluid} />
         </div>
         <form
@@ -18,35 +18,35 @@ const ContactPage = ({ data }) => {
           netlify-honeypot="false-field"
           data-netlify="true"
         >
-          <p>
+          <div>
             <label htmlFor="name">
-              Name:
+              <h4>Name:</h4>
               <input type="text" name="name" id="name" required />
             </label>
-          </p>
-          <p>
+          </div>
+          <div>
             <label htmlFor="email">
-              Email:
+              <h4>Email:</h4>
               <input type="email" name="email" id="email" required />
             </label>
-          </p>
-          <p>
+          </div>
+          <div>
             <label htmlFor="subject">
-              Subject:
+              <h4>Subject:</h4>
               <input type="text" name="subject" id="subject" required />
             </label>
-          </p>
-          <p>
-            <label htmlFor="message">Message:</label>
-            <textarea name="message" id="message" maxLength="500"></textarea>
-          </p>
+          </div>
+          <div>
+            <label htmlFor="message">
+              <h4>Message:</h4>
+              <textarea name="message" id="message" maxLength="500"></textarea>
+            </label>
+          </div>
+          <button className="float-right" type="submit">
+            Send
+          </button>
           <p className="hidden">
             <input name="false-field" id="false-field" />
-          </p>
-          <p>
-            <button className="float-right" type="submit">
-              Send
-            </button>
           </p>
         </form>
       </div>

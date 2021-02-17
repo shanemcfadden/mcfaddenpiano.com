@@ -1,5 +1,6 @@
 .hidden {
   left: 0;
+  margin: 0;
   opacity: 0;
   position: absolute;
   top: 0;
@@ -8,4 +9,8 @@
 
 .float-right {
   float: right;
+}
+
+.font-weight--light {
+  font-weight: 200;
 }
