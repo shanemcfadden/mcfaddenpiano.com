@@ -2,8 +2,6 @@ import { Link } from 'gatsby';
 import * as React from 'react';
 
 const isActiveWithHash = ({ location, href }) => {
-  console.log('location', location);
-  console.log('href', href);
   return location.pathname === href.split('#')[0]
     ? { className: 'active' }
     : {};
