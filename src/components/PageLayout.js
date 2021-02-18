@@ -92,7 +92,7 @@ const PageLayout = ({ slider, children }) => {
           </Link>
         </div>
         <NavBar />
-        <div>{children}</div>
+        <main>{children}</main>
       </div>
     </>
   );

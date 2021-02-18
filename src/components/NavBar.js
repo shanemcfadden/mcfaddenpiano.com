@@ -9,7 +9,7 @@ const isActiveWithHash = ({ location, href }) => {
 
 const NavBar = () => {
   return (
-    <div className="nav-bar">
+    <nav className="nav-bar">
       <Link getProps={isActiveWithHash} to="/#content">
         <h3>Bio</h3>
       </Link>
@@ -19,7 +19,7 @@ const NavBar = () => {
       <Link activeClassName="active" to="/contact">
         <h3>Contact</h3>
       </Link>
-    </div>
+    </nav>
   );
 };
 
