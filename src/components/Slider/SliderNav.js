@@ -22,6 +22,7 @@ const SliderNav = ({
         direction={'left'}
         handleClick={() => {
           prevSlide();
+          stopAutoPlay();
         }}
       />
       <div className="slider__dot-row">
@@ -33,7 +34,13 @@ const SliderNav = ({
           />
         ))}
       </div>
-      <Arrow direction={'right'} handleClick={nextSlide} />
+      <Arrow
+        direction={'right'}
+        handleClick={() => {
+          nextSlide();
+          stopAutoPlay();
+        }}
+      />
     </div>
   );
 };
