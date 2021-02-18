@@ -47,6 +47,10 @@ const PageLayout = ({ slider, children }) => {
     <>
       <Helmet defaultTitle="Shane McFadden - Collaborative Pianist">
         <html lang="en" />
+        <meta
+          type="description"
+          content="A classical pianist, accompanist, and vocal coach based in Chicago."
+        />
 
         {/* real favicon generator info */}
         <link
