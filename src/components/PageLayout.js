@@ -1,6 +1,7 @@
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
 import NavBar from './NavBar';
 import 'normalize.css';
 import '@fontsource/josefin-sans';
@@ -44,6 +45,9 @@ const PageLayout = ({ slider, children }) => {
 
   return (
     <>
+      <Helmet defaultTitle="Shane McFadden - Collaborative Pianist">
+        <html lang="en" />
+      </Helmet>
       {slider && (
         <Slider
           slides={allImages}
