@@ -8,7 +8,10 @@ const IndexPage = ({ data }) => {
   return (
     <PageLayout slider={true}>
       <div className="float--right-half float--no-margin-top">
-        <Img fluid={data.file.childImageSharp.fluid} />
+        <Img
+          alt="Shane McFadden headshot"
+          fluid={data.file.childImageSharp.fluid}
+        />
       </div>
       <div
         id="bio"

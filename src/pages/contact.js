@@ -9,7 +9,10 @@ const ContactPage = ({ data }) => {
     <PageLayout>
       <div className="collapsing-columns">
         <div>
-          <Img fluid={data.file.childImageSharp.fluid} />
+          <Img
+            alt="Shane McFadden at the piano onstage"
+            fluid={data.file.childImageSharp.fluid}
+          />
         </div>
         <form
           name="contact"

@@ -131,7 +131,11 @@ const Slider = ({
     >
       {loadedSlides.length === 1 && (
         // Shows blurred image before inital image loads
-        <Img className="slider__starting-img" fluid={startingImgData} />
+        <Img
+          className="slider__starting-img"
+          alt="Shane McFadden at the piano accompanying a singer"
+          fluid={startingImgData}
+        />
       )}
       <div className="slider__overlay-container">
         <div
