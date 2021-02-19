@@ -8,7 +8,7 @@ const Arrow = ({ direction, handleClick }) => (
   <div
     onKeyDown={clickToKeyDown(handleClick)}
     onClick={handleClick}
-    className="slider__arrow"
+    className="slider__arrow focus-visible-only"
     tabIndex="0"
   >
     <img

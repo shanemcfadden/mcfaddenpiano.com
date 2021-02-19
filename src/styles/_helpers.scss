@@ -14,3 +14,19 @@
 .font-weight--light {
   font-weight: 200;
 }
+
+.focus-visible-only {
+  &:focus {
+    outline: 5px auto Highlight;
+    outline: -webkit-focus-ring-color auto 1px;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: 0;
+  }
+
+  &:focus-visible {
+    outline: 5px auto Highlight;
+    outline: -webkit-focus-ring-color auto 1px;
+  }
+}
