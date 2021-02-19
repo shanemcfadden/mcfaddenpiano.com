@@ -84,6 +84,18 @@
   width: 100%;
 }
 
+/* stylelint-disable property-no-vendor-prefix*/
+.slider__content {
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+
+  * {
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+  }
+}
+/* stylelint-enable property-no-vendor-prefix*/
+
 .slider__slide {
   background-position: center;
   background-repeat: no-repeat;
