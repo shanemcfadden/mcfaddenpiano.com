@@ -4,6 +4,7 @@ import Slide from './Slide';
 
 const SliderContent = (props) => {
   const { translate, transition, width, slides } = props;
+  const activeSlideIndex = Math.floor((slides.length - 1) / 2);
   return (
     <div
       className="slider__content"
@@ -16,7 +17,11 @@ const SliderContent = (props) => {
       }}
     >
       {slides.map((slide, i) => (
-        <Slide key={'image-' + i} imageUrl={slide} />
+        <Slide
+          key={'image-' + i}
+          imageUrl={slide}
+          ariaHidden={activeSlideIndex !== i}
+        />
       ))}
     </div>
   );
