@@ -11,7 +11,7 @@ import '@fontsource/mukta/800.css';
 import '../styles/styles.scss';
 import Slider from './Slider/Slider';
 
-const PageLayout = ({ slider, children }) => {
+const PageLayout = ({ slider, children, location }) => {
   const data = useStaticQuery(
     graphql`
       query {
@@ -75,6 +75,22 @@ const PageLayout = ({ slider, children }) => {
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
         {/* end real favicon generator info */}
+        <meta
+          property="og:title"
+          content="Shane McFadden - Collaborative Pianist"
+        />
+        <meta
+          property="og:description"
+          content="A classical pianist, accompanist, and vocal coach based in Chicago."
+        />
+        <meta
+          property="og:image"
+          content={`https://localhost:8000${allImages[0]}`}
+        />
+        <link
+          rel="canonical"
+          href={`https://localhost:8000${location.pathname}`}
+        />
       </Helmet>
       {slider && (
         <Slider
@@ -104,6 +120,9 @@ PageLayout.propTypes = {
     PropTypes.node,
   ]).isRequired,
   slider: PropTypes.bool,
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 PageLayout.defaultProps = {

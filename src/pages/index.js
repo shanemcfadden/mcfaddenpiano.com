@@ -4,9 +4,9 @@ import * as React from 'react';
 import Img from 'gatsby-image';
 import PageLayout from '../components/PageLayout';
 
-const IndexPage = ({ data }) => {
+const IndexPage = ({ data, location }) => {
   return (
-    <PageLayout slider={true}>
+    <PageLayout slider={true} location={location}>
       <div className="float--right-half float--no-margin-top">
         <Img
           alt="Shane McFadden headshot"
@@ -32,6 +32,7 @@ IndexPage.propTypes = {
       html: PropTypes.string,
     }),
   }),
+  location: PropTypes.object,
 };
 
 export default IndexPage;

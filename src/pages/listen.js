@@ -4,9 +4,9 @@ import * as React from 'react';
 import PageLayout from '../components/PageLayout';
 import VideoCard from '../components/VideoCard';
 
-const ListenPage = ({ data }) => {
+const ListenPage = ({ data, location }) => {
   return (
-    <PageLayout>
+    <PageLayout location={location}>
       {data.allVideoCardJson.edges.map(({ node }, i) => {
         const { title, watchLink, performers, venue } = node;
         return (
@@ -40,6 +40,7 @@ ListenPage.propTypes = {
       ),
     }),
   }),
+  location: PropTypes.object,
 };
 
 export default ListenPage;

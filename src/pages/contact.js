@@ -4,9 +4,9 @@ import * as React from 'react';
 import Img from 'gatsby-image';
 import PageLayout from '../components/PageLayout';
 
-const ContactPage = ({ data }) => {
+const ContactPage = ({ data, location }) => {
   return (
-    <PageLayout>
+    <PageLayout location={location}>
       <div className="collapsing-columns">
         <div>
           <Img
@@ -65,6 +65,7 @@ ContactPage.propTypes = {
       }),
     }),
   }),
+  location: PropTypes.object,
 };
 
 export default ContactPage;
