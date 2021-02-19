@@ -11,34 +11,26 @@ const SliderNav = ({
   goToSlide,
   stopAutoPlay,
 }) => {
+  const stopAutoPlayAnd = (otherFcn, args = []) => {
+    return function () {
+      otherFcn(...args);
+      stopAutoPlay();
+    };
+  };
+
   return (
     <div onClick={() => {}} className="slider-nav">
-      <Arrow
-        direction={'left'}
-        handleClick={() => {
-          prevSlide();
-          stopAutoPlay();
-        }}
-      />
+      <Arrow direction={'left'} handleClick={stopAutoPlayAnd(prevSlide)} />
       <div className="slider__dot-row">
         {slides.map((slide, i) => (
           <Dot
             key={'nav-dot' + i}
-            onClick={() => {
-              goToSlide(i);
-              stopAutoPlay();
-            }}
+            onClick={stopAutoPlayAnd(goToSlide, [i])}
             active={activeSlideIndex === i}
           />
         ))}
       </div>
-      <Arrow
-        direction={'right'}
-        handleClick={() => {
-          nextSlide();
-          stopAutoPlay();
-        }}
-      />
+      <Arrow direction={'right'} handleClick={stopAutoPlayAnd(nextSlide)} />
     </div>
   );
 };
