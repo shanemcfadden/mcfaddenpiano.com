@@ -87,6 +87,10 @@ const PageLayout = ({ slider, children, location }) => {
           property="og:image"
           content={`https://localhost:8000${allImages[0]}`}
         />
+        <meta
+          property="og:url"
+          content={`https://localhost:8000${location.pathname}`}
+        />
         <link
           rel="canonical"
           href={`https://localhost:8000${location.pathname}`}
