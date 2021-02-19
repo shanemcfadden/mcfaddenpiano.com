@@ -1,4 +1,3 @@
 # Todo
 
-- Standardize styles
-- Image slider (hero header)
+- Preload images in slider for Safari
