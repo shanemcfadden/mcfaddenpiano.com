@@ -23,7 +23,7 @@ export default function reducer(state, action) {
         ...state,
         transition: 0,
         translate:
-          Math.floor((action.slides.length - 1) / 2) * state.browserWidth,
+          getVisibleSlideIndex(action.slides.length) * state.browserWidth,
         loadedSlides: loadedSlides(action.slides, state.activeSlideIndex),
       };
     case 'transition':
@@ -52,9 +52,17 @@ function getTranslateFactor(
   loadedSlidesLength
 ) {
   const lowestPossibleTranslateFactor =
-    -1 * Math.floor((loadedSlidesLength - 1) / 2);
+    -1 * getVisibleSlideIndex(loadedSlidesLength);
+  const highestPossibleTranslateFactor = Math.floor(loadedSlidesLength / 2);
   const possibleTranslate = newSlideIndex - activeSlideIndex;
-  return possibleTranslate >= lowestPossibleTranslateFactor
-    ? possibleTranslate
-    : possibleTranslate + loadedSlidesLength;
+
+  if (possibleTranslate < lowestPossibleTranslateFactor)
+    return possibleTranslate + loadedSlidesLength;
+  if (possibleTranslate > highestPossibleTranslateFactor)
+    return possibleTranslate - loadedSlidesLength;
+  return possibleTranslate;
+}
+
+function getVisibleSlideIndex(slidesLength) {
+  return Math.floor((slidesLength - 1) / 2);
 }
