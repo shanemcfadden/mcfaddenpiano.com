@@ -20,6 +20,7 @@ const ContactPage = ({ data, location }) => {
           data-netlify-recaptcha="true"
           netlify-honeypot="false-field"
           data-netlify="true"
+          aria-label="Contact form"
         >
           <div>
             <label htmlFor="name">
@@ -45,7 +46,11 @@ const ContactPage = ({ data, location }) => {
               <textarea name="message" id="message" maxLength="500"></textarea>
             </label>
           </div>
-          <button className="float-right" type="submit">
+          <button
+            className="float-right"
+            type="submit"
+            aria-label="submit form"
+          >
             Send
           </button>
           <p className="hidden">

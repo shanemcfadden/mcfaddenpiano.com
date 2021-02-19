@@ -27,6 +27,7 @@ const SliderNav = ({
             key={'nav-dot' + i}
             onClick={stopAutoPlayAnd(goToSlide, [i])}
             active={activeSlideIndex === i}
+            index={i}
           />
         ))}
       </div>
