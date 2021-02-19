@@ -8,7 +8,10 @@ const Arrow = ({ direction, handleClick }) => (
     onKeyDown={(e) => {
       console.log(e.key);
 
-      if (e.key === 'Enter') handleClick();
+      if (e.key === ' ' || e.key === 'Enter') {
+        e.preventDefault();
+        handleClick();
+      }
     }}
     onClick={handleClick}
     className="slider__arrow"
