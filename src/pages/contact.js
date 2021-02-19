@@ -46,6 +46,7 @@ const ContactPage = ({ data, location }) => {
               <textarea name="message" id="message" maxLength="500"></textarea>
             </label>
           </div>
+          <div data-netlify-recaptcha="true" />
           <button
             className="float-right"
             type="submit"
