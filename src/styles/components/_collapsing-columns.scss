@@ -4,13 +4,13 @@
   justify-content: space-between;
   margin: $margin-m-size 0;
 
-  @media (min-width: 35rem) {
+  @media only screen and (min-width: 35rem) {
     flex-direction: row;
   }
 
   > div,
   > form {
-    @media (min-width: 35rem) {
+    @media only screen and (min-width: 35rem) {
       margin: 0;
       width: 48%;
     }
