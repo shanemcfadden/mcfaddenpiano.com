@@ -60,21 +60,16 @@ const Slider = ({
     clearInterval(autoPlayInterval.current);
   };
 
-  const hasHighZIndex = (
-    i,
-    activeSlideIndex,
-    prevActiveSlideIndex,
-    slidesLength
-  ) => {
+  const hasHighZIndex = (i) => {
     if (activeSlideIndex === prevActiveSlideIndex)
       return i === activeSlideIndex;
     const stepsToLeft =
       prevActiveSlideIndex >= activeSlideIndex
         ? prevActiveSlideIndex - activeSlideIndex
-        : prevActiveSlideIndex + slidesLength - activeSlideIndex;
+        : prevActiveSlideIndex + slides.length - activeSlideIndex;
     const stepsToRight =
       prevActiveSlideIndex >= activeSlideIndex
-        ? activeSlideIndex + slidesLength - prevActiveSlideIndex
+        ? activeSlideIndex + slides.length - prevActiveSlideIndex
         : activeSlideIndex - prevActiveSlideIndex;
 
     if (stepsToLeft < stepsToRight) {
@@ -130,16 +125,7 @@ const Slider = ({
       {slides.map((slide, i) => (
         <Slide
           key={'image-' + i}
-          zIndex={
-            hasHighZIndex(
-              i,
-              activeSlideIndex,
-              prevActiveSlideIndex,
-              slides.length
-            )
-              ? 1
-              : 0
-          }
+          zIndex={hasHighZIndex(i) ? 1 : 0}
           left={getLeftValue(i, activeSlideIndex, slides.length, width)}
           imageUrl={slide}
           ariaHidden={activeSlideIndex !== i}
