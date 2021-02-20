@@ -1,3 +1,3 @@
 # Todo
 
-- Preload images in slider for Safari
+- Examine focus possibilities for image slider Arrows
