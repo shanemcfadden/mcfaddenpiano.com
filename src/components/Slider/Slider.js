@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import Slide from './Slide';
 import SliderNav from './SliderNav';
 import { isInRange, relativeIndexDifference } from '../../util/arrays';
-import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 
 const Slider = ({
