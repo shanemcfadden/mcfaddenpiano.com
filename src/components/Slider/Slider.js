@@ -12,32 +12,19 @@ const Slider = ({
   isFullScreen = false,
 }) => {
   const autoPlayRef = useRef();
-  // const transitionRef = useRef();
   const sliderRef = useRef();
   const autoPlayInterval = useRef();
 
   const [state, dispatch] = useReducer(reducer, {
     browserWidth: 0,
-    // translate: 0,
-    // transition: 0.45,
     activeSlideIndex: 0,
     prevActiveSlideIndex: 1,
-    // loadedSlides: [slides[0]],
   });
 
-  const {
-    // TODO: Rewire reducer functions
-    // translate,
-    // transition,
-    // loadedSlides,
-    activeSlideIndex,
-    prevActiveSlideIndex,
-    browserWidth,
-  } = state;
+  const { activeSlideIndex, prevActiveSlideIndex, browserWidth } = state;
 
   useEffect(() => {
     autoPlayRef.current = nextSlide;
-    // transitionRef.current = smoothTransition;
   });
 
   useEffect(() => {
@@ -55,46 +42,14 @@ const Slider = ({
     const play = () => {
       autoPlayRef.current();
     };
-    // const smooth = () => {
-    //   transitionRef.current();
-    // };
 
     autoPlayInterval.current =
       autoPlay === 0 ? null : setInterval(play, autoPlay * 1000);
-    // document
-    //   .querySelector('.slider__content')
-    //   .addEventListener('transitionend', smooth);
     return () => {
       clearInterval(autoPlayInterval.current);
       window.onresize = null;
-      // document
-      //   .querySelector('.slider__content')
-      //   .removeEventListener('transitionend', smooth);
     };
   }, []);
-
-  // useEffect(() => {
-  //   if (loadedSlides.length === 1) {
-  //     // Initial load, browser width set for the first time
-  //     // load photos for SliderContent and translate them without a visible transition
-  //     dispatch({ type: 'smoothTransition', slides: slides });
-  //   } else {
-  //     // Adjust translation as browser width changes
-  //     dispatch({
-  //       type: 'translate',
-  //       value: Math.floor((slides.length - 1) / 2) * browserWidth,
-  //     });
-  //   }
-  // }, [browserWidth]);
-
-  // useEffect(() => {
-  //   if (transition === 0) {
-  //     dispatch({
-  //       type: 'transition',
-  //       value: 0.45,
-  //     });
-  //   }
-  // }, [transition]);
 
   const nextSlide = () => {
     const nextSlideIndex = (activeSlideIndex + 1) % slides.length;
@@ -117,10 +72,6 @@ const Slider = ({
     dispatch({ type: 'goToSlide', newSlideIndex: i });
   };
 
-  // const smoothTransition = () => {
-  //   dispatch({ type: 'smoothTransition', slides: slides });
-  // };
-
   const stopAutoPlay = () => {
     clearInterval(autoPlayInterval.current);
   };
@@ -131,29 +82,21 @@ const Slider = ({
     prevActiveSlideIndex,
     slidesLength
   ) => {
-    // Content
-    // Find number of slides to the left from P to A
     const stepsToLeft =
       prevActiveSlideIndex >= activeSlideIndex
         ? prevActiveSlideIndex - activeSlideIndex
         : prevActiveSlideIndex + slidesLength - activeSlideIndex;
-    // Find number of slides to the right from P to A
     const stepsToRight =
       prevActiveSlideIndex >= activeSlideIndex
         ? activeSlideIndex + slidesLength - prevActiveSlideIndex
         : activeSlideIndex - prevActiveSlideIndex;
 
-    // if slides left is less than slides right
     if (stepsToLeft < stepsToRight) {
-      // all slides to from P to A counting downward have high z index
-      // i.e. if i is between P and A to left, give it high z index
       if (activeSlideIndex < prevActiveSlideIndex) {
         return i >= activeSlideIndex && i <= prevActiveSlideIndex;
       }
       return i <= prevActiveSlideIndex || i >= activeSlideIndex;
     }
-    // else
-    // all slides from P to A counting upward have high z index
     if (prevActiveSlideIndex < activeSlideIndex) {
       return i >= prevActiveSlideIndex && i <= activeSlideIndex;
     }
@@ -216,14 +159,6 @@ const Slider = ({
           ariaHidden={activeSlideIndex !== i}
         />
       ))}
-      {
-        // <SliderContent
-        //   translate={translate}
-        //   transition={transition}
-        //   width={browserWidth * loadedSlides.length}
-        //   slides={loadedSlides}
-        // />
-      }
       <SliderNav
         nextSlide={nextSlide}
         prevSlide={prevSlide}
