@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Slide = ({ imageUrl, ariaHidden, zIndex, left }) => {
+const Slide = ({ imageUrl, ariaHidden, zIndex, leftPosition }) => {
   return (
     <div
       className="slider__slide"
       style={{
         backgroundImage: `url('${imageUrl}')`,
         zIndex: zIndex,
-        left: left,
+        left: leftPosition,
       }}
       aria-hidden={ariaHidden}
     />
@@ -19,7 +19,7 @@ Slide.propTypes = {
   imageUrl: PropTypes.string,
   ariaHidden: PropTypes.bool,
   zIndex: PropTypes.number,
-  left: PropTypes.number,
+  leftPosition: PropTypes.number,
 };
 
 export default React.memo(Slide);

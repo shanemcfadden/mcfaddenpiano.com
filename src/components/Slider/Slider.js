@@ -78,16 +78,21 @@ const Slider = ({
       : isInRange(i, prevActiveSlideIndex, activeSlideIndex);
   };
 
-  const getLeftValue = (i) => {
-    let leftFactor = i - activeSlideIndex;
+  const getLeftPosition = (i) => {
+    let leftPositionFactor = i - activeSlideIndex;
 
-    if (leftFactor < -1 * Math.floor((slides.length - 1) / 2)) {
-      leftFactor += slides.length;
-    } else if (leftFactor > Math.floor(slides.length / 2)) {
-      leftFactor -= slides.length;
+    // activeSlide is in 0th position. Slides to left have a negative position. Those to right have a positive one
+    const leftMostSlidePosition = -1 * Math.floor((slides.length - 1) / 2);
+    const rightMostSlidePostion = Math.floor(slides.length / 2);
+
+    // adjust leftPositionFactor to be within the available positions
+    if (leftPositionFactor < leftMostSlidePosition) {
+      leftPositionFactor += slides.length;
+    } else if (leftPositionFactor > rightMostSlidePostion) {
+      leftPositionFactor -= slides.length;
     }
 
-    return leftFactor * width;
+    return leftPositionFactor * width;
   };
 
   return (
@@ -120,7 +125,7 @@ const Slider = ({
         <Slide
           key={'image-' + i}
           zIndex={hasHighZIndex(i) ? 1 : 0}
-          left={getLeftValue(i)}
+          leftPosition={getLeftPosition(i)}
           imageUrl={slide}
           ariaHidden={activeSlideIndex !== i}
         />
