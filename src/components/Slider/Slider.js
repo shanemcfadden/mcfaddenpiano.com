@@ -40,22 +40,20 @@ const Slider = ({
     };
   }, []);
 
+  const goToSlide = (i) => {
+    setPrevActiveSlideIndex(activeSlideIndex);
+    setActiveSlideIndex(i);
+  };
+
   const nextSlide = () => {
     const nextSlideIndex = (activeSlideIndex + 1) % slides.length;
-    setPrevActiveSlideIndex(activeSlideIndex);
-    setActiveSlideIndex(nextSlideIndex);
+    goToSlide(nextSlideIndex);
   };
 
   const prevSlide = () => {
     const prevSlideIndex =
       activeSlideIndex > 0 ? activeSlideIndex - 1 : slides.length - 1;
-    setPrevActiveSlideIndex(activeSlideIndex);
-    setActiveSlideIndex(prevSlideIndex);
-  };
-
-  const goToSlide = (i) => {
-    setPrevActiveSlideIndex(activeSlideIndex);
-    setActiveSlideIndex(i);
+    goToSlide(prevSlideIndex);
   };
 
   const stopAutoPlay = () => {
