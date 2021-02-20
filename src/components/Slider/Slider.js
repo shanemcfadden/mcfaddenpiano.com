@@ -3,11 +3,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import Slide from './Slide';
 import SliderNav from './SliderNav';
 import { isInRange, relativeIndexDifference } from '../../util/arrays';
+import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 
 const Slider = ({
   slides,
-  // startingImgData,
+  startingImgData,
   autoPlay = 0,
   isFullScreen = false,
 }) => {
@@ -103,17 +104,14 @@ const Slider = ({
       }}
       ref={sliderRef}
     >
-      {
-        // TODO: Get blurred image?
-        // {loadedSlides.length === 1 && (
-        //   // Shows blurred image before inital image loads
-        //   <Img
-        //     className="slider__starting-img"
-        //     alt="Shane McFadden at the piano accompanying a singer"
-        //     fluid={startingImgData}
-        //   />
-        // )}
-      }
+      <Img
+        className="slider__starting-img"
+        alt="Shane McFadden at the piano accompanying a singer"
+        fluid={startingImgData}
+        style={{
+          position: 'absolute',
+        }}
+      />
       <div className="slider__overlay-container">
         <div
           className={`slider__overlay ${
@@ -124,6 +122,7 @@ const Slider = ({
           <h2>Collaborative Pianist</h2>
         </div>
       </div>
+
       {slides.map((slide, i) => (
         <Slide
           key={'image-' + i}
@@ -133,6 +132,7 @@ const Slider = ({
           ariaHidden={activeSlideIndex !== i}
         />
       ))}
+
       <SliderNav
         nextSlide={nextSlide}
         prevSlide={prevSlide}
