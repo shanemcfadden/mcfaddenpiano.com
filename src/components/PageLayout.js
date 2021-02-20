@@ -20,10 +20,7 @@ const PageLayout = ({ slider, children, location }) => {
             sourceInstanceName: { eq: "images" }
             relativePath: { glob: "slider/*" }
           }
-          sort: {
-            order: ASC
-            fields: childrenImageSharp___fixed___originalName
-          }
+          sort: { order: ASC, fields: name }
         ) {
           edges {
             node {
