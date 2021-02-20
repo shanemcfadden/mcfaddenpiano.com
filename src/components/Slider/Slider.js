@@ -84,13 +84,13 @@ const Slider = ({
     return i >= prevActiveSlideIndex || i <= activeSlideIndex;
   };
 
-  const getLeftValue = (i, activeSlideIndex, slidesLength, width) => {
+  const getLeftValue = (i) => {
     let leftFactor = i - activeSlideIndex;
 
-    if (leftFactor < -1 * Math.floor((slidesLength - 1) / 2)) {
-      leftFactor += slidesLength;
-    } else if (leftFactor > Math.floor(slidesLength / 2)) {
-      leftFactor -= slidesLength;
+    if (leftFactor < -1 * Math.floor((slides.slidesLength - 1) / 2)) {
+      leftFactor += slides.slidesLength;
+    } else if (leftFactor > Math.floor(slides.slidesLength / 2)) {
+      leftFactor -= slides.slidesLength;
     }
 
     return leftFactor * width;
@@ -126,7 +126,7 @@ const Slider = ({
         <Slide
           key={'image-' + i}
           zIndex={hasHighZIndex(i) ? 1 : 0}
-          left={getLeftValue(i, activeSlideIndex, slides.length, width)}
+          left={getLeftValue(i)}
           imageUrl={slide}
           ariaHidden={activeSlideIndex !== i}
         />
