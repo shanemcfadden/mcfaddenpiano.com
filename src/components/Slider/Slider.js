@@ -1,8 +1,7 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useReducer } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Slide from './Slide';
 import SliderNav from './SliderNav';
-import reducer from './sliderReducer';
 import Img from 'gatsby-image';
 
 const Slider = ({
@@ -15,28 +14,18 @@ const Slider = ({
   const sliderRef = useRef();
   const autoPlayInterval = useRef();
 
-  const [state, dispatch] = useReducer(reducer, {
-    browserWidth: 0,
-    activeSlideIndex: 0,
-    prevActiveSlideIndex: 1,
-  });
-
-  const { activeSlideIndex, prevActiveSlideIndex, browserWidth } = state;
+  const [width, setWidth] = useState(0);
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const [prevActiveSlideIndex, setPrevActiveSlideIndex] = useState(0);
 
   useEffect(() => {
     autoPlayRef.current = nextSlide;
   });
 
   useEffect(() => {
-    dispatch({
-      type: 'browserWidth',
-      browserWidth: window.innerWidth,
-    });
+    setWidth(window.innerWidth);
     window.onresize = () => {
-      dispatch({
-        type: 'browserWidth',
-        browserWidth: window.innerWidth,
-      });
+      setWidth(window.innerWidth);
     };
 
     const play = () => {
@@ -53,23 +42,20 @@ const Slider = ({
 
   const nextSlide = () => {
     const nextSlideIndex = (activeSlideIndex + 1) % slides.length;
-    dispatch({
-      type: 'goToSlide',
-      newSlideIndex: nextSlideIndex,
-    });
+    setPrevActiveSlideIndex(activeSlideIndex);
+    setActiveSlideIndex(nextSlideIndex);
   };
 
   const prevSlide = () => {
     const prevSlideIndex =
       activeSlideIndex > 0 ? activeSlideIndex - 1 : slides.length - 1;
-    dispatch({
-      type: 'goToSlide',
-      newSlideIndex: prevSlideIndex,
-    });
+    setPrevActiveSlideIndex(activeSlideIndex);
+    setActiveSlideIndex(prevSlideIndex);
   };
 
   const goToSlide = (i) => {
-    dispatch({ type: 'goToSlide', newSlideIndex: i });
+    setPrevActiveSlideIndex(activeSlideIndex);
+    setActiveSlideIndex(i);
   };
 
   const stopAutoPlay = () => {
@@ -82,6 +68,8 @@ const Slider = ({
     prevActiveSlideIndex,
     slidesLength
   ) => {
+    if (activeSlideIndex === prevActiveSlideIndex)
+      return i === activeSlideIndex;
     const stepsToLeft =
       prevActiveSlideIndex >= activeSlideIndex
         ? prevActiveSlideIndex - activeSlideIndex
@@ -154,7 +142,7 @@ const Slider = ({
               ? 1
               : 0
           }
-          left={getLeftValue(i, activeSlideIndex, slides.length, browserWidth)}
+          left={getLeftValue(i, activeSlideIndex, slides.length, width)}
           imageUrl={slide}
           ariaHidden={activeSlideIndex !== i}
         />
