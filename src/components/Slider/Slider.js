@@ -24,9 +24,9 @@ const Slider = ({
   });
 
   useEffect(() => {
-    setWidth(window.innerWidth);
+    setWidth(document.querySelector('.slider').clientWidth);
     window.onresize = () => {
-      setWidth(window.innerWidth);
+      setWidth(document.querySelector('.slider').clientWidth);
     };
 
     const play = () => {
@@ -98,6 +98,9 @@ const Slider = ({
   return (
     <div
       className={`slider ${isFullScreen ? 'slider--fullscreen' : ''}`}
+      style={{
+        height: isFullScreen ? null : 0.56 * width,
+      }}
       ref={sliderRef}
     >
       {
