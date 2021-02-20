@@ -18,7 +18,7 @@ const Slider = ({
 
   const [state, dispatch] = useReducer(reducer, {
     browserWidth: 0,
-    translate: 0,
+    // translate: 0,
     transition: 0.45,
     activeSlideIndex: 0,
     loadedSlides: [slides[0]],
@@ -29,6 +29,7 @@ const Slider = ({
     transition,
     loadedSlides,
     activeSlideIndex,
+    prevActiveSlideIndex,
     browserWidth,
   } = state;
 
@@ -124,6 +125,14 @@ const Slider = ({
     clearInterval(autoPlayInterval.current);
   };
 
+  const getZIndex = () => {
+    // Content
+  };
+
+  const getLeftValue = () => {
+    // Content
+  };
+
   return (
     <div
       className={`slider ${isFullScreen ? 'slider--fullscreen' : ''}`}
@@ -147,12 +156,23 @@ const Slider = ({
           <h2>Collaborative Pianist</h2>
         </div>
       </div>
-      <SliderContent
-        translate={translate}
-        transition={transition}
-        width={browserWidth * loadedSlides.length}
-        slides={loadedSlides}
-      />
+      {slides.map((slide, i) => (
+        <Slide
+          key={'image-' + i}
+          zIndex={getZIndex(i, activeSlideIndex, prevActiveSlideIndex)}
+          left={getLeftValue(i, activeSlideIndex)}
+          imageUrl={slide}
+          ariaHidden={activeSlideIndex !== i}
+        />
+      ))}
+      {
+        // <SliderContent
+        //   translate={translate}
+        //   transition={transition}
+        //   width={browserWidth * loadedSlides.length}
+        //   slides={loadedSlides}
+        // />
+      }
       <SliderNav
         nextSlide={nextSlide}
         prevSlide={prevSlide}
