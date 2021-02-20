@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
 import Slide from './Slide';
 import SliderNav from './SliderNav';
+import { isInRange, relativeIndexDifference } from '../../util/arrays';
 import Img from 'gatsby-image';
 
 const Slider = ({
@@ -61,22 +62,16 @@ const Slider = ({
   };
 
   const hasHighZIndex = (i) => {
-    if (activeSlideIndex === prevActiveSlideIndex)
-      return i === activeSlideIndex;
-    const stepsToLeft =
-      prevActiveSlideIndex >= activeSlideIndex
-        ? prevActiveSlideIndex - activeSlideIndex
-        : prevActiveSlideIndex + slides.length - activeSlideIndex;
-    const stepsToRight =
-      prevActiveSlideIndex >= activeSlideIndex
-        ? activeSlideIndex + slides.length - prevActiveSlideIndex
-        : activeSlideIndex - prevActiveSlideIndex;
-
-    const isInRange = (i, rangeStart, rangeEnd) => {
-      if (i < 0) return null;
-      if (rangeStart < rangeEnd) return i >= rangeStart && i <= rangeEnd;
-      return i >= rangeStart || i <= rangeEnd;
-    };
+    const stepsToLeft = relativeIndexDifference(
+      prevActiveSlideIndex,
+      activeSlideIndex,
+      slides.length
+    );
+    const stepsToRight = relativeIndexDifference(
+      activeSlideIndex,
+      prevActiveSlideIndex,
+      slides.length
+    );
 
     return stepsToLeft < stepsToRight
       ? isInRange(i, activeSlideIndex, prevActiveSlideIndex)
