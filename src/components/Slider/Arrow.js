@@ -11,7 +11,7 @@ const Arrow = ({ direction, handleClick }) => (
     className="slider__arrow focus-visible-only"
     tabIndex="0"
     role="button"
-    aria-aria-label={direction === 'left' ? 'Previous image' : 'Next image'}
+    aria-label={direction === 'left' ? 'Previous image' : 'Next image'}
   >
     <img
       src={direction === 'left' ? leftArrow : rightArrow}
