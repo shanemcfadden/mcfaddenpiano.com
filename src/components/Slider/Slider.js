@@ -111,6 +111,7 @@ const Slider = ({
         style={{
           position: 'absolute',
         }}
+        aria-hidden="true"
       />
       <div className="slider__overlay-container">
         <div
