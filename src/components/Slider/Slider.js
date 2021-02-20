@@ -165,7 +165,7 @@ const Slider = ({
 
     if (leftFactor < -1 * Math.floor((slidesLength - 1) / 2)) {
       leftFactor += slidesLength;
-    } else if (leftFactor >= Math.floor(slidesLength / 2)) {
+    } else if (leftFactor > Math.floor(slidesLength / 2)) {
       leftFactor -= slidesLength;
     }
 
