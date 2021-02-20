@@ -13,28 +13,21 @@ export default function reducer(state, action) {
     case 'goToSlide':
       return {
         ...state,
-        translate:
-          state.translate +
-          getTranslateFactor(
-            state.activeSlideIndex,
-            action.newSlideIndex,
-            action.slides.length
-          ) *
-            state.browserWidth,
         activeSlideIndex: action.newSlideIndex,
+        prevActiveSlideIndex: state.activeSlideIndex,
       };
-    case 'smoothTransition':
-      return {
-        ...state,
-        transition: 0,
-        translate:
-          getVisibleSlideIndex(action.slides.length) * state.browserWidth,
-        loadedSlides: getLoadedSlides(action.slides, state.activeSlideIndex),
-      };
-    case 'transition':
-      return { ...state, transition: action.value };
-    case 'translate':
-      return { ...state, translate: action.value };
+    // case 'smoothTransition':
+    //   return {
+    //     ...state,
+    //     transition: 0,
+    //     translate:
+    //       getVisibleSlideIndex(action.slides.length) * state.browserWidth,
+    //     loadedSlides: getLoadedSlides(action.slides, state.activeSlideIndex),
+    //   };
+    // case 'transition':
+    //   return { ...state, transition: action.value };
+    // case 'translate':
+    //   return { ...state, translate: action.value };
     default:
       throw new Error('Invalid action type');
   }
