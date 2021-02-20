@@ -160,8 +160,16 @@ const Slider = ({
     return i >= prevActiveSlideIndex || i <= activeSlideIndex;
   };
 
-  const getLeftValue = () => {
-    // Content
+  const getLeftValue = (i, activeSlideIndex, slidesLength, width) => {
+    let leftFactor = i - activeSlideIndex;
+
+    if (leftFactor < -1 * Math.floor((slidesLength - 1) / 2)) {
+      leftFactor += slidesLength;
+    } else if (leftFactor >= Math.floor(slidesLength / 2)) {
+      leftFactor -= slidesLength;
+    }
+
+    return leftFactor * width;
   };
 
   return (
