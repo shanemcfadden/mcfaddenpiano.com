@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useRef, useReducer } from 'react';
-import SliderContent from './SliderContent';
+import Slide from './Slide';
 import SliderNav from './SliderNav';
 import reducer from './sliderReducer';
 import Img from 'gatsby-image';
@@ -25,6 +25,7 @@ const Slider = ({
   });
 
   const {
+    // TODO: Rewire reducer functions
     translate,
     transition,
     loadedSlides,
@@ -198,8 +199,17 @@ const Slider = ({
       {slides.map((slide, i) => (
         <Slide
           key={'image-' + i}
-          zIndex={hasHighZIndex(i, activeSlideIndex, prevActiveSlideIndex)}
-          left={getLeftValue(i, activeSlideIndex)}
+          zIndex={
+            hasHighZIndex(
+              i,
+              activeSlideIndex,
+              prevActiveSlideIndex,
+              slides.length
+            )
+              ? 1
+              : 0
+          }
+          left={getLeftValue(i, activeSlideIndex, slides.length, browserWidth)}
           imageUrl={slide}
           ariaHidden={activeSlideIndex !== i}
         />
