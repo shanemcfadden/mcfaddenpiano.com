@@ -125,8 +125,39 @@ const Slider = ({
     clearInterval(autoPlayInterval.current);
   };
 
-  const getZIndex = () => {
+  const hasHighZIndex = (
+    i,
+    activeSlideIndex,
+    prevActiveSlideIndex,
+    slidesLength
+  ) => {
     // Content
+    // Find number of slides to the left from P to A
+    const stepsToLeft =
+      prevActiveSlideIndex >= activeSlideIndex
+        ? prevActiveSlideIndex - activeSlideIndex
+        : prevActiveSlideIndex + slidesLength - activeSlideIndex;
+    // Find number of slides to the right from P to A
+    const stepsToRight =
+      prevActiveSlideIndex >= activeSlideIndex
+        ? activeSlideIndex + slidesLength - prevActiveSlideIndex
+        : activeSlideIndex - prevActiveSlideIndex;
+
+    // if slides left is less than slides right
+    if (stepsToLeft < stepsToRight) {
+      // all slides to from P to A counting downward have high z index
+      // i.e. if i is between P and A to left, give it high z index
+      if (activeSlideIndex < prevActiveSlideIndex) {
+        return i >= activeSlideIndex && i <= prevActiveSlideIndex;
+      }
+      return i <= prevActiveSlideIndex || i >= activeSlideIndex;
+    }
+    // else
+    // all slides from P to A counting upward have high z index
+    if (prevActiveSlideIndex < activeSlideIndex) {
+      return i >= prevActiveSlideIndex && i <= activeSlideIndex;
+    }
+    return i >= prevActiveSlideIndex || i <= activeSlideIndex;
   };
 
   const getLeftValue = () => {
@@ -159,7 +190,7 @@ const Slider = ({
       {slides.map((slide, i) => (
         <Slide
           key={'image-' + i}
-          zIndex={getZIndex(i, activeSlideIndex, prevActiveSlideIndex)}
+          zIndex={hasHighZIndex(i, activeSlideIndex, prevActiveSlideIndex)}
           left={getLeftValue(i, activeSlideIndex)}
           imageUrl={slide}
           ariaHidden={activeSlideIndex !== i}
