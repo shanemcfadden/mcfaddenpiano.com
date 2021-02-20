@@ -25,7 +25,7 @@ const PageLayout = ({ slider, children, location }) => {
           edges {
             node {
               publicURL
-              childrenImageSharp {
+              childImageSharp {
                 fluid(maxWidth: 1920) {
                   ...GatsbyImageSharpFluid
                 }
@@ -36,8 +36,7 @@ const PageLayout = ({ slider, children, location }) => {
       }
     `
   );
-  const startingImgData =
-    data.allFile.edges[0].node.childrenImageSharp[0].fluid;
+  const startingImgData = data.allFile.edges[0].node.childImageSharp.fluid;
   const allImages = data.allFile.edges.map(({ node }) => node.publicURL);
 
   return (
