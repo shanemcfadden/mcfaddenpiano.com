@@ -72,16 +72,15 @@ const Slider = ({
         ? activeSlideIndex + slides.length - prevActiveSlideIndex
         : activeSlideIndex - prevActiveSlideIndex;
 
-    if (stepsToLeft < stepsToRight) {
-      if (activeSlideIndex < prevActiveSlideIndex) {
-        return i >= activeSlideIndex && i <= prevActiveSlideIndex;
-      }
-      return i <= prevActiveSlideIndex || i >= activeSlideIndex;
-    }
-    if (prevActiveSlideIndex < activeSlideIndex) {
-      return i >= prevActiveSlideIndex && i <= activeSlideIndex;
-    }
-    return i >= prevActiveSlideIndex || i <= activeSlideIndex;
+    const isInRange = (i, rangeStart, rangeEnd) => {
+      if (i < 0) return null;
+      if (rangeStart < rangeEnd) return i >= rangeStart && i <= rangeEnd;
+      return i >= rangeStart || i <= rangeEnd;
+    };
+
+    return stepsToLeft < stepsToRight
+      ? isInRange(i, activeSlideIndex, prevActiveSlideIndex)
+      : isInRange(i, prevActiveSlideIndex, activeSlideIndex);
   };
 
   const getLeftValue = (i) => {
