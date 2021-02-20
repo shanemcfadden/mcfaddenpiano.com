@@ -1,8 +1,5 @@
 .slider {
-  height: 56vw; // Set in relation to width of specific use case
   margin: 0 auto;
-
-  max-height: 40rem; // Set in relation to width of specific use case
   overflow: hidden;
   position: relative;
   width: 100%;
@@ -17,7 +14,6 @@
   }
 }
 
-//TODO: GRADIENT???
 .slider__overlay-container {
   align-items: center;
   background: radial-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
@@ -82,25 +78,16 @@
   position: absolute;
   top: 0;
   width: 100%;
+  z-index: -1;
 }
-
-/* stylelint-disable property-no-vendor-prefix*/
-.slider__content {
-  -webkit-backface-visibility: hidden;
-  -webkit-transform: translate3d(0, 0, 0);
-
-  * {
-    -webkit-backface-visibility: hidden;
-    -webkit-transform: translate3d(0, 0, 0);
-  }
-}
-/* stylelint-enable property-no-vendor-prefix*/
 
 .slider__slide {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
+  position: absolute;
+  transition: left ease-out 0.45s;
   width: 100%;
 }
 
