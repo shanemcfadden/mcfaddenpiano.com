@@ -53,7 +53,12 @@ const ContactPage = ({ data, location }) => {
           <div>
             <label htmlFor="message">
               <h4>Message:</h4>
-              <textarea name="message" id="message" maxLength="500"></textarea>
+              <textarea
+                name="message"
+                id="message"
+                maxLength="500"
+                required
+              ></textarea>
             </label>
           </div>
           <div
