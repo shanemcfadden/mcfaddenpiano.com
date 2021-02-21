@@ -32,6 +32,13 @@ form {
     line-height: 1.6;
     margin: 0;
   }
+
+  .g-recaptcha {
+    margin: 0;
+    max-width: 100%;
+    transform: scale(0.77);
+    transform-origin: 0 0;
+  }
 }
 
 button {
