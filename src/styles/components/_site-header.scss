@@ -14,7 +14,7 @@
   h2 {
     margin: 0;
   }
-  @media (min-width: $desktop-breakpoint) {
+  @media only screen and (min-width: $desktop-breakpoint) {
     display: inline-block;
     justify-content: left;
     text-align: left;

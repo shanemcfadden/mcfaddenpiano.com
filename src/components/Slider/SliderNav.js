@@ -19,7 +19,7 @@ const SliderNav = ({
   };
 
   return (
-    <div onClick={() => {}} className="slider-nav">
+    <div className="slider-nav">
       <Arrow direction={'left'} handleClick={stopAutoPlayAnd(prevSlide)} />
       <div className="slider__dot-row">
         {slides.map((slide, i) => (

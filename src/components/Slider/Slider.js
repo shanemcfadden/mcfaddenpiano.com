@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
-import React, { useEffect, useRef, useReducer } from 'react';
-import SliderContent from './SliderContent';
+import React, { useEffect, useRef, useState } from 'react';
+import Slide from './Slide';
 import SliderNav from './SliderNav';
-import reducer from './sliderReducer';
+import { isInRange, relativeIndexDifference } from '../../util/arrays';
 import Img from 'gatsby-image';
 
 const Slider = ({
@@ -12,131 +12,106 @@ const Slider = ({
   isFullScreen = false,
 }) => {
   const autoPlayRef = useRef();
-  const transitionRef = useRef();
   const sliderRef = useRef();
   const autoPlayInterval = useRef();
 
-  const [state, dispatch] = useReducer(reducer, {
-    browserWidth: 0,
-    translate: 0,
-    transition: 0.45,
-    activeSlideIndex: 0,
-    loadedSlides: [slides[0]],
-  });
-
-  const {
-    translate,
-    transition,
-    loadedSlides,
-    activeSlideIndex,
-    browserWidth,
-  } = state;
+  const [width, setWidth] = useState(3000);
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const [prevActiveSlideIndex, setPrevActiveSlideIndex] = useState(0);
 
   useEffect(() => {
     autoPlayRef.current = nextSlide;
-    transitionRef.current = smoothTransition;
   });
 
   useEffect(() => {
-    dispatch({
-      type: 'browserWidth',
-      browserWidth: window.innerWidth,
-    });
+    setWidth(document.querySelector('.slider').clientWidth);
     window.onresize = () => {
-      dispatch({
-        type: 'browserWidth',
-        browserWidth: window.innerWidth,
-      });
+      setWidth(document.querySelector('.slider').clientWidth);
     };
 
     const play = () => {
       autoPlayRef.current();
     };
-    const smooth = () => {
-      transitionRef.current();
-    };
 
     autoPlayInterval.current =
       autoPlay === 0 ? null : setInterval(play, autoPlay * 1000);
-    document
-      .querySelector('.slider__content')
-      .addEventListener('transitionend', smooth);
     return () => {
       clearInterval(autoPlayInterval.current);
       window.onresize = null;
-      document
-        .querySelector('.slider__content')
-        .removeEventListener('transitionend', smooth);
     };
   }, []);
 
-  useEffect(() => {
-    if (loadedSlides.length === 1) {
-      // Initial load, browser width set for the first time
-      // load photos for SliderContent and translate them without a visible transition
-      dispatch({ type: 'smoothTransition', slides: slides });
-    } else {
-      // Adjust translation as browser width changes
-      dispatch({
-        type: 'translate',
-        value: Math.floor((slides.length - 1) / 2) * browserWidth,
-      });
-    }
-  }, [browserWidth]);
-
-  useEffect(() => {
-    if (transition === 0) {
-      dispatch({
-        type: 'transition',
-        value: 0.45,
-      });
-    }
-  }, [transition]);
+  const goToSlide = (i) => {
+    setPrevActiveSlideIndex(activeSlideIndex);
+    setActiveSlideIndex(i);
+  };
 
   const nextSlide = () => {
     const nextSlideIndex = (activeSlideIndex + 1) % slides.length;
-    dispatch({
-      type: 'goToSlide',
-      newSlideIndex: nextSlideIndex,
-      slides: slides,
-    });
+    goToSlide(nextSlideIndex);
   };
 
   const prevSlide = () => {
     const prevSlideIndex =
       activeSlideIndex > 0 ? activeSlideIndex - 1 : slides.length - 1;
-    dispatch({
-      type: 'goToSlide',
-      newSlideIndex: prevSlideIndex,
-      slides: slides,
-    });
-  };
-
-  const goToSlide = (i) => {
-    dispatch({ type: 'goToSlide', newSlideIndex: i, slides: slides });
-  };
-
-  const smoothTransition = () => {
-    dispatch({ type: 'smoothTransition', slides: slides });
+    goToSlide(prevSlideIndex);
   };
 
   const stopAutoPlay = () => {
     clearInterval(autoPlayInterval.current);
   };
 
+  const hasHighZIndex = (i) => {
+    const stepsToLeft = relativeIndexDifference(
+      prevActiveSlideIndex,
+      activeSlideIndex,
+      slides.length
+    );
+    const stepsToRight = relativeIndexDifference(
+      activeSlideIndex,
+      prevActiveSlideIndex,
+      slides.length
+    );
+
+    return stepsToLeft < stepsToRight
+      ? isInRange(i, activeSlideIndex, prevActiveSlideIndex)
+      : isInRange(i, prevActiveSlideIndex, activeSlideIndex);
+  };
+
+  const getLeftPosition = (i) => {
+    let leftPositionFactor = i - activeSlideIndex;
+
+    // activeSlide is in 0th position. Slides to left have a negative position. Those to right have a positive one
+    const leftMostSlidePosition = -1 * Math.floor((slides.length - 1) / 2);
+    const rightMostSlidePostion = Math.floor(slides.length / 2);
+
+    // adjust leftPositionFactor to be within the available positions
+    if (leftPositionFactor < leftMostSlidePosition) {
+      leftPositionFactor += slides.length;
+    } else if (leftPositionFactor > rightMostSlidePostion) {
+      leftPositionFactor -= slides.length;
+    }
+
+    return leftPositionFactor * width;
+  };
+
   return (
     <div
       className={`slider ${isFullScreen ? 'slider--fullscreen' : ''}`}
+      style={{
+        height: isFullScreen ? null : 0.56 * width,
+      }}
       ref={sliderRef}
     >
-      {loadedSlides.length === 1 && (
-        // Shows blurred image before inital image loads
-        <Img
-          className="slider__starting-img"
-          alt="Shane McFadden at the piano accompanying a singer"
-          fluid={startingImgData}
-        />
-      )}
+      <Img
+        className="slider__starting-img"
+        alt="Shane McFadden at the piano accompanying a singer"
+        fluid={startingImgData}
+        style={{
+          position: 'absolute',
+        }}
+        aria-hidden="true"
+      />
       <div className="slider__overlay-container">
         <div
           className={`slider__overlay ${
@@ -147,12 +122,17 @@ const Slider = ({
           <h2>Collaborative Pianist</h2>
         </div>
       </div>
-      <SliderContent
-        translate={translate}
-        transition={transition}
-        width={browserWidth * loadedSlides.length}
-        slides={loadedSlides}
-      />
+
+      {slides.map((slide, i) => (
+        <Slide
+          key={'image-' + i}
+          zIndex={hasHighZIndex(i) ? 1 : 0}
+          leftPosition={getLeftPosition(i)}
+          imageUrl={slide}
+          ariaHidden={activeSlideIndex !== i}
+        />
+      ))}
+
       <SliderNav
         nextSlide={nextSlide}
         prevSlide={prevSlide}
