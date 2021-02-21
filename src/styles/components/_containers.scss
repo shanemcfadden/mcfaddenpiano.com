@@ -1,0 +1,12 @@
+.content-container {
+  margin: 0 auto;
+  max-width: 120rem;
+  padding: 0 $margin-l-size;
+}
+
+.container--center-content-vertically {
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  justify-content: center;
+}

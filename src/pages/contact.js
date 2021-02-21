@@ -25,6 +25,7 @@ const ContactPage = ({ data, location }) => {
         <form
           name="contact"
           method="POST"
+          action="/success"
           data-netlify-recaptcha="true"
           netlify-honeypot="false-field"
           data-netlify="true"
@@ -52,7 +53,12 @@ const ContactPage = ({ data, location }) => {
           <div>
             <label htmlFor="message">
               <h4>Message:</h4>
-              <textarea name="message" id="message" maxLength="500"></textarea>
+              <textarea
+                name="message"
+                id="message"
+                maxLength="500"
+                required
+              ></textarea>
             </label>
           </div>
           <div
