@@ -30,7 +30,7 @@
   h3 {
     margin: 0;
     padding: $margin-s-size $margin-s-size;
-    @media (min-width: $desktop-breakpoint) {
+    @media only screen and (min-width: $desktop-breakpoint) {
       padding: $margin-l-size $margin-s-size;
     }
   }

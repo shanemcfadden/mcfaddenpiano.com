@@ -16,7 +16,7 @@ const Dot = ({ active, onClick, index }) => (
 Dot.propTypes = {
   active: PropTypes.bool,
   onClick: PropTypes.func,
-  index: PropTypes.func,
+  index: PropTypes.number,
 };
 
 export default memo(Dot);

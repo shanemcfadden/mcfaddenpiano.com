@@ -20,15 +20,12 @@ const PageLayout = ({ slider, children, location }) => {
             sourceInstanceName: { eq: "images" }
             relativePath: { glob: "slider/*" }
           }
-          sort: {
-            order: ASC
-            fields: childrenImageSharp___fixed___originalName
-          }
+          sort: { order: ASC, fields: name }
         ) {
           edges {
             node {
               publicURL
-              childrenImageSharp {
+              childImageSharp {
                 fluid(maxWidth: 1920) {
                   ...GatsbyImageSharpFluid
                 }
@@ -39,8 +36,7 @@ const PageLayout = ({ slider, children, location }) => {
       }
     `
   );
-  const startingImgData =
-    data.allFile.edges[0].node.childrenImageSharp[0].fluid;
+  const startingImgData = data.allFile.edges[0].node.childImageSharp.fluid;
   const allImages = data.allFile.edges.map(({ node }) => node.publicURL);
 
   return (
@@ -85,15 +81,15 @@ const PageLayout = ({ slider, children, location }) => {
         />
         <meta
           property="og:image"
-          content={`https://localhost:8000${allImages[0]}`}
+          content={`https://mcfaddenpiano.com${allImages[0]}`}
         />
         <meta
           property="og:url"
-          content={`https://localhost:8000${location.pathname}`}
+          content={`https://mcfaddenpiano.com${location.pathname}`}
         />
         <link
           rel="canonical"
-          href={`https://localhost:8000${location.pathname}`}
+          href={`https://mcfaddenpiano.com${location.pathname}`}
         />
       </Helmet>
       {slider && (

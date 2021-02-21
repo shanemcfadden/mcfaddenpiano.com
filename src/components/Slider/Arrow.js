@@ -8,10 +8,10 @@ const Arrow = ({ direction, handleClick }) => (
   <div
     onKeyDown={clickToKeyDown(handleClick)}
     onClick={handleClick}
-    className="slider__arrow focus-visible-only"
+    className="slider__arrow grow-on-focus"
     tabIndex="0"
     role="button"
-    aria-aria-label={direction === 'left' ? 'Previous image' : 'Next image'}
+    aria-label={direction === 'left' ? 'Previous image' : 'Next image'}
   >
     <img
       src={direction === 'left' ? leftArrow : rightArrow}

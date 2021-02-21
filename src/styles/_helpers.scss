@@ -19,18 +19,10 @@
   font-weight: 200;
 }
 
-.focus-visible-only {
-  &:focus {
-    outline: 5px auto Highlight;
-    outline: -webkit-focus-ring-color auto 1px;
-  }
-
-  &:focus:not(:focus-visible) {
-    outline: 0;
-  }
-
+.grow-on-focus {
+  &:focus,
   &:focus-visible {
-    outline: 5px auto Highlight;
-    outline: -webkit-focus-ring-color auto 1px;
+    outline: none;
+    transform: scale(2);
   }
 }
