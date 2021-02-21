@@ -15,7 +15,7 @@ const Slider = ({
   const sliderRef = useRef();
   const autoPlayInterval = useRef();
 
-  const [width, setWidth] = useState(0);
+  const [width, setWidth] = useState(3000);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [prevActiveSlideIndex, setPrevActiveSlideIndex] = useState(0);
 
