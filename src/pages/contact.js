@@ -2,11 +2,19 @@ import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import Img from 'gatsby-image';
+import { Helmet } from 'react-helmet';
 import PageLayout from '../components/PageLayout';
 
 const ContactPage = ({ data, location }) => {
   return (
     <PageLayout location={location}>
+      <Helmet>
+        <script
+          src="https://www.google.com/recaptcha/api.js"
+          async
+          defer
+        ></script>
+      </Helmet>
       <div className="collapsing-columns">
         <div>
           <Img
@@ -46,6 +54,10 @@ const ContactPage = ({ data, location }) => {
               <textarea name="message" id="message" maxLength="500"></textarea>
             </label>
           </div>
+          <div
+            className="g-recaptcha"
+            data-sitekey={process.env.SITE_RECAPTCHA_KEY}
+          ></div>
           <button
             className="float-right"
             type="submit"
