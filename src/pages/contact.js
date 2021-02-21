@@ -30,6 +30,7 @@ const ContactPage = ({ data, location }) => {
           data-netlify="true"
           aria-label="Contact form"
         >
+          <input type="hidden" name="form-name" value="contact" />
           <div>
             <label htmlFor="name">
               <h4>Name:</h4>
