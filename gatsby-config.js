@@ -26,7 +26,6 @@ module.exports = {
         path: path.join(__dirname, 'src', 'data'),
       },
     },
-    'gatsby-plugin-preload-fonts',
     'gatsby-transformer-json',
     'gatsby-transformer-remark',
     'gatsby-transformer-sharp',
