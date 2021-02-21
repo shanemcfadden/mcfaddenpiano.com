@@ -4,3 +4,4 @@ public
 **/.DS_Store
 .vscode
 playground.js
+.env.*
