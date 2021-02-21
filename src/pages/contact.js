@@ -57,6 +57,7 @@ const ContactPage = ({ data, location }) => {
           <div
             className="g-recaptcha float-left"
             data-sitekey={process.env.SITE_RECAPTCHA_KEY}
+            data-theme="dark"
           ></div>
           <button
             className="float-right"
