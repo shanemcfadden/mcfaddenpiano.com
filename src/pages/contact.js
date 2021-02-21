@@ -25,6 +25,7 @@ const ContactPage = ({ data, location }) => {
         <form
           name="contact"
           method="POST"
+          action="/success"
           data-netlify-recaptcha="true"
           netlify-honeypot="false-field"
           data-netlify="true"
