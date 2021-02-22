@@ -36,12 +36,6 @@ const Slider = ({
       setWidth(document.querySelector('.slider').clientWidth);
     };
 
-    const play = () => {
-      autoPlayRef.current();
-    };
-
-    autoPlayInterval.current =
-      autoPlay === 0 ? null : setInterval(play, autoPlay * 1000);
     return () => {
       clearInterval(autoPlayInterval.current);
       window.onresize = null;
@@ -51,6 +45,9 @@ const Slider = ({
   const incrementLoadedSlides = () => {
     loadedSlidesRef.current = loadedSlidesRef.current + 1;
     console.log('loadedSidesRef', loadedSlidesRef.current);
+    if (loadedSlidesRef.current === slides.length) {
+      startAutoPlay();
+    }
   };
 
   const goToSlide = (i) => {
@@ -71,6 +68,17 @@ const Slider = ({
 
   const stopAutoPlay = () => {
     clearInterval(autoPlayInterval.current);
+  };
+
+  const startAutoPlay = () => {
+    const play = () => {
+      autoPlayRef.current();
+    };
+
+    play();
+    autoPlayInterval.current =
+      autoPlay === 0 ? null : setInterval(play, autoPlay * 1000);
+    console.log('startAutoPlay()');
   };
 
   const hasHighZIndex = (i) => {
