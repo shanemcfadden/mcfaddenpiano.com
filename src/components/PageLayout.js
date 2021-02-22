@@ -4,10 +4,6 @@ import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import NavBar from './NavBar';
 import 'normalize.css';
-import '@fontsource/josefin-sans';
-import '@fontsource/mukta';
-import '@fontsource/mukta/200.css';
-import '@fontsource/mukta/800.css';
 import '../styles/styles.scss';
 import Slider from './Slider/Slider';
 
