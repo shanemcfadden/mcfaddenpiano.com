@@ -5,6 +5,12 @@ import SliderNav from './SliderNav';
 import { isInRange, relativeIndexDifference } from '../../util/arrays';
 import Img from 'gatsby-image';
 
+// TODO:
+// 1. Create event listener that fires when each slide background has loaded
+// 2. Pass in onLoad() prop for slide to fire when bg loads
+// 3. Begin autoPlay once all images have loaded
+// 4. Cleanup autoplay on ComponentWillUnmount
+
 const Slider = ({
   slides,
   startingImgData,
