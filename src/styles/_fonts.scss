@@ -1,12 +1,22 @@
-@import '~@fontsource/josefin-sans/index.css';
-@import '~@fontsource/mukta/index.css';
-@import '~@fontsource/mukta/200.css';
-@import '~@fontsource/mukta/800.css';
-// @import '~@fontsource/open-sans/scss/mixins';
+/* stylelint-disable indentation */
+@font-face {
+  font-display: fallback;
+  font-family: 'Josefin Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('~@fontsource/josefin-sans/files/josefin-sans-latin-400-normal.woff2')
+      format('woff2'),
+    url('~@fontsource/josefin-sans/files/josefin-sans-all-400-normal.woff')
+      format('woff');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
 
-// Uses a unicode-range map to automatically generate multiple @font-face rules.
-// @include fontFace(
-//   $weight: 500,
-//   $display: fallback,
-//   $fontDir: "~@fontsource/open-sans/files"
-// );
+@import '~@fontsource/mukta/scss/mixins';
+
+$display: fallback;
+
+@include fontFace($weight: 400);
+@include fontFace($weight: 200);
+@include fontFace($weight: 800);
