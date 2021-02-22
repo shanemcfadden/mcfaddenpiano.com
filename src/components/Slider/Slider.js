@@ -24,6 +24,7 @@ const Slider = ({
   const [width, setWidth] = useState(3000);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [prevActiveSlideIndex, setPrevActiveSlideIndex] = useState(0);
+  const loadedSlidesRef = useRef(0);
 
   useEffect(() => {
     autoPlayRef.current = nextSlide;
@@ -46,6 +47,11 @@ const Slider = ({
       window.onresize = null;
     };
   }, []);
+
+  const incrementLoadedSlides = () => {
+    loadedSlidesRef.current = loadedSlidesRef.current + 1;
+    console.log('loadedSidesRef', loadedSlidesRef.current);
+  };
 
   const goToSlide = (i) => {
     setPrevActiveSlideIndex(activeSlideIndex);
@@ -136,6 +142,7 @@ const Slider = ({
           leftPosition={getLeftPosition(i)}
           imageUrl={slide}
           ariaHidden={activeSlideIndex !== i}
+          onLoad={incrementLoadedSlides}
         />
       ))}
 
