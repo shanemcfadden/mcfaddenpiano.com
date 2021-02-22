@@ -1,7 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 const Slide = ({ imageUrl, ariaHidden, zIndex, leftPosition }) => {
+  useEffect(() => {
+    const bgImg = new Image();
+    bgImg.onload = () => {
+      console.log('Image has loaded!!!');
+    };
+    bgImg.src = imageUrl;
+  }, []);
+
   return (
     <div
       className="slider__slide"
