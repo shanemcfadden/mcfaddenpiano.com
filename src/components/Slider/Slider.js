@@ -68,7 +68,6 @@ const Slider = ({
       autoPlayRef.current();
     };
 
-    play();
     autoPlayInterval.current =
       autoPlay === 0 ? null : setInterval(play, autoPlay * 1000);
   };
