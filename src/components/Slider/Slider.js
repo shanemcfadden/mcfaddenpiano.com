@@ -18,6 +18,7 @@ const Slider = ({
   const [width, setWidth] = useState(3000);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [prevActiveSlideIndex, setPrevActiveSlideIndex] = useState(0);
+  const loadedSlidesRef = useRef(0);
 
   useEffect(() => {
     autoPlayRef.current = nextSlide;
@@ -29,17 +30,18 @@ const Slider = ({
       setWidth(document.querySelector('.slider').clientWidth);
     };
 
-    const play = () => {
-      autoPlayRef.current();
-    };
-
-    autoPlayInterval.current =
-      autoPlay === 0 ? null : setInterval(play, autoPlay * 1000);
     return () => {
       clearInterval(autoPlayInterval.current);
       window.onresize = null;
     };
   }, []);
+
+  const incrementLoadedSlides = () => {
+    loadedSlidesRef.current = loadedSlidesRef.current + 1;
+    if (loadedSlidesRef.current === slides.length) {
+      startAutoPlay();
+    }
+  };
 
   const goToSlide = (i) => {
     setPrevActiveSlideIndex(activeSlideIndex);
@@ -59,6 +61,15 @@ const Slider = ({
 
   const stopAutoPlay = () => {
     clearInterval(autoPlayInterval.current);
+  };
+
+  const startAutoPlay = () => {
+    const play = () => {
+      autoPlayRef.current();
+    };
+
+    autoPlayInterval.current =
+      autoPlay === 0 ? null : setInterval(play, autoPlay * 1000);
   };
 
   const hasHighZIndex = (i) => {
@@ -130,6 +141,7 @@ const Slider = ({
           leftPosition={getLeftPosition(i)}
           imageUrl={slide}
           ariaHidden={activeSlideIndex !== i}
+          onLoad={incrementLoadedSlides}
         />
       ))}
 
