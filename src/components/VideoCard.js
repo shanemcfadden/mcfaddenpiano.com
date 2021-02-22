@@ -9,7 +9,7 @@ const VideoCard = ({ title, watchLink, performers, venue }) => {
       <div className="youtube-video__container">
         <iframe
           className="youtube-video"
-          src={`https://www.youtube.com/embed/${videoId}`}
+          src={`https://www.youtube-nocookie.com/embed/${videoId}`}
           frameBorder="0"
           allowFullScreen
         ></iframe>
