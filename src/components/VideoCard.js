@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 const VideoCard = ({ title, watchLink, performers, venue }) => {
@@ -9,20 +9,26 @@ const VideoCard = ({ title, watchLink, performers, venue }) => {
       <div className="youtube-video__container">
         <iframe
           className="youtube-video"
-          src={`https://www.youtube.com/embed/${videoId}`}
+          src={`https://www.youtube-nocookie.com/embed/${videoId}`}
           frameBorder="0"
           allowFullScreen
         ></iframe>
       </div>
       <p>
-        {performers.map((p) => {
+        {performers.map((p, i) => {
           return (
-            <div key={p}>
+            <Fragment key={p}>
+              {i > 0 && <br />}
               <strong>{p}</strong>
-            </div>
+            </Fragment>
           );
         })}
-        {venue && <div className="font-weight--light">{venue}</div>}
+        {venue && (
+          <Fragment>
+            <br />
+            {venue}
+          </Fragment>
+        )}
       </p>
     </div>
   );
