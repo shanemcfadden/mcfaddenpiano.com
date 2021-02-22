@@ -5,12 +5,6 @@ import SliderNav from './SliderNav';
 import { isInRange, relativeIndexDifference } from '../../util/arrays';
 import Img from 'gatsby-image';
 
-// TODO:
-// 1. Create event listener that fires when each slide background has loaded
-// 2. Pass in onLoad() prop for slide to fire when bg loads
-// 3. Begin autoPlay once all images have loaded
-// 4. Cleanup autoplay on ComponentWillUnmount
-
 const Slider = ({
   slides,
   startingImgData,
@@ -44,7 +38,6 @@ const Slider = ({
 
   const incrementLoadedSlides = () => {
     loadedSlidesRef.current = loadedSlidesRef.current + 1;
-    console.log('loadedSidesRef', loadedSlidesRef.current);
     if (loadedSlidesRef.current === slides.length) {
       startAutoPlay();
     }
@@ -78,7 +71,6 @@ const Slider = ({
     play();
     autoPlayInterval.current =
       autoPlay === 0 ? null : setInterval(play, autoPlay * 1000);
-    console.log('startAutoPlay()');
   };
 
   const hasHighZIndex = (i) => {

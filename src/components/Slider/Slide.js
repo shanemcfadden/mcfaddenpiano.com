@@ -6,7 +6,6 @@ const Slide = ({ imageUrl, ariaHidden, zIndex, leftPosition, onLoad }) => {
     const bgImg = new Image();
     bgImg.onload = () => {
       onLoad();
-      console.log('Image has loaded!!!');
     };
     bgImg.src = imageUrl;
   }, []);
