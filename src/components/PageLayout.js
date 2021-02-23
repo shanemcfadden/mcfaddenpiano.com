@@ -40,7 +40,7 @@ const PageLayout = ({ slider, children, location }) => {
       <Helmet defaultTitle="Shane McFadden - Collaborative Pianist">
         <html lang="en" />
         <meta
-          type="description"
+          name="description"
           content="A classical pianist, accompanist, and vocal coach based in Chicago."
         />
 
