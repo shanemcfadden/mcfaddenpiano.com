@@ -3,14 +3,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import Slide from './Slide';
 import SliderNav from './SliderNav';
 import { isInRange, relativeIndexDifference } from '../../util/arrays';
-import Img from 'gatsby-image';
 
-const Slider = ({
-  slides,
-  startingImgData,
-  autoPlay = 0,
-  isFullScreen = false,
-}) => {
+const Slider = ({ slides, autoPlay = 0, isFullScreen = false }) => {
   const autoPlayRef = useRef();
   const sliderRef = useRef();
   const autoPlayInterval = useRef();
@@ -114,15 +108,6 @@ const Slider = ({
       }}
       ref={sliderRef}
     >
-      <Img
-        className="slider__starting-img"
-        alt="Shane McFadden at the piano accompanying a singer"
-        fluid={startingImgData}
-        style={{
-          position: 'absolute',
-        }}
-        aria-hidden="true"
-      />
       <div className="slider__overlay-container">
         <div
           className={`slider__overlay ${
@@ -139,7 +124,8 @@ const Slider = ({
           key={'image-' + i}
           zIndex={hasHighZIndex(i) ? 1 : 0}
           leftPosition={getLeftPosition(i)}
-          imageUrl={slide}
+          // imageUrl={slide}
+          imageFluidData={slide}
           ariaHidden={activeSlideIndex !== i}
           onLoad={incrementLoadedSlides}
         />
@@ -158,9 +144,8 @@ const Slider = ({
 };
 
 Slider.propTypes = {
-  slides: PropTypes.arrayOf(PropTypes.string).isRequired,
+  slides: PropTypes.arrayOf(PropTypes.object).isRequired,
   autoPlay: PropTypes.number.isRequired,
-  startingImgData: PropTypes.object.isRequired,
   isFullScreen: PropTypes.bool,
 };
 
