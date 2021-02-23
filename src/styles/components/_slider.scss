@@ -82,11 +82,9 @@
 }
 
 .slider__slide {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  // See <BackgroundImage style /> for complete styles
+  // Some attributes only work inline with gatsby-background-image
   height: 100%;
-  position: absolute;
   transition: left ease-out 0.45s;
   width: 100%;
 }

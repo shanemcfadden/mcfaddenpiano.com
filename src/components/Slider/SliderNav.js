@@ -38,7 +38,7 @@ const SliderNav = ({
 
 SliderNav.propTypes = {
   activeSlideIndex: PropTypes.number.isRequired,
-  slides: PropTypes.arrayOf(PropTypes.string).isRequired,
+  slides: PropTypes.arrayOf(PropTypes.object).isRequired,
   nextSlide: PropTypes.func.isRequired,
   prevSlide: PropTypes.func.isRequired,
   stopAutoPlay: PropTypes.func.isRequired,
