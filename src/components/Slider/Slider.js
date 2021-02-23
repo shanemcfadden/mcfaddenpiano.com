@@ -144,7 +144,7 @@ const Slider = ({ slides, autoPlay = 0, isFullScreen = false }) => {
 };
 
 Slider.propTypes = {
-  slides: PropTypes.arrayOf(PropTypes.string).isRequired,
+  slides: PropTypes.arrayOf(PropTypes.object).isRequired,
   autoPlay: PropTypes.number.isRequired,
   isFullScreen: PropTypes.bool,
 };

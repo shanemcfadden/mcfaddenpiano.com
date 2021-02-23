@@ -42,7 +42,6 @@ Slide.propTypes = {
   zIndex: PropTypes.number.isRequired,
   leftPosition: PropTypes.number.isRequired,
   onLoad: PropTypes.func.isRequired,
-  currentLoadedSlides: PropTypes.number.isRequired,
 };
 
 export default React.memo(Slide);

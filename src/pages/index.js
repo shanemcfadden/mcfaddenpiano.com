@@ -28,13 +28,15 @@ const IndexPage = ({ data, location }) => {
 IndexPage.propTypes = {
   data: PropTypes.shape({
     allFile: PropTypes.shape({
-      edges: PropTypes.arrayOf({
-        node: PropTypes.shape({
-          childImageSharp: PropTypes.shape({
-            fluid: PropTypes.object.isRequired,
+      edges: PropTypes.arrayOf(
+        PropTypes.shape({
+          node: PropTypes.shape({
+            childImageSharp: PropTypes.shape({
+              fluid: PropTypes.object.isRequired,
+            }).isRequired,
           }).isRequired,
-        }).isRequired,
-      }).isRequired,
+        }).isRequired
+      ).isRequired,
     }).isRequired,
     file: PropTypes.shape({
       childImageSharp: PropTypes.shape({
