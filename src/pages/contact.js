@@ -97,7 +97,7 @@ export default ContactPage;
 
 export const query = graphql`
   query {
-    file(relativePath: { eq: "AOF6.png" }) {
+    file(relativePath: { eq: "AOF6.jpg" }) {
       childImageSharp {
         # Specify the image processing specifications right in the query.
         # Makes it trivial to update as your page's design changes.
