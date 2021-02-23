@@ -14,8 +14,18 @@ const Slide = ({
     bgImg.onload = () => {
       onLoad();
     };
-    // TODO: Check for webP support
-    bgImg.src = imageFluidData.src;
+
+    const elem = document.createElement('canvas');
+
+    if (elem.getContext && elem.getContext('2d')) {
+      // was able or not to get WebP representation
+      // uses WebP src for all browsers supporting .webp
+      // EXCEPT Firefox 65 & Edge 18
+      bgImg.src = imageFluidData.srcWebp;
+    } else {
+      // very old browser like IE 8, canvas not supported
+      bgImg.src = imageFluidData.src;
+    }
   }, []);
 
   return (
@@ -37,6 +47,7 @@ const Slide = ({
 Slide.propTypes = {
   imageFluidData: PropTypes.shape({
     src: PropTypes.string.isRequired,
+    srcWebp: PropTypes.string.isRequired,
   }).isRequired,
   ariaHidden: PropTypes.bool.isRequired,
   zIndex: PropTypes.number.isRequired,
