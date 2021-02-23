@@ -1,6 +1,6 @@
 /* stylelint-disable indentation */
 @font-face {
-  font-display: fallback;
+  font-display: swap;
   font-family: 'Josefin Sans';
   font-style: normal;
   font-weight: 400;
@@ -15,8 +15,14 @@
 
 @import '~@fontsource/mukta/scss/mixins';
 
-$display: fallback;
+$display: swap;
 
 @include fontFace($weight: 400);
 @include fontFace($weight: 200);
 @include fontFace($weight: 800);
+
+@font-face {
+  font-display: swap;
+  font-family: 'Veranda';
+  src: local('Veranda');
+}
