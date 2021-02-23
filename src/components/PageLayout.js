@@ -80,11 +80,11 @@ const PageLayout = ({ slider, sliderData, children, location }) => {
         />
         <meta
           property="og:url"
-          content={`https://mcfaddenpiano.com${location.pathname}`}
+          content={`https://www.mcfaddenpiano.com${location.pathname}`}
         />
         <link
           rel="canonical"
-          href={`https://mcfaddenpiano.com${location.pathname}`}
+          href={`https://www.mcfaddenpiano.com${location.pathname}`}
         />
       </Helmet>
       {slider && (
