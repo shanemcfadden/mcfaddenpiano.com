@@ -1,25 +1,44 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import BackgroundImage from 'gatsby-background-image';
 
-const Slide = ({ imageUrl, ariaHidden, zIndex, leftPosition, onLoad }) => {
+const Slide = ({
+  imageFluidData,
+  ariaHidden,
+  zIndex,
+  leftPosition,
+  onLoad,
+}) => {
   useEffect(() => {
     const bgImg = new Image();
     bgImg.onload = () => {
       onLoad();
     };
-    bgImg.src = imageUrl;
+    // TODO: Check for webP support
+    bgImg.src = imageFluidData.src;
   }, []);
 
   return (
-    <div
+    <BackgroundImage
+      fluid={imageFluidData}
+      backgroundColor={'#111'}
       className="slider__slide"
       style={{
-        backgroundImage: `url('${imageUrl}')`,
         zIndex: zIndex,
         left: leftPosition,
+        position: 'absolute', // Won't work in class
+        top: 0, // Won't work in class
       }}
-      aria-hidden={ariaHidden}
     />
+    // <div
+    //   className="slider__slide"
+    //   style={{
+    //     backgroundImage: `url('${imageUrl}')`,
+    //     zIndex: zIndex,
+    //     left: leftPosition,
+    //   }}
+    //   aria-hidden={ariaHidden}
+    // />
   );
 };
 

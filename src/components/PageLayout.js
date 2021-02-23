@@ -7,7 +7,7 @@ import 'normalize.css';
 import '../styles/styles.scss';
 import Slider from './Slider/Slider';
 
-const PageLayout = ({ slider, children, location }) => {
+const PageLayout = ({ slider, sliderData, children, location }) => {
   const data = useStaticQuery(
     graphql`
       query {
@@ -90,7 +90,7 @@ const PageLayout = ({ slider, children, location }) => {
       </Helmet>
       {slider && (
         <Slider
-          slides={allImages}
+          slides={sliderData}
           startingImgData={startingImgData}
           autoPlay={4}
           isFullScreen={true}

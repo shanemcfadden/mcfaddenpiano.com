@@ -114,15 +114,17 @@ const Slider = ({
       }}
       ref={sliderRef}
     >
-      <Img
-        className="slider__starting-img"
-        alt="Shane McFadden at the piano accompanying a singer"
-        fluid={startingImgData}
-        style={{
-          position: 'absolute',
-        }}
-        aria-hidden="true"
-      />
+      {
+        // <Img
+        //   className="slider__starting-img"
+        //   alt="Shane McFadden at the piano accompanying a singer"
+        //   fluid={startingImgData}
+        //   style={{
+        //     position: 'absolute',
+        //   }}
+        //   aria-hidden="true"
+        // />
+      }
       <div className="slider__overlay-container">
         <div
           className={`slider__overlay ${
@@ -139,7 +141,8 @@ const Slider = ({
           key={'image-' + i}
           zIndex={hasHighZIndex(i) ? 1 : 0}
           leftPosition={getLeftPosition(i)}
-          imageUrl={slide}
+          // imageUrl={slide}
+          imageFluidData={slide}
           ariaHidden={activeSlideIndex !== i}
           onLoad={incrementLoadedSlides}
         />
