@@ -32,7 +32,6 @@ const PageLayout = ({ slider, sliderData, children, location }) => {
       }
     `
   );
-  const startingImgData = data.allFile.edges[0].node.childImageSharp.fluid;
   const allImages = data.allFile.edges.map(({ node }) => node.publicURL);
 
   return (
@@ -89,12 +88,7 @@ const PageLayout = ({ slider, sliderData, children, location }) => {
         />
       </Helmet>
       {slider && (
-        <Slider
-          slides={sliderData}
-          startingImgData={startingImgData}
-          autoPlay={4}
-          isFullScreen={true}
-        />
+        <Slider slides={sliderData} autoPlay={4} isFullScreen={true} />
       )}
       <div className="content-container">
         <div id="content" className="site-header">
@@ -116,6 +110,7 @@ PageLayout.propTypes = {
     PropTypes.node,
   ]).isRequired,
   slider: PropTypes.bool,
+  sliderData: PropTypes.arrayOf(PropTypes.object).isRequired,
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,

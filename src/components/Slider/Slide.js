@@ -29,26 +29,20 @@ const Slide = ({
         position: 'absolute', // Won't work in class
         top: 0, // Won't work in class
       }}
+      aria-hidden={ariaHidden}
     />
-    // <div
-    //   className="slider__slide"
-    //   style={{
-    //     backgroundImage: `url('${imageUrl}')`,
-    //     zIndex: zIndex,
-    //     left: leftPosition,
-    //   }}
-    //   aria-hidden={ariaHidden}
-    // />
   );
 };
 
 Slide.propTypes = {
-  imageUrl: PropTypes.string,
-  ariaHidden: PropTypes.bool,
-  zIndex: PropTypes.number,
-  leftPosition: PropTypes.number,
-  onLoad: PropTypes.func,
-  currentLoadedSlides: PropTypes.number,
+  imageFluidData: PropTypes.shape({
+    src: PropTypes.string.isRequired,
+  }).isRequired,
+  ariaHidden: PropTypes.bool.isRequired,
+  zIndex: PropTypes.number.isRequired,
+  leftPosition: PropTypes.number.isRequired,
+  onLoad: PropTypes.func.isRequired,
+  currentLoadedSlides: PropTypes.number.isRequired,
 };
 
 export default React.memo(Slide);

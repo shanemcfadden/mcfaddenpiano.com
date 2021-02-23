@@ -9,7 +9,6 @@ const IndexPage = ({ data, location }) => {
     return node.childImageSharp.fluid;
   });
 
-  console.log(sliderData);
   return (
     <PageLayout slider={true} sliderData={sliderData} location={location}>
       <div className="float--right-half float--no-margin-top">
@@ -28,16 +27,25 @@ const IndexPage = ({ data, location }) => {
 
 IndexPage.propTypes = {
   data: PropTypes.shape({
+    allFile: PropTypes.shape({
+      edges: PropTypes.arrayOf({
+        node: PropTypes.shape({
+          childImageSharp: PropTypes.shape({
+            fluid: PropTypes.object.isRequired,
+          }).isRequired,
+        }).isRequired,
+      }).isRequired,
+    }).isRequired,
     file: PropTypes.shape({
       childImageSharp: PropTypes.shape({
         fluid: PropTypes.shape({}),
-      }),
-    }),
+      }).isRequired,
+    }).isRequired,
     markdownRemark: PropTypes.shape({
-      html: PropTypes.string,
-    }),
+      html: PropTypes.string.isRequired,
+    }).isRequired,
   }),
-  location: PropTypes.object,
+  location: PropTypes.object.isRequired,
 };
 
 export default IndexPage;
