@@ -124,7 +124,6 @@ const Slider = ({ slides, autoPlay = 0, isFullScreen = false }) => {
           key={'image-' + i}
           zIndex={hasHighZIndex(i) ? 1 : 0}
           leftPosition={getLeftPosition(i)}
-          // imageUrl={slide}
           imageFluidData={slide}
           ariaHidden={activeSlideIndex !== i}
           onLoad={incrementLoadedSlides}
