@@ -12,13 +12,17 @@
   @media only screen and (min-width: $desktop-breakpoint) {
     height: 100vh;
   }
+
+  @media (orientation: portrait) {
+    height: 56vw;
+  }
 }
 
 .slider__overlay-container {
   align-items: center;
-  background: radial-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+  background: none;
   color: #fff;
-  display: flex;
+  display: none;
   height: 100%;
   justify-content: center;
   left: 0;
@@ -26,48 +30,34 @@
   top: 0;
   width: 100%;
   z-index: 10;
+  @media only screen and (min-width: $tablet-breakpoint) {
+    background: radial-gradient(rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+    display: flex;
+  }
 }
 
 .slider__overlay {
   text-align: center;
 
-  h1 {
-    font-size: 3.6rem; // Set according to specific use case
-    margin: 0;
-  }
+  @media only screen and (min-width: $tablet-breakpoint) {
+    h1 {
+      font-size: 5.2rem;
+      margin: 0;
+    }
 
-  h2 {
-    font-size: 2.4rem; // Set according to specific use case
-    margin: 0;
+    h2 {
+      font-size: 3.6rem;
+      margin: 0;
+    }
   }
 
   @media only screen and (min-width: $desktop-breakpoint) {
     h1 {
-      font-size: 4.8rem; // Set according to specific use case
+      font-size: 7.2rem;
     }
 
     h2 {
-      font-size: 3.6rem; // Set according to specific use case
-    }
-  }
-}
-
-.slider__overlay--fullscreen {
-  h1 {
-    font-size: 10vw;
-  }
-
-  h2 {
-    font-size: 5vw;
-  }
-
-  @media only screen and (min-width: $desktop-breakpoint) {
-    h1 {
-      font-size: 10vh;
-    }
-
-    h2 {
-      font-size: 5vh;
+      font-size: 5.2rem;
     }
   }
 }
