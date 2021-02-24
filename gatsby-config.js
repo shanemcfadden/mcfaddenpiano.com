@@ -26,6 +26,14 @@ module.exports = {
         path: path.join(__dirname, 'src', 'data'),
       },
     },
+    {
+      resolve: `gatsby-plugin-gtag`,
+      options: {
+        trackingId: `G-7B5F2MF19Y`,
+        head: true,
+        anonymize: true,
+      },
+    },
     'gatsby-transformer-json',
     'gatsby-transformer-remark',
     'gatsby-transformer-sharp',
