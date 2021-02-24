@@ -12,6 +12,10 @@
   @media only screen and (min-width: $desktop-breakpoint) {
     height: 100vh;
   }
+
+  @media (orientation: portrait) {
+    height: 56vw;
+  }
 }
 
 .slider__overlay-container {
