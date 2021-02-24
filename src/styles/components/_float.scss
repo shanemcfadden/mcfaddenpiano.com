@@ -1,8 +1,12 @@
 .float--right-half {
   float: right;
-  margin: $margin-m-size;
+  margin: $margin-s-size;
   margin-right: 0;
   width: 50%;
+
+  @media screen and (min-width: $tablet-breakpoint) {
+    margin: $margin-m-size;
+  }
 }
 
 .float--no-margin-top {
