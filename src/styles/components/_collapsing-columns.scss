@@ -4,13 +4,13 @@
   justify-content: space-between;
   margin: $margin-m-size 0;
 
-  @media only screen and (min-width: $desktop-breakpoint) {
+  @media only screen and (min-width: $tablet-breakpoint) {
     flex-direction: row;
   }
 
   > div,
   > form {
-    @media only screen and (min-width: $desktop-breakpoint) {
+    @media only screen and (min-width: $tablet-breakpoint) {
       margin: 0;
       width: 48%;
     }
