@@ -22,7 +22,6 @@
   align-items: center;
   background: none;
   color: #fff;
-  display: none;
   height: 100%;
   justify-content: center;
   left: 0;
@@ -40,6 +39,12 @@
 
 .slider__overlay {
   text-align: center;
+  visibility: inherit;
+
+  h1,
+  h2 {
+    visibility: inherit;
+  }
 
   @media only screen and (min-width: $tablet-breakpoint) {
     h1 {
