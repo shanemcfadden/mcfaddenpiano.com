@@ -3,8 +3,6 @@
 }
 
 html {
-  --scrollbarBG: #111;
-  --thumbBG: #222;
   background-color: #111;
   color: #fff;
   font-size: 62.5%;
@@ -13,7 +11,7 @@ html {
 body {
   font-family: 'Mukta', Veranda, sans-serif;
   font-size: $m-size;
-  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+  scrollbar-color: $scrollbar-thumb-color $scrollbar-bg-color;
   scrollbar-width: 16px;
 
   &::-webkit-scrollbar {
@@ -21,13 +19,13 @@ body {
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: var(--thumbBG);
-    border: 3px solid var(--scrollbarBG);
+    background-color: $scrollbar-thumb-color;
+    border: 3px solid $scrollbar-bg-color;
     border-radius: 8px;
   }
 
   &::-webkit-scrollbar-track {
-    background: var(--scrollbarBG);
+    background: $scrollbar-bg-color;
   }
 }
 
