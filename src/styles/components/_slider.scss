@@ -8,7 +8,7 @@
 .slider--fullscreen {
   height: 56vw;
   max-height: none;
-  width: 100vw;
+  width: 100%;
   @media only screen and (min-width: $desktop-breakpoint) {
     height: 100vh;
   }
