@@ -3,6 +3,30 @@
 }
 
 html {
+  --scrollbarBG: #111;
+  --thumbBG: #222;
+}
+
+body::-webkit-scrollbar {
+  width: 16px;
+}
+
+body {
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+  scrollbar-width: 16px;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG);
+  border: 3px solid var(--scrollbarBG);
+  border-radius: 8px;
+}
+
+html {
   background-color: #111;
   color: #fff;
   font-size: 62.5%;
