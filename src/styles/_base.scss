@@ -11,6 +11,22 @@ html {
 body {
   font-family: 'Mukta', Veranda, sans-serif;
   font-size: $m-size;
+  scrollbar-color: $scrollbar-thumb-color $scrollbar-bg-color;
+  scrollbar-width: auto;
+
+  &::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $scrollbar-thumb-color;
+    border: 3px solid $scrollbar-bg-color;
+    border-radius: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $scrollbar-bg-color;
+  }
 }
 
 h1,

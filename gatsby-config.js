@@ -3,6 +3,7 @@ const path = require('path');
 module.exports = {
   siteMetadata: {
     title: 'mcfaddenpiano.com',
+    siteUrl: 'https://www.mcfaddenpiano.com',
   },
   plugins: [
     {
@@ -32,6 +33,12 @@ module.exports = {
         trackingId: `G-7B5F2MF19Y`,
         head: true,
         anonymize: true,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-sitemap',
+      options: {
+        exclude: ['/success'],
       },
     },
     'gatsby-transformer-json',
