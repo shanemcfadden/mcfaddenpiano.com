@@ -12,7 +12,7 @@ body {
   font-family: 'Mukta', Veranda, sans-serif;
   font-size: $m-size;
   scrollbar-color: $scrollbar-thumb-color $scrollbar-bg-color;
-  scrollbar-width: 16px;
+  scrollbar-width: auto;
 
   &::-webkit-scrollbar {
     width: 16px;
