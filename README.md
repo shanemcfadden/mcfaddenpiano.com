@@ -17,4 +17,4 @@ A static website for my freelance music work. It contains a bio, photos, videos,
 - Implement Google Analytics tags
 - Host a site using a Content Delivery Network
 - Optimize webpages using Lighthouse
-- Test accross multiple browsers and iOS/Android emulators
+- Test across multiple browsers and iOS/Android emulators
