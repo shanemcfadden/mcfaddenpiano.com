@@ -4,21 +4,23 @@ A static website for my freelance music work. It contains a bio, photos, videos,
 
 ## Tools used
 
+- React
 - Gatsby (a React framework for static websites)
-- Sass
+- Sass (a CSS extension language)
 - Netlify CDN
 
-## Skills learned
+## Skills improved
 
 - Generate static web pages using React
+- Design and implement responsive page layouts
+- Test across multiple browsers and iOS/Android emulators
 - Optimize and compress image files
-- Implement open graph meta tags for SEO
+- Implement open graph meta tags for Search Engine Optimization (SEO)
 - Implement Captcha
 - Implement Google Analytics tags
 - Generate sitemap
-- Host a site using a Content Delivery Network
+- Host a site using a Content Delivery Network (CDN)
 - Optimize webpages using Lighthouse
-- Test across multiple browsers and iOS/Android emulators
 
 ## Running the project locally
 
