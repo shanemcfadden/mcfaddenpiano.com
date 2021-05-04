@@ -22,6 +22,7 @@ This project started when I outgrew SquareSpace. Although it was a wonderful way
 - Implement open graph meta tags for Search Engine Optimization (SEO)
 - Implement Captcha
 - Implement Google Analytics tags
+- Increase accessibility using tab indeces and aria attributes
 - Generate sitemap
 - Host a site using a Content Delivery Network (CDN)
 - Optimize webpages using Lighthouse
