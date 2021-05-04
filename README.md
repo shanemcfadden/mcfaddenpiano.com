@@ -4,6 +4,8 @@ This project started when I outgrew SquareSpace. Although it was a wonderful way
 
 [mcfaddenpiano.com](https://mcfaddenpiano.com) is a static website for my freelance music work built using Gatsby. It contains a bio, photos, videos, and a contact form.
 
+[![mcfaddenpiano.com screenshot](screenshot.jpg)](https://mcfaddenpiano.com)
+
 ## Tools used
 
 - React
