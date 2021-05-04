@@ -1,6 +1,8 @@
 # mcfaddenpiano.com
 
-A static website for my freelance music work. It contains a bio, photos, videos, and a contact form. The site is live at [mcfaddenpiano.com](https://mcfaddenpiano.com).
+This project started when I outgrew SquareSpace. Although it was a wonderful way for me to design and deploy a website when I was working full time as a musician, there was no need for me to pay an annual fee for me to use someone else's template once I learned the basics of front-end development. In addition, I have complete freedom to add, delete, or customize any pages or features at my own convenience.
+
+[mcfaddenpiano.com](https://mcfaddenpiano.com) is a static website for my freelance music work built using Gatsby. It contains a bio, photos, videos, and a contact form.
 
 ## Tools used
 
