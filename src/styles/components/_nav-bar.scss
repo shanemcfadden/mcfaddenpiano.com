@@ -23,7 +23,6 @@
 
     &:hover {
       background: #222;
-      text-decoration: underline;
     }
   }
 
@@ -38,6 +37,5 @@
   .active,
   .active:hover {
     background: linear-gradient(0deg, #111 0%, #666 100%);
-    text-decoration: underline;
   }
 }
