@@ -113,9 +113,10 @@ const Slider = ({ slides, autoPlay = 0, isFullScreen = false }) => {
           className={`slider__overlay ${
             isFullScreen ? 'slider__overlay--fullscreen' : ''
           }`}
+          itemType="https://schema.org/Person"
         >
-          <h1>Shane McFadden</h1>
-          <h2>Collaborative Pianist</h2>
+          <h1 itemProp="name">Shane McFadden</h1>
+          <h2 itemProp="jobTitle">Collaborative Pianist</h2>
         </div>
       </div>
 
