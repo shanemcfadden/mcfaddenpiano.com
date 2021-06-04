@@ -41,6 +41,7 @@ module.exports = {
         exclude: ['/success'],
       },
     },
+    'gatsby-plugin-robots-txt',
     'gatsby-transformer-json',
     'gatsby-transformer-remark',
     'gatsby-transformer-sharp',
