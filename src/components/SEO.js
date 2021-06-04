@@ -7,12 +7,13 @@ import { useStaticQuery, graphql } from 'gatsby';
 const SEO = () => {
   const { pathname } = useLocation();
   const { site } = useStaticQuery(query);
-  const { title, description, siteUrl } = site.siteMetadata;
+  const { title, description, author, siteUrl } = site.siteMetadata;
   const currentUrl = siteUrl + pathname;
   return (
     <Helmet defaultTitle={title}>
       <html lang="en" />
       <meta name="description" content={description} />
+      <meta name="author" content={author} />
       {/* real favicon generator info */}
       <link
         rel="apple-touch-icon"
@@ -43,6 +44,10 @@ const SEO = () => {
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
       <meta property="og:url" content={currentUrl} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={ogImage} />
       <link rel="canonical" href={currentUrl} />
     </Helmet>
   );
@@ -56,6 +61,7 @@ const query = graphql`
       siteMetadata {
         title
         description
+        author
         siteUrl
       }
     }
