@@ -5,6 +5,7 @@ module.exports = {
     title: 'Shane McFadden - Collaborative Pianist',
     description:
       'A classical pianist, accompanist, and vocal coach based in Chicago.',
+    author: 'Shane McFadden',
     siteUrl: 'https://www.mcfaddenpiano.com',
   },
   plugins: [
