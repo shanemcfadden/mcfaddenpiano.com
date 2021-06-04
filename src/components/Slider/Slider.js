@@ -3,8 +3,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import Slide from './Slide';
 import SliderNav from './SliderNav';
 import { isInRange, relativeIndexDifference } from '../../util/arrays';
+import { useStaticQuery, graphql } from 'gatsby';
 
-const Slider = ({ slides, autoPlay = 0, isFullScreen = false }) => {
+const Slider = ({ autoPlay = 0, isFullScreen = false }) => {
+  const data = useStaticQuery(query);
+  const slides = data.allFile.edges.map(({ node }) => {
+    return node.childImageSharp.fluid;
+  });
   const autoPlayRef = useRef();
   const sliderRef = useRef();
   const autoPlayInterval = useRef();
@@ -145,9 +150,31 @@ const Slider = ({ slides, autoPlay = 0, isFullScreen = false }) => {
 };
 
 Slider.propTypes = {
-  slides: PropTypes.arrayOf(PropTypes.object).isRequired,
   autoPlay: PropTypes.number.isRequired,
   isFullScreen: PropTypes.bool,
 };
 
 export default Slider;
+
+const query = graphql`
+  {
+    allFile(
+      filter: {
+        sourceInstanceName: { eq: "images" }
+        relativePath: { glob: "slider/*" }
+      }
+      sort: { order: ASC, fields: name }
+    ) {
+      edges {
+        node {
+          publicURL
+          childImageSharp {
+            fluid(maxWidth: 1920) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
+      }
+    }
+  }
+`;
