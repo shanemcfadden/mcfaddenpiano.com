@@ -7,13 +7,11 @@ import '../styles/styles.scss';
 import Slider from './Slider/Slider';
 import SEO from './SEO';
 
-const PageLayout = ({ slider, sliderData, children }) => {
+const PageLayout = ({ slider, children }) => {
   return (
     <>
       <SEO />
-      {slider && (
-        <Slider slides={sliderData} autoPlay={4} isFullScreen={true} />
-      )}
+      {slider && <Slider autoPlay={4} isFullScreen={true} />}
       <div className="content-container">
         <div id="content" className="site-header">
           <Link to="/">
