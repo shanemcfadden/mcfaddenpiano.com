@@ -15,10 +15,16 @@ const PageLayout = ({ slider, sliderData, children }) => {
         <Slider slides={sliderData} autoPlay={4} isFullScreen={true} />
       )}
       <div className="content-container">
-        <div id="content" className="site-header">
-          <Link to="/">
-            <h1 id="content">Shane McFadden</h1>
-            <h2>Collaborative Pianist</h2>
+        <div
+          id="content"
+          className="site-header"
+          itemType="https://schema.org/Person"
+        >
+          <Link to="/" itemProp="url">
+            <h1 id="content" itemProp="name">
+              Shane McFadden
+            </h1>
+            <h2 itemProp="jobTitle">Collaborative Pianist</h2>
           </Link>
         </div>
         <NavBar />
