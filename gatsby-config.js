@@ -2,7 +2,9 @@ const path = require('path');
 
 module.exports = {
   siteMetadata: {
-    title: 'mcfaddenpiano.com',
+    title: 'Shane McFadden - Collaborative Pianist',
+    description:
+      'A classical pianist, accompanist, and vocal coach based in Chicago.',
     siteUrl: 'https://www.mcfaddenpiano.com',
   },
   plugins: [
