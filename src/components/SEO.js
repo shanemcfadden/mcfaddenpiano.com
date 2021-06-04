@@ -1,7 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 import { useLocation } from '@reach/router';
-import ogImage from '../images/slider/slide0.jpg';
 import { useStaticQuery, graphql } from 'gatsby';
 
 const SEO = () => {
@@ -9,6 +8,7 @@ const SEO = () => {
   const { site } = useStaticQuery(query);
   const { title, description, author, siteUrl } = site.siteMetadata;
   const currentUrl = siteUrl + pathname;
+  const completeOgImageUrl = siteUrl + '/og-image.jpg';
   return (
     <Helmet defaultTitle={title}>
       <html lang="en" />
@@ -39,16 +39,16 @@ const SEO = () => {
       {/* end real favicon generator info */}
       <meta itemProp="name" content={title} />
       <meta itemProp="description" content={description} />
-      <meta itemProp="image" content={ogImage} />
+      <meta itemProp="image" content={completeOgImageUrl} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={ogImage} />
+      <meta property="og:image" content={completeOgImageUrl} />
       <meta property="og:url" content={currentUrl} />
       <meta property="og:type" content="website" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={ogImage} />
+      <meta name="twitter:image" content={completeOgImageUrl} />
       <link rel="canonical" href={currentUrl} />
     </Helmet>
   );
