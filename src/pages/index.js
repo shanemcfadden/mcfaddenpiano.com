@@ -5,12 +5,8 @@ import Img from 'gatsby-image';
 import PageLayout from '../components/PageLayout';
 
 const IndexPage = ({ data, location }) => {
-  const sliderData = data.allFile.edges.map(({ node }) => {
-    return node.childImageSharp.fluid;
-  });
-
   return (
-    <PageLayout slider={true} sliderData={sliderData} location={location}>
+    <PageLayout slider={true} location={location}>
       <div className="float--right-half float--no-margin-top">
         <Img
           alt="Shane McFadden headshot"
@@ -27,17 +23,6 @@ const IndexPage = ({ data, location }) => {
 
 IndexPage.propTypes = {
   data: PropTypes.shape({
-    allFile: PropTypes.shape({
-      edges: PropTypes.arrayOf(
-        PropTypes.shape({
-          node: PropTypes.shape({
-            childImageSharp: PropTypes.shape({
-              fluid: PropTypes.object.isRequired,
-            }).isRequired,
-          }).isRequired,
-        }).isRequired
-      ).isRequired,
-    }).isRequired,
     file: PropTypes.shape({
       childImageSharp: PropTypes.shape({
         fluid: PropTypes.shape({}),
@@ -65,24 +50,6 @@ export const query = graphql`
     }
     markdownRemark(frontmatter: { slug: { eq: "/bio" } }) {
       html
-    }
-    allFile(
-      filter: {
-        sourceInstanceName: { eq: "images" }
-        relativePath: { glob: "slider/*" }
-      }
-      sort: { order: ASC, fields: name }
-    ) {
-      edges {
-        node {
-          publicURL
-          childImageSharp {
-            fluid(maxWidth: 1920) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
-          }
-        }
-      }
     }
   }
 `;
