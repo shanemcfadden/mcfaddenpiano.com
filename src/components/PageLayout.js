@@ -19,6 +19,7 @@ const PageLayout = ({ slider, sliderData, children }) => {
           id="content"
           className="site-header"
           itemType="https://schema.org/Person"
+          itemScope
         >
           <Link to="/" itemProp="url">
             <h1 id="content" itemProp="name">
