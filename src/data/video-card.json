@@ -1,18 +1,14 @@
 [
-    {
-        "title": "Khachaturian Trio for Violin, Clarinet, and Piano",
-        "watchLink": "https://www.youtube.com/watch?v=8jr2z99YjmI",
-        "performers": ["Mickayla Chapman, clarinet", "Chase Ward, violin"],
-        "venue": "Curtiss Hall, Chicago, IL"
-    },{
-        "title": "\"Shadow Memory\" by James Primosch",
-        "watchLink": "https://www.youtube.com/watch?v=nguxZlrHxu8",
-        "performers": ["Bahareh Poureslami, soprano"],
-        "venue": "Zipper Hall, Los Angeles, CA"
-    },{
-        "title": "\"What a Movie!\" by Leonard Bernstein",
-        "watchLink": "https://www.youtube.com/watch?v=-tVR-N9ncNM",
-        "performers": ["Ruth Heald, mezzo-soprano"],
-        "venue": "Ganz Hall, Chicago, IL"
-    }
+  {
+    "title": "Khachaturian Trio for Violin, Clarinet, and Piano",
+    "watchLink": "https://www.youtube.com/watch?v=8jr2z99YjmI",
+    "performers": ["Mickayla Chapman, clarinet", "Chase Ward, violin"],
+    "venue": "Curtiss Hall, Chicago, IL"
+  },
+  {
+    "title": "\"Shadow Memory\" by James Primosch",
+    "watchLink": "https://www.youtube.com/watch?v=nguxZlrHxu8",
+    "performers": ["Bahareh Poureslami, soprano"],
+    "venue": "Zipper Hall, Los Angeles, CA"
+  }
 ]
