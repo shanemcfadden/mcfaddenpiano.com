@@ -39,7 +39,6 @@ PageLayout.propTypes = {
     PropTypes.node,
   ]).isRequired,
   slider: PropTypes.bool,
-  sliderData: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 PageLayout.defaultProps = {
