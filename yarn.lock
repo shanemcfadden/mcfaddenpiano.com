@@ -928,7 +928,7 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.10.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.13", "@babel/runtime@^7.12.5", "@babel/runtime@^7.15.4", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7":
+"@babel/runtime@^7.10.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.13", "@babel/runtime@^7.12.5", "@babel/runtime@^7.14.6", "@babel/runtime@^7.15.4", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.8.7":
   version "7.16.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.16.0.tgz#e27b977f2e2088ba24748bf99b5e1dece64e4f0b"
   integrity sha512-Nht8L0O8YCktmsDV6FqFue7vQLRx3Hb0B37lS5y0jDRqRxlBG4wIJHnf9/bgSE2UyipKFA01YtS+npRdTWBUyw==
@@ -6250,10 +6250,10 @@ gatsby-plugin-page-creator@^2.10.0:
     globby "^11.0.2"
     lodash "^4.17.20"
 
-gatsby-plugin-prettier-eslint@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-prettier-eslint/-/gatsby-plugin-prettier-eslint-1.0.4.tgz#01d3e42b34c2cdc5c6cf8c2c28b6eef609ba4a48"
-  integrity sha512-mCPQ0q++x5ffbcrg6lWZuhjDie/Tn67KPfeyYtoYk0K77SHI3z/QvBjwK2UojWA+uzbyKzS5WebLYd/wYq21/w==
+gatsby-plugin-prettier-eslint@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-prettier-eslint/-/gatsby-plugin-prettier-eslint-1.0.5.tgz#62910a3ec85e887bc166f9021b7692e47b93c90e"
+  integrity sha512-Y0lknRW0dhKULEZJye+1gFG7pqPXS0PamssHICGA6O3jHcj0y5dWG5kbbsT2BSh3vxqlotIulssshnf7MqSAdA==
   dependencies:
     "@babel/runtime" "^7.8.7"
     chokidar "^3.3.1"
