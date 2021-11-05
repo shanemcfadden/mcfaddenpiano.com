@@ -17,9 +17,9 @@
   "dependencies": {
     "@fontsource/josefin-sans": "^4.2.1",
     "@fontsource/mukta": "^4.2.1",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.6.0",
-    "eslint-plugin-prettier": "^3.3.1",
+    "eslint": "^8.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
     "gatsby": "^4.1.0",
     "gatsby-background-image": "^1.5.3",
@@ -40,13 +40,13 @@
     "normalize.css": "^8.0.1",
     "prettier": "^2.4.1",
     "prop-types": "^15.7.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
     "sass": "^1.32.7"
   },
   "devDependencies": {
-    "stylelint": "^13.10.0",
-    "stylelint-config-sass-guidelines": "^8.0.0"
+    "stylelint": "^14.0.1",
+    "stylelint-config-sass-guidelines": "^9.0.1"
   }
 }
