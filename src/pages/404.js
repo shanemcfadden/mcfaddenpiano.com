@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { navigate } from '@reach/router';
 
-export default () => {
+const Redirect404 = () => {
   useEffect(() => {
     navigate('/');
   }, []);
   return null;
 };
+
+export default Redirect404;
