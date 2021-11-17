@@ -20,7 +20,7 @@
     "eslint": "^8.2.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.26.1",
+    "eslint-plugin-react": "^7.27.0",
     "gatsby": "^4.2.0",
     "gatsby-background-image": "^1.5.3",
     "gatsby-image": "^3.11.0",
