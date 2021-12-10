@@ -1,17 +1,15 @@
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import Img from 'gatsby-image';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import PageLayout from '../components/PageLayout';
 
 const IndexPage = ({ data, location }) => {
+  const image = getImage(data.file);
   return (
     <PageLayout slider={true} location={location}>
       <div className="float--right-half float--no-margin-top">
-        <Img
-          alt="Shane McFadden headshot"
-          fluid={data.file.childImageSharp.fluid}
-        />
+        <GatsbyImage image={image} alt="Shane McFadden headshot" />
       </div>
       <div
         id="bio"
@@ -25,7 +23,7 @@ IndexPage.propTypes = {
   data: PropTypes.shape({
     file: PropTypes.shape({
       childImageSharp: PropTypes.shape({
-        fluid: PropTypes.shape({}),
+        gatsbyImageData: PropTypes.shape({}),
       }).isRequired,
     }).isRequired,
     markdownRemark: PropTypes.shape({
@@ -38,14 +36,10 @@ IndexPage.propTypes = {
 export default IndexPage;
 
 export const query = graphql`
-  query {
+  {
     file(relativePath: { eq: "HSPTL.jpg" }) {
       childImageSharp {
-        # Specify the image processing specifications right in the query.
-        # Makes it trivial to update as your page's design changes.
-        fluid(maxWidth: 600) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
+        gatsbyImageData(layout: FULL_WIDTH)
       }
     }
     markdownRemark(frontmatter: { slug: { eq: "/bio" } }) {
