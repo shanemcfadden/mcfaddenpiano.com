@@ -47,6 +47,7 @@ module.exports = {
     'gatsby-plugin-robots-txt',
     'gatsby-transformer-json',
     'gatsby-transformer-remark',
+    'gatsby-plugin-image',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     'gatsby-plugin-sass',

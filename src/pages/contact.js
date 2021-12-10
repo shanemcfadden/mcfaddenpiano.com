@@ -1,11 +1,12 @@
 import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import Img from 'gatsby-image';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { Helmet } from 'react-helmet';
 import PageLayout from '../components/PageLayout';
 
 const ContactPage = ({ data, location }) => {
+  const image = getImage(data.file);
   return (
     <PageLayout location={location}>
       <Helmet>
@@ -17,9 +18,9 @@ const ContactPage = ({ data, location }) => {
       </Helmet>
       <div className="collapsing-columns">
         <div>
-          <Img
+          <GatsbyImage
+            image={image}
             alt="Shane McFadden at the piano onstage"
-            fluid={data.file.childImageSharp.fluid}
           />
         </div>
         <form
@@ -86,7 +87,7 @@ ContactPage.propTypes = {
   data: PropTypes.shape({
     file: PropTypes.shape({
       childImageSharp: PropTypes.shape({
-        fluid: PropTypes.shape({}),
+        gatsbyImageData: PropTypes.shape({}),
       }),
     }),
   }),
@@ -96,18 +97,11 @@ ContactPage.propTypes = {
 export default ContactPage;
 
 export const query = graphql`
-  query {
+  {
     file(relativePath: { eq: "AOF6.jpg" }) {
       childImageSharp {
-        # Specify the image processing specifications right in the query.
-        # Makes it trivial to update as your page's design changes.
-        fluid(maxWidth: 600) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
+        gatsbyImageData(layout: FULL_WIDTH)
       }
-    }
-    markdownRemark(frontmatter: { slug: { eq: "/bio" } }) {
-      html
     }
   }
 `;
