@@ -1075,10 +1075,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fontsource/josefin-sans@^4.5.1":
-  version "4.5.1"
-  resolved "https://registry.yarnpkg.com/@fontsource/josefin-sans/-/josefin-sans-4.5.1.tgz#b5630018fce69a3a16680199b95ba993387f07ae"
-  integrity sha512-V8T4akR0P9/MnYJ/ati4bvFp5Wdf0LEioNPGlEe7hK6c2BRQ3leeTXu4bKZ475H4i81eR4Av7bFNMp1aUC3zww==
+"@fontsource/josefin-sans@^4.5.2":
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/@fontsource/josefin-sans/-/josefin-sans-4.5.2.tgz#30a108c3212a036882ee9109bbdaf98c75682a50"
+  integrity sha512-w4zQPTkxL6JgaWA8SCBsX0SD//KuEWotdTJmAHD8HnEeAo3krWB8fGfjRMHOJvvPvZuiX15V3bIXQxUFL3r94g==
 
 "@fontsource/mukta@^4.2.1":
   version "4.5.0"
@@ -4500,10 +4500,10 @@ eslint@^7.32.0:
     text-table "^0.2.0"
     v8-compile-cache "^2.0.3"
 
-eslint@^8.7.0:
-  version "8.7.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.7.0.tgz#22e036842ee5b7cf87b03fe237731675b4d3633c"
-  integrity sha512-ifHYzkBGrzS2iDU7KjhCAVMGCvF6M3Xfs8X8b37cgrUlDt6bWRTpRh6T/gtSXv1HJ/BUGgmjvNvOEGu85Iif7w==
+eslint@^8.8.0:
+  version "8.8.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.8.0.tgz#9762b49abad0cb4952539ffdb0a046392e571a2d"
+  integrity sha512-H3KXAzQGBH1plhYS3okDix2ZthuYJlQQEGE5k0IKuEqUSiyu4AmxxlJ2MtTYeJ3xB4jDhcYCwGOg2TXYdnDXlQ==
   dependencies:
     "@eslint/eslintrc" "^1.0.5"
     "@humanwhocodes/config-array" "^0.9.2"
