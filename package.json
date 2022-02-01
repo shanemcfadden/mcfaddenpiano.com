@@ -25,7 +25,7 @@
     "gatsby-background-image": "^1.6.0",
     "gatsby-plugin-gtag": "^1.0.13",
     "gatsby-plugin-image": "^2.6.0",
-    "gatsby-plugin-netlify": "^4.0.0",
+    "gatsby-plugin-netlify": "^4.1.0",
     "gatsby-plugin-prettier-eslint": "^1.0.6",
     "gatsby-plugin-react-helmet": "^5.6.0",
     "gatsby-plugin-robots-txt": "^1.7.0",
