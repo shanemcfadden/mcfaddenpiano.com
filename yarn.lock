@@ -1075,15 +1075,15 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fontsource/josefin-sans@^4.5.1":
-  version "4.5.1"
-  resolved "https://registry.yarnpkg.com/@fontsource/josefin-sans/-/josefin-sans-4.5.1.tgz#b5630018fce69a3a16680199b95ba993387f07ae"
-  integrity sha512-V8T4akR0P9/MnYJ/ati4bvFp5Wdf0LEioNPGlEe7hK6c2BRQ3leeTXu4bKZ475H4i81eR4Av7bFNMp1aUC3zww==
+"@fontsource/josefin-sans@^4.5.2":
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/@fontsource/josefin-sans/-/josefin-sans-4.5.2.tgz#30a108c3212a036882ee9109bbdaf98c75682a50"
+  integrity sha512-w4zQPTkxL6JgaWA8SCBsX0SD//KuEWotdTJmAHD8HnEeAo3krWB8fGfjRMHOJvvPvZuiX15V3bIXQxUFL3r94g==
 
-"@fontsource/mukta@^4.2.1":
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/@fontsource/mukta/-/mukta-4.5.0.tgz#68fe80a3a2e58fc1c8f2d3e2136c23cdff925010"
-  integrity sha512-Kbr19DQwf+Tlicn/nzS3+JLWZpNJ3pJT1hU0IrWumN+Z0Q+Ua8C00t6x+NyjiV6oUv67+f7XPUPRkHPmQUiGCw==
+"@fontsource/mukta@^4.5.1":
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/@fontsource/mukta/-/mukta-4.5.1.tgz#dd144a19d74077f0fba32566f3d234b8d4dda9fc"
+  integrity sha512-ViJfqbBSKrCFcvAcXKv08G/TQcIp9DkHSUNbd0nt3qsuP1XzMDqWuw+39fuGqXU9zc03povkUpuWUR+o7ZK/Cw==
 
 "@gatsbyjs/reach-router@^1.3.6":
   version "1.3.6"
@@ -5325,10 +5325,10 @@ gatsby-plugin-sharp@^4.6.0:
     svgo "1.3.2"
     uuid "3.4.0"
 
-gatsby-plugin-sitemap@^5.5.0:
-  version "5.5.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-sitemap/-/gatsby-plugin-sitemap-5.5.0.tgz#d82bb8454711ffad2747cb2ed8d6e8e184b7ffa7"
-  integrity sha512-M98bxeJ6O4fPeefc35nv9q44D2RREdpnhPf0q6pDIJuGhXtdwXesSCCi6/4hZOUfOHyOYwxoKPlE7p7zx4SqWw==
+gatsby-plugin-sitemap@^5.6.0:
+  version "5.6.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-sitemap/-/gatsby-plugin-sitemap-5.6.0.tgz#ce2eaae11c984241922589b0081c0349778a2898"
+  integrity sha512-38JTiv1gZNN39vMMRev7IcM+Xo7Ewxiyw9j4mfYTOnw+Y3pVKqXvWVCMwMm5RBt1QL/vS4SEfMLvzVWH8/Osog==
   dependencies:
     "@babel/runtime" "^7.15.4"
     common-tags "^1.8.2"
@@ -5445,10 +5445,10 @@ gatsby-transformer-remark@^5.6.0:
     unist-util-select "^3.0.4"
     unist-util-visit "^2.0.3"
 
-gatsby-transformer-sharp@^4.5.0:
-  version "4.5.0"
-  resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-4.5.0.tgz#d5708dc95321d938add7c72d8b50cdc786c4bf05"
-  integrity sha512-q4bbDsb9TrzCMoV+O9qVfC+vew0N8x5jSGkfpxh8oHbu3d2JAToD5BisGh3hCVojoUCkVMszjDnJZ5TXiyJumQ==
+gatsby-transformer-sharp@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-4.6.0.tgz#a9c2ee2007df2ffb6a941c736588295bca26c10a"
+  integrity sha512-hf1GohwPhjKg1tRFI3GfJS3SxVoXI+j7MqwPsWetzRvaFy+3kecmU/azklnTfT7/2LexfDxtso9/lCHgFl5fIQ==
   dependencies:
     "@babel/runtime" "^7.15.4"
     bluebird "^3.7.2"
