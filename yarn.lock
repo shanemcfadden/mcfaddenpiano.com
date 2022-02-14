@@ -1075,10 +1075,10 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@fontsource/josefin-sans@^4.5.3":
-  version "4.5.3"
-  resolved "https://registry.yarnpkg.com/@fontsource/josefin-sans/-/josefin-sans-4.5.3.tgz#03fbc1351439d7d673d72694ad4220e793888d2c"
-  integrity sha512-IWPzHFw3TefSN8hGCMSLvgYmJLX53r3yeqyii08Vjo/1aevc8lwxWjg1am8irq+eJYhFcXQM2ZV3FNx2/ctExg==
+"@fontsource/josefin-sans@^4.5.4":
+  version "4.5.4"
+  resolved "https://registry.yarnpkg.com/@fontsource/josefin-sans/-/josefin-sans-4.5.4.tgz#2d57269e97362bbf0966a0401382f069cdceff59"
+  integrity sha512-ULegzekWj2uDtp9bxhLLJo5tzpYn657GmE+7Kb9nFtKevgRRH3nXqQM3KdGNV6ZCKqwV8QsP+Iqh+mSTdcgvMw==
 
 "@fontsource/mukta@^4.5.1":
   version "4.5.1"
