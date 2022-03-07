@@ -18,7 +18,7 @@
     "@fontsource/josefin-sans": "^4.5.4",
     "@fontsource/mukta": "^4.5.1",
     "eslint": "^8.9.0",
-    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.28.0",
     "gatsby": "^4.7.1",
