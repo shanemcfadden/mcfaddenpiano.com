@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@fontsource/josefin-sans": "^4.5.4",
-    "@fontsource/mukta": "^4.5.1",
+    "@fontsource/mukta": "^4.5.5",
     "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
