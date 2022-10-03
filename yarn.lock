@@ -1067,10 +1067,10 @@
   resolved "https://registry.yarnpkg.com/@fontsource/josefin-sans/-/josefin-sans-4.5.4.tgz#2d57269e97362bbf0966a0401382f069cdceff59"
   integrity sha512-ULegzekWj2uDtp9bxhLLJo5tzpYn657GmE+7Kb9nFtKevgRRH3nXqQM3KdGNV6ZCKqwV8QsP+Iqh+mSTdcgvMw==
 
-"@fontsource/mukta@^4.5.1":
-  version "4.5.1"
-  resolved "https://registry.yarnpkg.com/@fontsource/mukta/-/mukta-4.5.1.tgz#dd144a19d74077f0fba32566f3d234b8d4dda9fc"
-  integrity sha512-ViJfqbBSKrCFcvAcXKv08G/TQcIp9DkHSUNbd0nt3qsuP1XzMDqWuw+39fuGqXU9zc03povkUpuWUR+o7ZK/Cw==
+"@fontsource/mukta@^4.5.10":
+  version "4.5.10"
+  resolved "https://registry.yarnpkg.com/@fontsource/mukta/-/mukta-4.5.10.tgz#c4756773aa03731c3dba6bee65fcaa55ad1f15b2"
+  integrity sha512-tmGW61Bq66WQHuRHTWSsWFYHNyiHo3nkA68Fvo2gB9InrVy7/i6sVPIhnurI0KtCOPpSj21kycU+CyxjlQMEQg==
 
 "@gatsbyjs/reach-router@^1.3.6":
   version "1.3.6"
