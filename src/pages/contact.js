@@ -28,6 +28,7 @@ const ContactPage = ({ data, location }) => {
           method="POST"
           action="/success"
           data-netlify-recaptcha="true"
+          // eslint-disable-next-line react/no-unknown-property
           netlify-honeypot="false-field"
           data-netlify="true"
           aria-label="Contact form"
