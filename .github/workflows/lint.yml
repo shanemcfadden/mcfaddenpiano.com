@@ -19,4 +19,6 @@ jobs:
       - name: Run ESlint
         uses: wearerequired/lint-action@v1
         with:
+          auto_fix: true
+          continue_on_error: false
           eslint: true
