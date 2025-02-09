@@ -163,7 +163,7 @@ const query = graphql`
         sourceInstanceName: { eq: "images" }
         relativePath: { glob: "slider/*" }
       }
-      sort: { order: ASC, fields: name }
+      sort: { name: ASC }
     ) {
       edges {
         node {
