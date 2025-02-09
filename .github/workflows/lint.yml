@@ -9,13 +9,17 @@ jobs:
     name: Run linters
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
         with:
-          node-version: 'lts/fermium'
-          cache: 'yarn'
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/jod'
+          cache: 'pnpm'
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install
       - name: Run ESlint
         uses: wearerequired/lint-action@v1
         with:
