@@ -26,9 +26,6 @@ importers:
       gatsby-plugin-mdx:
         specifier: ^5.15.0
         version: 5.15.0(@mdx-js/react@3.1.1(@types/react@18.3.25)(react@18.3.1))(gatsby-source-filesystem@5.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.9.3)))(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.9.3))(graphql@16.11.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      gatsby-plugin-pnpm:
-        specifier: ^1.2.10
-        version: 1.2.10(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.9.3))
       gatsby-plugin-postcss:
         specifier: ^6.15.0
         version: 6.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.9.3))(postcss@8.5.6)(typescript@5.9.3)(webpack@5.98.0)
@@ -3221,11 +3218,6 @@ packages:
     peerDependencies:
       gatsby: ^5.0.0-next
 
-  gatsby-plugin-pnpm@1.2.10:
-    resolution: {integrity: sha512-29xjIakNEUY42OBb3wI9Thmawr5EcUUOB3dB8nE51yr/TfKQFCREk+HAOATQHTNedG3VZhgU4wVjl2V3wgOXJA==}
-    peerDependencies:
-      gatsby: ~2.x.x || ~3.x.x || ~4.x.x
-
   gatsby-plugin-postcss@6.15.0:
     resolution: {integrity: sha512-FGr3KGbM+EkRmwzhUdgVe7V/4G8KJLqeSUJgbY6HfKy3eyw+cKEAV+SlDM/cdDsjzSV7M+0NWth1TlldlRHPmg==}
     engines: {node: '>=18.0.0'}
@@ -4093,10 +4085,6 @@ packages:
 
   lodash.foreach@4.5.0:
     resolution: {integrity: sha512-aEXTF4d+m05rVOAUG3z4vZZ4xVexLKZGF0lIxuHZ1Hplpk/3B6Z1+/ICICYRLm7c41Z2xiejbkCkJoTlypoXhQ==}
-
-  lodash.get@4.4.2:
-    resolution: {integrity: sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==}
-    deprecated: This package is deprecated. Use the optional chaining (?.) operator instead.
 
   lodash.map@4.6.0:
     resolution: {integrity: sha512-worNHGKLDetmcEYDvh2stPCrrQRkP20E4l0iIS7F8EvzMqBBi7ltvFN5m1HvTf1P7Jk1txKhvFcmYsCr8O2F1Q==}
@@ -10269,12 +10257,6 @@ snapshots:
       - react-native-b4a
       - supports-color
 
-  gatsby-plugin-pnpm@1.2.10(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.9.3)):
-    dependencies:
-      gatsby: 5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.9.3)
-      lodash.get: 4.4.2
-      lodash.uniq: 4.5.0
-
   gatsby-plugin-postcss@6.15.0(gatsby@5.15.0(babel-eslint@10.1.0(eslint@7.32.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(type-fest@0.21.3)(typescript@5.9.3))(postcss@8.5.6)(typescript@5.9.3)(webpack@5.98.0):
     dependencies:
       '@babel/runtime': 7.28.4
@@ -11423,8 +11405,6 @@ snapshots:
   lodash.flattendeep@4.4.0: {}
 
   lodash.foreach@4.5.0: {}
-
-  lodash.get@4.4.2: {}
 
   lodash.map@4.6.0: {}
 
