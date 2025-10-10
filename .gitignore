@@ -1,7 +1,4 @@
 node_modules/
 .cache/
 public
-**/.DS_Store
-.vscode
-playground.js
-.env.*
+src/gatsby-types.d.ts
