@@ -34,7 +34,7 @@ export const Head: HeadFC<{
 }> = ({ location, data }) => {
   const { title, description, siteUrl } = data.site.siteMetadata;
 
-  const currentUrl = siteUrl + location;
+  const currentUrl = siteUrl + location.pathname;
   const completeOpenGraphImageUrl = siteUrl + "/og-image.jpg";
 
   return (
